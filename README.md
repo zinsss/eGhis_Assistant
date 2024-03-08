@@ -1,9 +1,6 @@
 # eGhis Assistant
+Personal Project for Personal Usage.
 
-PRIVATE! Personal Project for Personal Usage.
-
-## Disclaimer
-
-If somehow by my mistake or by UNWELCOMED INTENSIONS is reading this;  
-**I AM SORRY BUT YOU JUST WASTED YOUR TIME !**  
-I DOUBT ANYTHING IN THIS REPO WOULD INTEREST YOU OR DO ANY HELP TO YOU.  
+I DOUBT ANYTHING IN THIS REPO WOULD INTEREST ANYBODY..
+YOU ARE FREE TO LOOK AROUND BUT PLEASE DON'T LAUGH.
+I AM NOT A PROGRAMMER NOR WORK IN I/T.
