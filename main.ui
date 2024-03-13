@@ -20,8 +20,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-QWidget{
+   <string notr="true">QWidget{
 	background-color: rgb(50, 55, 70);	
 	color: rgb(180, 185, 194);
 }
@@ -152,6 +151,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
     <property name="styleSheet">
      <string notr="true">QWidget{	
 	background-color: rgb(40, 45, 55);
+	alternate-background-color: rgb(40, 45, 55);
+	selection-background-color: rgb(40, 45, 55);
+	selection-color: rgb(235, 200, 140);
 }</string>
     </property>
     <property name="title">
@@ -204,7 +206,7 @@ border-bottom-left-radius:10px;</string>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="calendar_main">
       <widget class="QLabel" name="calendar_day_year_lbl">
@@ -290,23 +292,14 @@ border-bottom-left-radius:10px;</string>
        <property name="font">
         <font>
          <family>서울남산 장체 B</family>
-         <pointsize>11</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="styleSheet">
         <string notr="true">border-top:1px solid rgb(60,65,80);
-padding-top:3px;</string>
+padding-top:10px;
+padding-left:5px;</string>
        </property>
-       <item>
-        <property name="text">
-         <string>새 항목</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>새 항목</string>
-        </property>
-       </item>
       </widget>
       <widget class="QPushButton" name="calendar_yearly_btn">
        <property name="geometry">
@@ -407,7 +400,7 @@ QCalendarWidget QTableView{
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="calendar_day_write_btn">
+      <widget class="QPushButton" name="calendar_day_options_btn">
        <property name="geometry">
         <rect>
          <x>459</x>
@@ -520,15 +513,17 @@ QCalendarWidget QTableView{
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>4</y>
+         <y>3</y>
          <width>101</width>
          <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <family>서울남산체 B</family>
+         <family>Lucida Sans</family>
          <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -676,7 +671,7 @@ border-top:1px solid rgb(50,55,70);
 border-bottom:1px solid rgb(50,55,70);</string>
        </property>
        <property name="text">
-        <string>새로운 Task 입력</string>
+        <string/>
        </property>
        <property name="frame">
         <bool>false</bool>
@@ -710,18 +705,43 @@ border-bottom:1px solid rgb(50,55,70);</string>
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
        </property>
       </widget>
+      <widget class="QLabel" name="calednar_day_mont_year_lbl">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>30</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Sans</family>
+         <pointsize>11</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(180, 185, 194);
+background:transparent;</string>
+       </property>
+       <property name="text">
+        <string>December, 2023</string>
+       </property>
+      </widget>
       <zorder>calendar_day_info_lwg</zorder>
       <zorder>calendar_day_year_lbl</zorder>
       <zorder>calendar_next_month_btn</zorder>
       <zorder>calendar_yearly_btn</zorder>
       <zorder>calendar_wdg</zorder>
-      <zorder>calendar_day_write_btn</zorder>
+      <zorder>calendar_day_options_btn</zorder>
       <zorder>calendar_day_month_lbl</zorder>
       <zorder>calendar_day_name_lbl</zorder>
       <zorder>calendar_prev_month_btn</zorder>
       <zorder>calendar_today_btn</zorder>
       <zorder>calendar_day_info_led</zorder>
       <zorder>calendar_day_date_lbl</zorder>
+      <zorder>calednar_day_mont_year_lbl</zorder>
      </widget>
      <widget class="QWidget" name="calendar_opt">
       <widget class="QPushButton" name="calendar_opt_title">
@@ -807,7 +827,7 @@ border-bottom:1px solid rgb(50,55,70);</string>
        <property name="font">
         <font>
          <family>Lucida Sans</family>
-         <pointsize>11</pointsize>
+         <pointsize>10</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -878,7 +898,7 @@ border-bottom:1px solid rgb(50,55,70);</string>
        <property name="font">
         <font>
          <family>D2Coding</family>
-         <pointsize>12</pointsize>
+         <pointsize>10</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -919,19 +939,25 @@ border-bottom:1px solid rgb(50,55,70);</string>
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true">QCalendarWidget QCalendarView{
+        <string notr="true">QCalendarWidget{
 	color: rgb(70, 70, 90);
-	selection-color: rgb(235, 200, 140);
-	background-color: rgb(40, 45, 55);
 	selection-background-color: rgb(40, 45, 55);
-	alternate-background-color: rgb(40, 45, 55);
+}
+QCalendarWidget QCalendarView{
 	border:none;
 	outline:0px;
 }
 QCalendarWidget QTableView{
+	color: rgb(70, 70, 90);
 	border:0px;
 	outline:0px;
-}</string>
+	selection-background-color: rgb(40, 45, 55);
+	alternate-background-color: rgb(40, 45, 55);
+	selection-color: rgb(235, 200, 140);
+}
+QCalendarWidget QAbstractItemView:!enabled { 
+    color:&quot;green&quot;
+ }</string>
        </property>
        <property name="gridVisible">
         <bool>false</bool>
@@ -976,7 +1002,7 @@ QCalendarWidget QTableView{
        <property name="font">
         <font>
          <family>Lucida Sans</family>
-         <pointsize>11</pointsize>
+         <pointsize>10</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -1037,10 +1063,10 @@ QCalendarWidget QTableView{
 }</string>
        </property>
        <property name="inputMask">
-        <string>새로운 Event의 제목을 입력하세요.</string>
+        <string/>
        </property>
        <property name="text">
-        <string>새로운 Event의 제목을 입력하세요.</string>
+        <string/>
        </property>
        <property name="frame">
         <bool>false</bool>
@@ -1079,13 +1105,17 @@ QCalendarWidget QTableView{
          </widget>
         </item>
         <item>
-         <widget class="QDateEdit" name="dateEdit">
+         <widget class="QDateEdit" name="calendar_event_date_dte">
           <property name="font">
            <font>
-            <family>Lucida Sans</family>
+            <family>D2Coding</family>
             <pointsize>11</pointsize>
-            <italic>true</italic>
+            <italic>false</italic>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">padding-left:5px;
+padding-top:1px;</string>
           </property>
           <property name="frame">
            <bool>false</bool>
@@ -1219,6 +1249,9 @@ QPushButton:disabled {
             <italic>true</italic>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">color:transparent;</string>
+          </property>
           <property name="text">
            <string>2024.01.31 (Wed)</string>
           </property>
@@ -1254,6 +1287,9 @@ QPushButton:disabled {
             <italic>false</italic>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">color:transparent;</string>
+          </property>
           <property name="text">
            <string>~</string>
           </property>
@@ -1270,6 +1306,9 @@ QPushButton:disabled {
             <pointsize>9</pointsize>
             <italic>true</italic>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:transparent;</string>
           </property>
           <property name="text">
            <string>2024.02.01 (Thu)</string>
@@ -1394,6 +1433,31 @@ QPushButton:pressed {
         <bool>true</bool>
        </property>
       </widget>
+      <widget class="QCheckBox" name="calendar_not_open_cbx">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>160</y>
+         <width>111</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Sans</family>
+         <pointsize>11</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox:checked {
+	color: rgb(233, 111, 155);
+}</string>
+       </property>
+       <property name="text">
+        <string>NOT OPEN</string>
+       </property>
+      </widget>
       <zorder>calendar_opt_title</zorder>
       <zorder>calendar_opt_prev_month_btn</zorder>
       <zorder>calendar_opt_month_year_lbl</zorder>
@@ -1406,6 +1470,7 @@ QPushButton:pressed {
       <zorder>calendar_opt_write_btn</zorder>
       <zorder>calendar_opt_event_led</zorder>
       <zorder>calendar_opt_close_btn</zorder>
+      <zorder>calendar_not_open_cbx</zorder>
      </widget>
      <widget class="QWidget" name="calendar_yearly">
       <widget class="QListWidget" name="calendar_yearly_lwg">
@@ -1753,7 +1818,7 @@ padding-right:2px;</string>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="reminders_main">
       <widget class="QListWidget" name="reminders_lwg">
@@ -20219,7 +20284,7 @@ QPushButton:pressed {
   <tabstop>studies_ipss_btn</tabstop>
   <tabstop>studies_alz_btn</tabstop>
   <tabstop>studies_lab_btn</tabstop>
-  <tabstop>calendar_day_write_btn</tabstop>
+  <tabstop>calendar_day_options_btn</tabstop>
   <tabstop>calendar_day_info_lwg</tabstop>
   <tabstop>calendar_day_month_lbl</tabstop>
   <tabstop>calendar_yearly_btn</tabstop>

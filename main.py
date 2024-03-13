@@ -12,7 +12,7 @@ from PySide6.QtGui import QClipboard
 from PySide6 import QtGui, QtWidgets
 
 import mainUI
-from eAmodules import eAreminders, eAsticky
+from eAmodules import eAcalendar, eAreminders, eAsticky
 
 
 ## General Variables
@@ -22,6 +22,8 @@ class Infos():
     time_now = QTime.currentTime()
     # Opened Reminder
     opened_reminder_text = ""
+    # Opened Event
+    opened_event_title = ""
     # 현재 선택된 환자 이름 일시 저장. 매초 확인, 매초 환자 변경여부 확인 위해 사용.
     pt_name_now = ""
     # 오늘이 청구일인지 아닌지 설정해놓기.
@@ -50,9 +52,24 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.settings_stack.setCurrentIndex(0)
                 
         # Calendars--------------------------------------------------------------------------------#
-        
+        eAcalendar.calendar_update(self)
+        self.calendar_wdg.selectionChanged.connect(lambda:eAcalendar.date_selected(self))
+        self.calendar_wdg.currentPageChanged.connect(lambda:eAcalendar.calendar_update(self))
+        self.calendar_prev_month_btn.clicked.connect(lambda:self.calendar_wdg.showPreviousMonth())
+        self.calendar_today_btn.clicked.connect(lambda:eAcalendar.go_today(self))
+        self.calendar_next_month_btn.clicked.connect(lambda:self.calendar_wdg.showNextMonth())
+        self.calendar_day_info_lwg.itemActivated.connect(lambda:eAcalendar.event_double_clicked(self))
+        self.calendar_day_info_led.returnPressed.connect(lambda:eAcalendar.add_event_from_main(self))
+        self.calendar_day_options_btn.clicked.connect(lambda:eAcalendar.options_btn_clicked(self))
+        # Calendar OPT
+        eAcalendar.calendar_styling(self, 'calendar_opt_wdg')
+        self.calendar_opt_wdg.clicked.connect(lambda:eAcalendar.cal_opt_clicked(self))
+        self.calendar_multi_day_cbx.stateChanged.connect(lambda:eAcalendar.multi_day_status_toggle(self))
+        self.calendar_opt_close_btn.clicked.connect(lambda:self.calendar_stack.setCurrentIndex(0))
+        self.calendar_opt_write_btn.clicked.connect(lambda:eAcalendar.write_btn_clicked(self))
         
         # Reminders--------------------------------------------------------------------------------#
+        #TODO history to active? what about recurring reminders?
         self.reminders_archive_btn.setEnabled(False)
         eAreminders.load_write_reminders(self)
         # Context Menu for each lists.
@@ -77,6 +94,7 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.reminders_clear_btn.clicked.connect(lambda:eAreminders.clear_btn_clicked(self))
         # Reminders Detail/Sublist
         self.reminders_sublist_due_cbx.stateChanged.connect(lambda:eAreminders.due_date_cbx_toggle(self))
+        self.reminders_sublist_reminder_delete_btn.clicked.connect(lambda:eAreminders.delete_reminder(self))
         self.reminders_sublist_rem_status_btn.clicked.connect(lambda:eAreminders.reminder_Rmenu(self))
         self.reminders_sublist_lwg.itemChanged.connect(lambda:eAreminders.sublist_edited(self))
         self.reminders_sublist_ugnt_btn.clicked.connect(lambda:eAreminders.new_item_status_change(self, "sublist", "[!]"))

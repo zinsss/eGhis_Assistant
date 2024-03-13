@@ -9,7 +9,10 @@ def connect_DB():
     # Create table if not exists
     con.execute('CREATE TABLE if not exists StickyNotes(Sticky0 TEXT, Sticky1 TEXT, Sticky2 TEXT, Sticky3 TEXT, Sticky4 TEXT, Sticky5 TEXT)')
     # Load Current Items
-    sticky_notes = list(cur.execute('SELECT * FROM StickyNotes').fetchone())
+    try:
+        sticky_notes = list(cur.execute('SELECT * FROM StickyNotes').fetchone())
+    except TypeError:
+        sticky_notes = ["","","","","",""]
     # Close DB connection
     con.commit()
     con.close()

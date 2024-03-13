@@ -2,7 +2,6 @@ from PySide6 import QtGui, QtWidgets, QtCore
 from PySide6.QtCore import QDate
 import sqlite3
 
-import main
 from eAmodules import eApopup
 
 
@@ -177,7 +176,7 @@ def open_reminder_in_detail(self):
     if reminder_info[3] != "":
         self.reminders_sublist_due_cbx.setChecked(True)
         self.reminders_sublist_due_dte.setDate(QDate.fromString(reminder_info[3], "yyyy.MM.dd"))
-    
+    # Status Changed Date? Style it with colors as well.
     if reminder_info[4] != "":
         if not reminder_info[0] in archiving_target:
             pass
@@ -193,7 +192,6 @@ def open_reminder_in_detail(self):
         self.reminders_sublist_done_canc_dte.setDate(QDate.fromString(reminder_info[4], "yyyy.MM.dd"))
         self.reminders_sublist_done_canc_lbl.setEnabled(True)
         self.reminders_sublist_done_canc_dte.setEnabled(True)
-        
     
     self.reminders_stack.setCurrentIndex(1)
     
@@ -232,44 +230,6 @@ def show_reminder_history(self):
         archived_reminder.setForeground(QtGui.QBrush(QtGui.QColor(*gui_color)))
         
         self.reminders_archive_lwg.addItem(archived_reminder)
-            
-   
-#     # reversed(list)를 이용한 for loop. 즉, 최근 완료/취소항목이 제일 위로 가도록.
-#     for item in reversed(items):
-#         # Reminder History ListWidget의 폰트는 Monospace가 아님.
-#         # 미적인 효과를 위해 markdown이 아닌 형식으로 변환하자!!
-#         if item[1] == "[x]":
-#             item[1] = "[완료"
-#         else: item[1] = "[취소"
-#         # Sublist도 History에서는 모두 한번에 써보자..
-#         if item[3]:
-#             item[3] = "..."
-#             # 원인은 모르겠지만, string literal(\n, \t)등의 구분없이 archive저장시에는 "\n" 자체로 저장됨
-#             # 해당 string값을 다시 string literal로 변환하는 작업. 이후 라인별로 리스트화.
-#             item[4] = item[4].replace(r'\n', '\n').splitlines()
-#         else:
-#             item[3] = ""
-#             item[4] = ""
-#         # Due Date도..
-#         if item[5] != "" and item[5] != None: 
-#             item[5] = '~'+item[5]
-#         else: item[5] = ''
-#         # 완료/취소일도..
-#         item[6] = '@'+item[6]+']'
-        
-#         history_gui_format = ""
-#         # Sublist가 있다면 다음 줄에 하나씩 더하자. 완료는 *로 시작, 아닌건 -로 시작.
-#         if item[3] == "...":
-#             history_gui_format = f"{item[1]}{item[6]} {item[2]} {item[3]} {item[5]}"
-#             for each in item[4]:
-#                 if each.startswith("*"):
-#                     history_gui_format = f'{history_gui_format}\n     * {each[1:]}'
-#                 else:
-#                     history_gui_format = f'{history_gui_format}\n     - {each}'
-#         else:
-#             history_gui_format = f"{item[1]}{item[6]} {item[2]} {item[5]}"
-        
-#         self.popup.rem_hist_lwg.addItem(history_gui_format)
 
 
 ## 편집/또는 추가 시 새로 입력될 내용이 기존 DB에 동일하게 입력되어있으면 안되니까!
@@ -459,14 +419,25 @@ def reminder_detail_write(self):
     load_write_reminders(self)    
 
 
-# ## Delete from active reminders (middle-man)
-# def delete_active(self):
-#     anws_yes = eApopup.warning(text = "해당 항목을 삭제할까요?\n저장/복구 되지 않습니다.", yes_no = True)
-#     if anws_yes:
-#         selected = self.reminders_lwg.currentRow()
-#         self.reminders_lwg.takeItem(selected)
-#     # 저장.
-#     save_to_DB(self)
+# ## Delete from Reminders
+def delete_reminder(self):
+    anws_yes = eApopup.warning(text = "해당 항목을 삭제할까요?\n저장/복구 되지 않습니다.", yes_no = True)
+    if anws_yes:
+        to_delete = self.infos.opened_reminder_text
+    # DB 연결해서.    
+    con = sqlite3.connect("./database/eAcalrem.db")
+    cur = con.cursor()
+    # DB에 새로 추가하고.
+    con.execute(f"DELETE FROM Active WHERE Reminder = '{to_delete}'")
+    # DB 저장 후 연결 해제.
+    con.commit()
+    con.close()
+    # Reset New Reminder LineEdit and Status to Default
+    clear_btn_clicked(self)
+    self.reminders_stack.setCurrentIndex(0)
+    # Reload Gui from New DB
+    load_write_reminders(self)        
+    
     
 
 ## Archive 'Done' or 'Cancelled' reminders
