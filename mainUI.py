@@ -427,20 +427,20 @@ class Ui_Main(object):
         self.calendar_opt_month_year_lbl.setGeometry(QRect(10, 30, 81, 20))
         self.calendar_opt_month_year_lbl.setFont(font3)
         self.calendar_opt_month_year_lbl.setStyleSheet(u"color: rgb(94, 129, 172);")
-        self.calenda_opt_today_btn = QPushButton(self.calendar_opt)
-        self.calenda_opt_today_btn.setObjectName(u"calenda_opt_today_btn")
-        self.calenda_opt_today_btn.setGeometry(QRect(170, 30, 40, 20))
-        sizePolicy1.setHeightForWidth(self.calenda_opt_today_btn.sizePolicy().hasHeightForWidth())
-        self.calenda_opt_today_btn.setSizePolicy(sizePolicy1)
-        self.calenda_opt_today_btn.setMinimumSize(QSize(0, 20))
-        self.calenda_opt_today_btn.setMaximumSize(QSize(16777215, 20))
+        self.calendar_opt_today_btn = QPushButton(self.calendar_opt)
+        self.calendar_opt_today_btn.setObjectName(u"calendar_opt_today_btn")
+        self.calendar_opt_today_btn.setGeometry(QRect(170, 30, 40, 20))
+        sizePolicy1.setHeightForWidth(self.calendar_opt_today_btn.sizePolicy().hasHeightForWidth())
+        self.calendar_opt_today_btn.setSizePolicy(sizePolicy1)
+        self.calendar_opt_today_btn.setMinimumSize(QSize(0, 20))
+        self.calendar_opt_today_btn.setMaximumSize(QSize(16777215, 20))
         font14 = QFont()
         font14.setFamilies([u"D2Coding"])
         font14.setPointSize(10)
-        self.calenda_opt_today_btn.setFont(font14)
-        self.calenda_opt_today_btn.setStyleSheet(u"color: rgb(150, 175, 200);")
-        self.calenda_opt_today_btn.setAutoDefault(True)
-        self.calenda_opt_today_btn.setFlat(True)
+        self.calendar_opt_today_btn.setFont(font14)
+        self.calendar_opt_today_btn.setStyleSheet(u"color: rgb(150, 175, 200);")
+        self.calendar_opt_today_btn.setAutoDefault(True)
+        self.calendar_opt_today_btn.setFlat(True)
         self.calendar_opt_wdg = QCalendarWidget(self.calendar_opt)
         self.calendar_opt_wdg.setObjectName(u"calendar_opt_wdg")
         self.calendar_opt_wdg.setGeometry(QRect(1, 50, 241, 181))
@@ -484,7 +484,7 @@ class Ui_Main(object):
         self.calendar_opt_next_month_btn.setFlat(True)
         self.calendar_opt_event_led = QLineEdit(self.calendar_opt)
         self.calendar_opt_event_led.setObjectName(u"calendar_opt_event_led")
-        self.calendar_opt_event_led.setGeometry(QRect(260, 70, 261, 30))
+        self.calendar_opt_event_led.setGeometry(QRect(260, 80, 261, 30))
         sizePolicy2.setHeightForWidth(self.calendar_opt_event_led.sizePolicy().hasHeightForWidth())
         self.calendar_opt_event_led.setSizePolicy(sizePolicy2)
         self.calendar_opt_event_led.setMinimumSize(QSize(0, 30))
@@ -502,7 +502,7 @@ class Ui_Main(object):
         self.calendar_opt_event_led.setFrame(False)
         self.horizontalLayoutWidget = QWidget(self.calendar_opt)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(260, 40, 261, 31))
+        self.horizontalLayoutWidget.setGeometry(QRect(260, 50, 261, 31))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -519,6 +519,8 @@ class Ui_Main(object):
         font15.setBold(True)
         font15.setItalic(True)
         self.calendar_event_date_title.setFont(font15)
+        self.calendar_event_date_title.setStyleSheet(u"padding-left:2px;\n"
+"color:rgb(150, 175, 250);")
 
         self.horizontalLayout.addWidget(self.calendar_event_date_title)
 
@@ -541,13 +543,14 @@ class Ui_Main(object):
 
         self.horizontalLayoutWidget_2 = QWidget(self.calendar_opt)
         self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
-        self.horizontalLayoutWidget_2.setGeometry(QRect(260, 100, 261, 31))
+        self.horizontalLayoutWidget_2.setGeometry(QRect(260, 110, 261, 31))
         self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.calendar_multi_day_cbx = QCheckBox(self.horizontalLayoutWidget_2)
         self.calendar_multi_day_cbx.setObjectName(u"calendar_multi_day_cbx")
         self.calendar_multi_day_cbx.setFont(font12)
+        self.calendar_multi_day_cbx.setStyleSheet(u"padding-top:2px;")
 
         self.horizontalLayout_2.addWidget(self.calendar_multi_day_cbx)
 
@@ -581,7 +584,7 @@ class Ui_Main(object):
 
         self.horizontalLayoutWidget_4 = QWidget(self.calendar_opt)
         self.horizontalLayoutWidget_4.setObjectName(u"horizontalLayoutWidget_4")
-        self.horizontalLayoutWidget_4.setGeometry(QRect(270, 130, 251, 21))
+        self.horizontalLayoutWidget_4.setGeometry(QRect(270, 140, 251, 21))
         self.horizontalLayout_4 = QHBoxLayout(self.horizontalLayoutWidget_4)
         self.horizontalLayout_4.setSpacing(2)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
@@ -668,16 +671,39 @@ class Ui_Main(object):
         self.calendar_opt_close_btn.setFlat(True)
         self.calendar_not_open_cbx = QCheckBox(self.calendar_opt)
         self.calendar_not_open_cbx.setObjectName(u"calendar_not_open_cbx")
-        self.calendar_not_open_cbx.setGeometry(QRect(410, 160, 111, 17))
+        self.calendar_not_open_cbx.setGeometry(QRect(410, 170, 111, 17))
         self.calendar_not_open_cbx.setFont(font12)
         self.calendar_not_open_cbx.setStyleSheet(u"QCheckBox:checked {\n"
 "	color: rgb(233, 111, 155);\n"
 "}")
+        self.calendar_event_delete_btn = QPushButton(self.calendar_opt)
+        self.calendar_event_delete_btn.setObjectName(u"calendar_event_delete_btn")
+        self.calendar_event_delete_btn.setGeometry(QRect(260, 20, 111, 21))
+        sizePolicy1.setHeightForWidth(self.calendar_event_delete_btn.sizePolicy().hasHeightForWidth())
+        self.calendar_event_delete_btn.setSizePolicy(sizePolicy1)
+        self.calendar_event_delete_btn.setMinimumSize(QSize(30, 20))
+        self.calendar_event_delete_btn.setMaximumSize(QSize(200, 16777215))
+        self.calendar_event_delete_btn.setFont(font7)
+        self.calendar_event_delete_btn.setStyleSheet(u"QPushButton {\n"
+"	background-color:rgb(45,50,60);	\n"
+"	color:rgb(70, 75, 100);\n"
+"	border:none;\n"
+"	border-radius:10px;\n"
+"	border:1px solid rgb(50,55,70);\n"
+"}\n"
+"QPushButton:enabled{\n"
+"	color: rgb(200, 75, 75);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(50,55,65);\n"
+"}")
+        self.calendar_event_delete_btn.setAutoDefault(True)
+        self.calendar_event_delete_btn.setFlat(True)
         self.calendar_stack.addWidget(self.calendar_opt)
         self.calendar_opt_title.raise_()
         self.calendar_opt_prev_month_btn.raise_()
         self.calendar_opt_month_year_lbl.raise_()
-        self.calenda_opt_today_btn.raise_()
+        self.calendar_opt_today_btn.raise_()
         self.calendar_opt_wdg.raise_()
         self.calendar_opt_next_month_btn.raise_()
         self.horizontalLayoutWidget.raise_()
@@ -687,6 +713,7 @@ class Ui_Main(object):
         self.calendar_opt_event_led.raise_()
         self.calendar_opt_close_btn.raise_()
         self.calendar_not_open_cbx.raise_()
+        self.calendar_event_delete_btn.raise_()
         self.calendar_yearly = QWidget()
         self.calendar_yearly.setObjectName(u"calendar_yearly")
         self.calendar_yearly_lwg = QListWidget(self.calendar_yearly)
@@ -698,7 +725,19 @@ class Ui_Main(object):
         font20.setBold(False)
         font20.setItalic(False)
         self.calendar_yearly_lwg.setFont(font20)
-        self.calendar_yearly_lwg.setStyleSheet(u"")
+        self.calendar_yearly_lwg.setStyleSheet(u"QListWidget{\n"
+"	background:transparent;\n"
+"	alternate-background-color: rgb(43, 48, 60);\n"
+"	border:0px;\n"
+"	color: rgb(166,177,199);\n"
+"	outline:0px;\n"
+"}\n"
+"QListWidget::item:hover{\n"
+"    background-color: rgb(48, 52, 66);\n"
+"}\n"
+"QListWidget::item:selected{\n"
+"    background-color: rgb(52, 57, 75);\n"
+"}")
         self.calendar_yearly_lwg.setEditTriggers(QAbstractItemView.SelectedClicked)
         self.calendar_yearly_lwg.setDragEnabled(True)
         self.calendar_yearly_lwg.setDragDropMode(QAbstractItemView.InternalMove)
@@ -762,7 +801,11 @@ class Ui_Main(object):
         self.calendar_yearly_year_led = QLineEdit(self.calendar_yearly)
         self.calendar_yearly_year_led.setObjectName(u"calendar_yearly_year_led")
         self.calendar_yearly_year_led.setGeometry(QRect(450, 100, 41, 30))
-        self.calendar_yearly_year_led.setFont(font21)
+        font23 = QFont()
+        font23.setFamilies([u"D2Coding ligature"])
+        font23.setPointSize(11)
+        font23.setBold(True)
+        self.calendar_yearly_year_led.setFont(font23)
         self.calendar_yearly_year_led.setStyleSheet(u"background-color:rgb(42,48,58);\n"
 "color: rgb(188, 177, 122);\n"
 "border-top:1px solid rgb(50,55,70);\n"
@@ -826,10 +869,10 @@ class Ui_Main(object):
         QListWidgetItem(self.reminders_lwg)
         QListWidgetItem(self.reminders_lwg)
         QListWidgetItem(self.reminders_lwg)
-        font23 = QFont()
-        font23.setStrikeOut(True)
+        font24 = QFont()
+        font24.setStrikeOut(True)
         __qlistwidgetitem = QListWidgetItem(self.reminders_lwg)
-        __qlistwidgetitem.setFont(font23);
+        __qlistwidgetitem.setFont(font24);
         QListWidgetItem(self.reminders_lwg)
         QListWidgetItem(self.reminders_lwg)
         QListWidgetItem(self.reminders_lwg)
@@ -978,11 +1021,11 @@ class Ui_Main(object):
         self.reminders_star_btn.setSizePolicy(sizePolicy1)
         self.reminders_star_btn.setMinimumSize(QSize(20, 20))
         self.reminders_star_btn.setMaximumSize(QSize(20, 20))
-        font24 = QFont()
-        font24.setFamilies([u"D2Coding"])
-        font24.setPointSize(12)
-        font24.setBold(False)
-        self.reminders_star_btn.setFont(font24)
+        font25 = QFont()
+        font25.setFamilies([u"D2Coding"])
+        font25.setPointSize(12)
+        font25.setBold(False)
+        self.reminders_star_btn.setFont(font25)
         self.reminders_star_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(225, 200, 125);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1004,7 +1047,7 @@ class Ui_Main(object):
         self.reminders_ugnt_btn.setSizePolicy(sizePolicy1)
         self.reminders_ugnt_btn.setMinimumSize(QSize(20, 20))
         self.reminders_ugnt_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_ugnt_btn.setFont(font24)
+        self.reminders_ugnt_btn.setFont(font25)
         self.reminders_ugnt_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(200, 125, 75);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1026,7 +1069,7 @@ class Ui_Main(object):
         self.reminders_prgs_btn.setSizePolicy(sizePolicy1)
         self.reminders_prgs_btn.setMinimumSize(QSize(20, 20))
         self.reminders_prgs_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_prgs_btn.setFont(font24)
+        self.reminders_prgs_btn.setFont(font25)
         self.reminders_prgs_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(100, 125, 175);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1048,7 +1091,7 @@ class Ui_Main(object):
         self.reminders_dlyd_btn.setSizePolicy(sizePolicy1)
         self.reminders_dlyd_btn.setMinimumSize(QSize(20, 20))
         self.reminders_dlyd_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_dlyd_btn.setFont(font24)
+        self.reminders_dlyd_btn.setFont(font25)
         self.reminders_dlyd_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(150, 125, 175);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1070,11 +1113,11 @@ class Ui_Main(object):
         self.reminders_todo_btn.setSizePolicy(sizePolicy1)
         self.reminders_todo_btn.setMinimumSize(QSize(20, 20))
         self.reminders_todo_btn.setMaximumSize(QSize(20, 20))
-        font25 = QFont()
-        font25.setFamilies([u"D2Coding"])
-        font25.setPointSize(10)
-        font25.setBold(False)
-        self.reminders_todo_btn.setFont(font25)
+        font26 = QFont()
+        font26.setFamilies([u"D2Coding"])
+        font26.setPointSize(10)
+        font26.setBold(False)
+        self.reminders_todo_btn.setFont(font26)
         self.reminders_todo_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(180, 185, 195);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1107,7 +1150,7 @@ class Ui_Main(object):
         self.reminders_done_btn.setSizePolicy(sizePolicy1)
         self.reminders_done_btn.setMinimumSize(QSize(20, 20))
         self.reminders_done_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_done_btn.setFont(font24)
+        self.reminders_done_btn.setFont(font25)
         self.reminders_done_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(140, 175, 100);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1129,7 +1172,7 @@ class Ui_Main(object):
         self.reminders_canc_btn.setSizePolicy(sizePolicy1)
         self.reminders_canc_btn.setMinimumSize(QSize(20, 20))
         self.reminders_canc_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_canc_btn.setFont(font24)
+        self.reminders_canc_btn.setFont(font25)
         self.reminders_canc_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(170, 75, 75);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1288,11 +1331,11 @@ class Ui_Main(object):
         self.reminders_sublist_reminder_led.setSizePolicy(sizePolicy2)
         self.reminders_sublist_reminder_led.setMinimumSize(QSize(0, 30))
         self.reminders_sublist_reminder_led.setMaximumSize(QSize(16777215, 30))
-        font26 = QFont()
-        font26.setFamilies([u"D2Coding"])
-        font26.setPointSize(11)
-        font26.setBold(False)
-        self.reminders_sublist_reminder_led.setFont(font26)
+        font27 = QFont()
+        font27.setFamilies([u"D2Coding"])
+        font27.setPointSize(11)
+        font27.setBold(False)
+        self.reminders_sublist_reminder_led.setFont(font27)
         self.reminders_sublist_reminder_led.setStyleSheet(u"background-color:rgb(42,48,58);\n"
 "padding-left: 18px;\n"
 "color: rgb(166,177,199);\n"
@@ -1320,7 +1363,7 @@ class Ui_Main(object):
         self.reminders_sublist_todo_btn.setSizePolicy(sizePolicy1)
         self.reminders_sublist_todo_btn.setMinimumSize(QSize(20, 20))
         self.reminders_sublist_todo_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_sublist_todo_btn.setFont(font24)
+        self.reminders_sublist_todo_btn.setFont(font25)
         self.reminders_sublist_todo_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(180, 185, 195);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1342,7 +1385,7 @@ class Ui_Main(object):
         self.reminders_sublist_prgs_btn.setSizePolicy(sizePolicy1)
         self.reminders_sublist_prgs_btn.setMinimumSize(QSize(20, 20))
         self.reminders_sublist_prgs_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_sublist_prgs_btn.setFont(font24)
+        self.reminders_sublist_prgs_btn.setFont(font25)
         self.reminders_sublist_prgs_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(100, 125, 175);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1364,7 +1407,7 @@ class Ui_Main(object):
         self.reminders_sublist_ugnt_btn.setSizePolicy(sizePolicy1)
         self.reminders_sublist_ugnt_btn.setMinimumSize(QSize(20, 20))
         self.reminders_sublist_ugnt_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_sublist_ugnt_btn.setFont(font24)
+        self.reminders_sublist_ugnt_btn.setFont(font25)
         self.reminders_sublist_ugnt_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(200, 125, 75);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1386,7 +1429,7 @@ class Ui_Main(object):
         self.reminders_sublist_star_btn.setSizePolicy(sizePolicy1)
         self.reminders_sublist_star_btn.setMinimumSize(QSize(20, 20))
         self.reminders_sublist_star_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_sublist_star_btn.setFont(font24)
+        self.reminders_sublist_star_btn.setFont(font25)
         self.reminders_sublist_star_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(225, 200, 125);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1408,7 +1451,7 @@ class Ui_Main(object):
         self.reminders_sublist_dlyd_btn.setSizePolicy(sizePolicy1)
         self.reminders_sublist_dlyd_btn.setMinimumSize(QSize(20, 20))
         self.reminders_sublist_dlyd_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_sublist_dlyd_btn.setFont(font24)
+        self.reminders_sublist_dlyd_btn.setFont(font25)
         self.reminders_sublist_dlyd_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(150, 125, 175);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1475,7 +1518,7 @@ class Ui_Main(object):
         self.reminders_sublist_done_btn.setSizePolicy(sizePolicy1)
         self.reminders_sublist_done_btn.setMinimumSize(QSize(20, 20))
         self.reminders_sublist_done_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_sublist_done_btn.setFont(font24)
+        self.reminders_sublist_done_btn.setFont(font25)
         self.reminders_sublist_done_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(140, 175, 100);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1497,7 +1540,7 @@ class Ui_Main(object):
         self.reminders_sublist_canc_btn.setSizePolicy(sizePolicy1)
         self.reminders_sublist_canc_btn.setMinimumSize(QSize(20, 20))
         self.reminders_sublist_canc_btn.setMaximumSize(QSize(20, 20))
-        self.reminders_sublist_canc_btn.setFont(font24)
+        self.reminders_sublist_canc_btn.setFont(font25)
         self.reminders_sublist_canc_btn.setStyleSheet(u"QPushButton {\n"
 "	background-color: rgb(170, 75, 75);\n"
 "	border:1px solid rgb(50,55,70);	\n"
@@ -1715,10 +1758,10 @@ class Ui_Main(object):
         self.macros_prev_pt_btn.setSizePolicy(sizePolicy4)
         self.macros_prev_pt_btn.setMinimumSize(QSize(0, 30))
         self.macros_prev_pt_btn.setMaximumSize(QSize(16777215, 16777215))
-        font27 = QFont()
-        font27.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font27.setPointSize(13)
-        self.macros_prev_pt_btn.setFont(font27)
+        font28 = QFont()
+        font28.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
+        font28.setPointSize(13)
+        self.macros_prev_pt_btn.setFont(font28)
         self.macros_prev_pt_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(77, 111, 177);\n"
 "}\n"
@@ -1736,15 +1779,15 @@ class Ui_Main(object):
         self.macros_check_ins_btn.setSizePolicy(sizePolicy4)
         self.macros_check_ins_btn.setMinimumSize(QSize(0, 30))
         self.macros_check_ins_btn.setMaximumSize(QSize(16777215, 16777215))
-        font28 = QFont()
-        font28.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font28.setPointSize(13)
-        font28.setBold(False)
-        font28.setItalic(False)
-        font28.setStrikeOut(False)
-        font28.setKerning(True)
-        font28.setStyleStrategy(QFont.PreferDefault)
-        self.macros_check_ins_btn.setFont(font28)
+        font29 = QFont()
+        font29.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
+        font29.setPointSize(13)
+        font29.setBold(False)
+        font29.setItalic(False)
+        font29.setStrikeOut(False)
+        font29.setKerning(True)
+        font29.setStyleStrategy(QFont.PreferDefault)
+        self.macros_check_ins_btn.setFont(font29)
         self.macros_check_ins_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(155, 122, 88);\n"
 "}\n"
@@ -1762,7 +1805,7 @@ class Ui_Main(object):
         self.macros_no_ins_btn.setSizePolicy(sizePolicy4)
         self.macros_no_ins_btn.setMinimumSize(QSize(0, 30))
         self.macros_no_ins_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_no_ins_btn.setFont(font27)
+        self.macros_no_ins_btn.setFont(font28)
         self.macros_no_ins_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(88, 144, 88);\n"
 "}\n"
@@ -1780,7 +1823,7 @@ class Ui_Main(object):
         self.macros_next_pt_btn.setSizePolicy(sizePolicy4)
         self.macros_next_pt_btn.setMinimumSize(QSize(0, 30))
         self.macros_next_pt_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_next_pt_btn.setFont(font27)
+        self.macros_next_pt_btn.setFont(font28)
         self.macros_next_pt_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(77, 111, 177);\n"
 "}\n"
@@ -1798,7 +1841,7 @@ class Ui_Main(object):
         self.macros_phytx_btn.setSizePolicy(sizePolicy4)
         self.macros_phytx_btn.setMinimumSize(QSize(0, 30))
         self.macros_phytx_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_phytx_btn.setFont(font27)
+        self.macros_phytx_btn.setFont(font28)
         self.macros_phytx_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(122, 88, 155);\n"
 "}\n"
@@ -1816,7 +1859,7 @@ class Ui_Main(object):
         self.macros_fluid_btn.setSizePolicy(sizePolicy4)
         self.macros_fluid_btn.setMinimumSize(QSize(0, 30))
         self.macros_fluid_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_fluid_btn.setFont(font27)
+        self.macros_fluid_btn.setFont(font28)
         self.macros_fluid_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(77, 122, 144);\n"
 "}\n"
@@ -1834,7 +1877,7 @@ class Ui_Main(object):
         self.macros_chr_btn.setSizePolicy(sizePolicy4)
         self.macros_chr_btn.setMinimumSize(QSize(0, 30))
         self.macros_chr_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_chr_btn.setFont(font27)
+        self.macros_chr_btn.setFont(font28)
         self.macros_chr_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(133, 100, 88);\n"
 "}\n"
@@ -1852,7 +1895,7 @@ class Ui_Main(object):
         self.macros_chr_etc_btn.setSizePolicy(sizePolicy4)
         self.macros_chr_etc_btn.setMinimumSize(QSize(0, 30))
         self.macros_chr_etc_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_chr_etc_btn.setFont(font27)
+        self.macros_chr_etc_btn.setFont(font28)
         self.macros_chr_etc_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(122, 100, 88);\n"
 "}\n"
@@ -1870,7 +1913,7 @@ class Ui_Main(object):
         self.macros_lab_studies_btn.setSizePolicy(sizePolicy4)
         self.macros_lab_studies_btn.setMinimumSize(QSize(0, 30))
         self.macros_lab_studies_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_lab_studies_btn.setFont(font27)
+        self.macros_lab_studies_btn.setFont(font28)
         self.macros_lab_studies_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(155, 100, 111);	\n"
 "}\n"
@@ -1888,7 +1931,7 @@ class Ui_Main(object):
         self.macros_other_studies_btn.setSizePolicy(sizePolicy4)
         self.macros_other_studies_btn.setMinimumSize(QSize(0, 30))
         self.macros_other_studies_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_other_studies_btn.setFont(font27)
+        self.macros_other_studies_btn.setFont(font28)
         self.macros_other_studies_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(122, 100, 177);	\n"
 "}\n"
@@ -1906,7 +1949,7 @@ class Ui_Main(object):
         self.macros_templates_btn.setSizePolicy(sizePolicy4)
         self.macros_templates_btn.setMinimumSize(QSize(0, 30))
         self.macros_templates_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_templates_btn.setFont(font27)
+        self.macros_templates_btn.setFont(font28)
         self.macros_templates_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(77, 133, 144);\n"
 "}\n"
@@ -1924,7 +1967,7 @@ class Ui_Main(object):
         self.macros_other_comments_btn.setSizePolicy(sizePolicy4)
         self.macros_other_comments_btn.setMinimumSize(QSize(0, 30))
         self.macros_other_comments_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_other_comments_btn.setFont(font27)
+        self.macros_other_comments_btn.setFont(font28)
         self.macros_other_comments_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(100, 111, 188);\n"
 "}\n"
@@ -1942,7 +1985,7 @@ class Ui_Main(object):
         self.macros_vac_autostart_btn.setSizePolicy(sizePolicy4)
         self.macros_vac_autostart_btn.setMinimumSize(QSize(0, 30))
         self.macros_vac_autostart_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_vac_autostart_btn.setFont(font27)
+        self.macros_vac_autostart_btn.setFont(font28)
         self.macros_vac_autostart_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(88, 122, 111);\n"
 "}\n"
@@ -1960,7 +2003,7 @@ class Ui_Main(object):
         self.macros_labeler_btn.setSizePolicy(sizePolicy4)
         self.macros_labeler_btn.setMinimumSize(QSize(0, 30))
         self.macros_labeler_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_labeler_btn.setFont(font27)
+        self.macros_labeler_btn.setFont(font28)
         self.macros_labeler_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(155, 133, 66);\n"
 "}\n"
@@ -1978,7 +2021,7 @@ class Ui_Main(object):
         self.macros_vac_input_btn.setSizePolicy(sizePolicy4)
         self.macros_vac_input_btn.setMinimumSize(QSize(0, 30))
         self.macros_vac_input_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_vac_input_btn.setFont(font27)
+        self.macros_vac_input_btn.setFont(font28)
         self.macros_vac_input_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(88, 122, 155);\n"
 "}\n"
@@ -1992,22 +2035,22 @@ class Ui_Main(object):
         self.macros_practive_title_lbl = QLabel(self.macros_gbx)
         self.macros_practive_title_lbl.setObjectName(u"macros_practive_title_lbl")
         self.macros_practive_title_lbl.setGeometry(QRect(20, 80, 511, 31))
-        font29 = QFont()
-        font29.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0\uccb4 B"])
-        font29.setPointSize(12)
-        self.macros_practive_title_lbl.setFont(font29)
+        font30 = QFont()
+        font30.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0\uccb4 B"])
+        font30.setPointSize(12)
+        self.macros_practive_title_lbl.setFont(font30)
         self.macros_practive_title_lbl.setStyleSheet(u"color: rgb(180, 185, 194);")
         self.macros_practive_title_lbl.setAlignment(Qt.AlignCenter)
         self.macros_comments_title_lbl = QLabel(self.macros_gbx)
         self.macros_comments_title_lbl.setObjectName(u"macros_comments_title_lbl")
         self.macros_comments_title_lbl.setGeometry(QRect(20, 240, 511, 31))
-        self.macros_comments_title_lbl.setFont(font29)
+        self.macros_comments_title_lbl.setFont(font30)
         self.macros_comments_title_lbl.setStyleSheet(u"color: rgb(180, 185, 194);")
         self.macros_comments_title_lbl.setAlignment(Qt.AlignCenter)
         self.macros_vac_title_lbl = QLabel(self.macros_gbx)
         self.macros_vac_title_lbl.setObjectName(u"macros_vac_title_lbl")
         self.macros_vac_title_lbl.setGeometry(QRect(20, 320, 511, 31))
-        self.macros_vac_title_lbl.setFont(font29)
+        self.macros_vac_title_lbl.setFont(font30)
         self.macros_vac_title_lbl.setStyleSheet(u"color: rgb(180, 185, 194);")
         self.macros_vac_title_lbl.setAlignment(Qt.AlignCenter)
         self.macros_reserve_2_btn = QPushButton(self.macros_gbx)
@@ -2017,10 +2060,10 @@ class Ui_Main(object):
         self.macros_reserve_2_btn.setSizePolicy(sizePolicy4)
         self.macros_reserve_2_btn.setMinimumSize(QSize(0, 30))
         self.macros_reserve_2_btn.setMaximumSize(QSize(16777215, 16777215))
-        font30 = QFont()
-        font30.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font30.setPointSize(12)
-        self.macros_reserve_2_btn.setFont(font30)
+        font31 = QFont()
+        font31.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
+        font31.setPointSize(12)
+        self.macros_reserve_2_btn.setFont(font31)
         self.macros_reserve_2_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(77, 88, 111);\n"
 "	border:0px;\n"
@@ -2040,7 +2083,7 @@ class Ui_Main(object):
         self.macros_flu_btn.setSizePolicy(sizePolicy4)
         self.macros_flu_btn.setMinimumSize(QSize(0, 30))
         self.macros_flu_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_flu_btn.setFont(font27)
+        self.macros_flu_btn.setFont(font28)
         self.macros_flu_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(88, 122, 188);\n"
 "}\n"
@@ -2058,7 +2101,7 @@ class Ui_Main(object):
         self.macros_reserve_3_btn.setSizePolicy(sizePolicy4)
         self.macros_reserve_3_btn.setMinimumSize(QSize(0, 30))
         self.macros_reserve_3_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_reserve_3_btn.setFont(font30)
+        self.macros_reserve_3_btn.setFont(font31)
         self.macros_reserve_3_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(77, 88, 111);\n"
 "	border:0px;\n"
@@ -2078,7 +2121,7 @@ class Ui_Main(object):
         self.macros_reserve_1_btn.setSizePolicy(sizePolicy4)
         self.macros_reserve_1_btn.setMinimumSize(QSize(0, 30))
         self.macros_reserve_1_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_reserve_1_btn.setFont(font30)
+        self.macros_reserve_1_btn.setFont(font31)
         self.macros_reserve_1_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(155, 111, 133);\n"
 "}\n"
@@ -2092,7 +2135,7 @@ class Ui_Main(object):
         self.macros_others_title_lbl = QLabel(self.macros_gbx)
         self.macros_others_title_lbl.setObjectName(u"macros_others_title_lbl")
         self.macros_others_title_lbl.setGeometry(QRect(20, 400, 511, 31))
-        self.macros_others_title_lbl.setFont(font29)
+        self.macros_others_title_lbl.setFont(font30)
         self.macros_others_title_lbl.setStyleSheet(u"color: rgb(180, 185, 194);")
         self.macros_others_title_lbl.setAlignment(Qt.AlignCenter)
         self.macros_obsv_btn = QPushButton(self.macros_gbx)
@@ -2102,7 +2145,7 @@ class Ui_Main(object):
         self.macros_obsv_btn.setSizePolicy(sizePolicy4)
         self.macros_obsv_btn.setMinimumSize(QSize(0, 30))
         self.macros_obsv_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_obsv_btn.setFont(font27)
+        self.macros_obsv_btn.setFont(font28)
         self.macros_obsv_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(133, 133, 88);	\n"
 "}\n"
@@ -2120,7 +2163,7 @@ class Ui_Main(object):
         self.macros_vac_log_btn.setSizePolicy(sizePolicy4)
         self.macros_vac_log_btn.setMinimumSize(QSize(0, 30))
         self.macros_vac_log_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.macros_vac_log_btn.setFont(font27)
+        self.macros_vac_log_btn.setFont(font28)
         self.macros_vac_log_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(122, 88, 88);\n"
 "}\n"
@@ -2137,10 +2180,10 @@ class Ui_Main(object):
         self.info_zinsss_lbl = QLabel(self.info_gbx)
         self.info_zinsss_lbl.setObjectName(u"info_zinsss_lbl")
         self.info_zinsss_lbl.setGeometry(QRect(140, 19, 391, 20))
-        font31 = QFont()
-        font31.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 B"])
-        font31.setPointSize(12)
-        self.info_zinsss_lbl.setFont(font31)
+        font32 = QFont()
+        font32.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 B"])
+        font32.setPointSize(12)
+        self.info_zinsss_lbl.setFont(font32)
         self.info_zinsss_lbl.setStyleSheet(u"border:none;\n"
 "color: rgb(125, 150, 110);")
         self.info_zinsss_lbl.setAlignment(Qt.AlignCenter)
@@ -2169,7 +2212,7 @@ class Ui_Main(object):
         self.info_yhshfm_address_lbl = QLabel(self.info_gbx)
         self.info_yhshfm_address_lbl.setObjectName(u"info_yhshfm_address_lbl")
         self.info_yhshfm_address_lbl.setGeometry(QRect(140, 40, 390, 20))
-        self.info_yhshfm_address_lbl.setFont(font31)
+        self.info_yhshfm_address_lbl.setFont(font32)
         self.info_yhshfm_address_lbl.setStyleSheet(u"border:none;\n"
 "color: rgb(111, 111, 122);")
         self.info_yhshfm_address_lbl.setAlignment(Qt.AlignCenter)
@@ -2369,10 +2412,10 @@ class Ui_Main(object):
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.sticky_note_0.sizePolicy().hasHeightForWidth())
         self.sticky_note_0.setSizePolicy(sizePolicy5)
-        font32 = QFont()
-        font32.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
-        font32.setPointSize(13)
-        self.sticky_note_0.setFont(font32)
+        font33 = QFont()
+        font33.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
+        font33.setPointSize(13)
+        self.sticky_note_0.setFont(font33)
         self.sticky_note_0.setStyleSheet(u"QPushButton{\n"
 "	background-color:rgb(38, 43, 53);\n"
 "	border: 1px solid rgb(35, 40 ,50);\n"
@@ -2394,7 +2437,7 @@ class Ui_Main(object):
         self.sticky_note_3.setObjectName(u"sticky_note_3")
         sizePolicy5.setHeightForWidth(self.sticky_note_3.sizePolicy().hasHeightForWidth())
         self.sticky_note_3.setSizePolicy(sizePolicy5)
-        self.sticky_note_3.setFont(font32)
+        self.sticky_note_3.setFont(font33)
         self.sticky_note_3.setStyleSheet(u"QPushButton{\n"
 "	background-color:rgb(38, 43, 53);\n"
 "	border: 1px solid rgb(35, 40 ,50);\n"
@@ -2416,7 +2459,7 @@ class Ui_Main(object):
         self.sticky_note_2.setObjectName(u"sticky_note_2")
         sizePolicy5.setHeightForWidth(self.sticky_note_2.sizePolicy().hasHeightForWidth())
         self.sticky_note_2.setSizePolicy(sizePolicy5)
-        self.sticky_note_2.setFont(font32)
+        self.sticky_note_2.setFont(font33)
         self.sticky_note_2.setStyleSheet(u"QPushButton{\n"
 "	background-color:rgb(38, 43, 53);\n"
 "	border: 1px solid rgb(35, 40 ,50);\n"
@@ -2438,7 +2481,7 @@ class Ui_Main(object):
         self.sticky_note_1.setObjectName(u"sticky_note_1")
         sizePolicy5.setHeightForWidth(self.sticky_note_1.sizePolicy().hasHeightForWidth())
         self.sticky_note_1.setSizePolicy(sizePolicy5)
-        self.sticky_note_1.setFont(font32)
+        self.sticky_note_1.setFont(font33)
         self.sticky_note_1.setStyleSheet(u"QPushButton{\n"
 "	background-color:rgb(38, 43, 53);\n"
 "	border: 1px solid rgb(35, 40 ,50);\n"
@@ -2460,7 +2503,7 @@ class Ui_Main(object):
         self.sticky_note_4.setObjectName(u"sticky_note_4")
         sizePolicy5.setHeightForWidth(self.sticky_note_4.sizePolicy().hasHeightForWidth())
         self.sticky_note_4.setSizePolicy(sizePolicy5)
-        self.sticky_note_4.setFont(font32)
+        self.sticky_note_4.setFont(font33)
         self.sticky_note_4.setStyleSheet(u"QPushButton{\n"
 "	background-color:rgb(38, 43, 53);\n"
 "	border: 1px solid rgb(35, 40 ,50);\n"
@@ -2482,7 +2525,7 @@ class Ui_Main(object):
         self.sticky_note_5.setObjectName(u"sticky_note_5")
         sizePolicy5.setHeightForWidth(self.sticky_note_5.sizePolicy().hasHeightForWidth())
         self.sticky_note_5.setSizePolicy(sizePolicy5)
-        self.sticky_note_5.setFont(font32)
+        self.sticky_note_5.setFont(font33)
         self.sticky_note_5.setStyleSheet(u"QPushButton{\n"
 "	background-color:rgb(38, 43, 53);\n"
 "	border: 1px solid rgb(35, 40 ,50);\n"
@@ -2512,7 +2555,7 @@ class Ui_Main(object):
         QListWidgetItem(self.qsv_lwg)
         self.qsv_lwg.setObjectName(u"qsv_lwg")
         self.qsv_lwg.setGeometry(QRect(10, 10, 511, 581))
-        self.qsv_lwg.setFont(font30)
+        self.qsv_lwg.setFont(font31)
         self.qsv_lwg.setStyleSheet(u"border:none;\n"
 "border-bottom:1px solid rgb(55,60,75);")
         self.qsv_lwg.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -2602,7 +2645,7 @@ class Ui_Main(object):
         self.mdoc_contents_pte = QPlainTextEdit(self.med_docs)
         self.mdoc_contents_pte.setObjectName(u"mdoc_contents_pte")
         self.mdoc_contents_pte.setGeometry(QRect(0, 340, 531, 251))
-        self.mdoc_contents_pte.setFont(font27)
+        self.mdoc_contents_pte.setFont(font28)
         self.mdoc_contents_pte.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177, 211, 233);\n"
 "padding:5px;\n"
@@ -2718,7 +2761,7 @@ class Ui_Main(object):
         QListWidgetItem(self.clip_lwg_2)
         self.clip_lwg_2.setObjectName(u"clip_lwg_2")
         self.clip_lwg_2.setGeometry(QRect(10, 10, 511, 261))
-        self.clip_lwg_2.setFont(font27)
+        self.clip_lwg_2.setFont(font28)
         self.clip_lwg_2.setStyleSheet(u"border:none;\n"
 "border-bottom:1px solid rgb(55,60,75);")
         self.clip_lwg_2.setDragDropMode(QAbstractItemView.InternalMove)
@@ -2732,12 +2775,12 @@ class Ui_Main(object):
         self.mdoc_doc_title_lbl.setObjectName(u"mdoc_doc_title_lbl")
         self.mdoc_doc_title_lbl.setGeometry(QRect(20, 290, 491, 41))
         self.mdoc_doc_title_lbl.setMinimumSize(QSize(0, 30))
-        font33 = QFont()
-        font33.setFamilies([u"Lucida Sans"])
-        font33.setPointSize(14)
-        font33.setBold(True)
-        font33.setItalic(True)
-        self.mdoc_doc_title_lbl.setFont(font33)
+        font34 = QFont()
+        font34.setFamilies([u"Lucida Sans"])
+        font34.setPointSize(14)
+        font34.setBold(True)
+        font34.setItalic(True)
+        self.mdoc_doc_title_lbl.setFont(font34)
         self.mdoc_doc_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(45, 50, 65);\n"
@@ -2776,12 +2819,12 @@ class Ui_Main(object):
         self.studies_bmd_btn.setSizePolicy(sizePolicy4)
         self.studies_bmd_btn.setMinimumSize(QSize(0, 30))
         self.studies_bmd_btn.setMaximumSize(QSize(16777215, 16777215))
-        font34 = QFont()
-        font34.setFamilies([u"Lucida Sans"])
-        font34.setPointSize(11)
-        font34.setBold(False)
-        font34.setItalic(True)
-        self.studies_bmd_btn.setFont(font34)
+        font35 = QFont()
+        font35.setFamilies([u"Lucida Sans"])
+        font35.setPointSize(11)
+        font35.setBold(False)
+        font35.setItalic(True)
+        self.studies_bmd_btn.setFont(font35)
         self.studies_bmd_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(165, 170, 180);\n"
 "	border:none;\n"
@@ -2801,7 +2844,7 @@ class Ui_Main(object):
         self.studies_ipss_btn.setSizePolicy(sizePolicy4)
         self.studies_ipss_btn.setMinimumSize(QSize(0, 30))
         self.studies_ipss_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.studies_ipss_btn.setFont(font34)
+        self.studies_ipss_btn.setFont(font35)
         self.studies_ipss_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(165, 170, 180);\n"
 "	border:none;\n"
@@ -2821,7 +2864,7 @@ class Ui_Main(object):
         self.studies_alz_btn.setSizePolicy(sizePolicy4)
         self.studies_alz_btn.setMinimumSize(QSize(0, 30))
         self.studies_alz_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.studies_alz_btn.setFont(font34)
+        self.studies_alz_btn.setFont(font35)
         self.studies_alz_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(165, 170, 180);\n"
 "	border:none;\n"
@@ -2841,7 +2884,7 @@ class Ui_Main(object):
         self.studies_lab_btn.setSizePolicy(sizePolicy4)
         self.studies_lab_btn.setMinimumSize(QSize(0, 30))
         self.studies_lab_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.studies_lab_btn.setFont(font34)
+        self.studies_lab_btn.setFont(font35)
         self.studies_lab_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(165, 170, 180);\n"
 "	border:none;\n"
@@ -2879,11 +2922,11 @@ class Ui_Main(object):
         self.lab_hct_lbl.setGeometry(QRect(10, 180, 50, 30))
         self.lab_hct_lbl.setMinimumSize(QSize(45, 30))
         self.lab_hct_lbl.setMaximumSize(QSize(60, 30))
-        font35 = QFont()
-        font35.setFamilies([u"Lucida Sans"])
-        font35.setPointSize(12)
-        font35.setItalic(True)
-        self.lab_hct_lbl.setFont(font35)
+        font36 = QFont()
+        font36.setFamilies([u"Lucida Sans"])
+        font36.setPointSize(12)
+        font36.setItalic(True)
+        self.lab_hct_lbl.setFont(font36)
         self.lab_hct_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -2894,7 +2937,7 @@ class Ui_Main(object):
         self.lab_hb_lbl.setGeometry(QRect(10, 150, 50, 30))
         self.lab_hb_lbl.setMinimumSize(QSize(45, 30))
         self.lab_hb_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_hb_lbl.setFont(font35)
+        self.lab_hb_lbl.setFont(font36)
         self.lab_hb_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -2943,12 +2986,12 @@ class Ui_Main(object):
         self.lab_cbc_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_cbc_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_cbc_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        font36 = QFont()
-        font36.setFamilies([u"Lucida Sans"])
-        font36.setPointSize(12)
-        font36.setBold(False)
-        font36.setItalic(True)
-        self.lab_cbc_title_lbl.setFont(font36)
+        font37 = QFont()
+        font37.setFamilies([u"Lucida Sans"])
+        font37.setPointSize(12)
+        font37.setBold(False)
+        font37.setItalic(True)
+        self.lab_cbc_title_lbl.setFont(font37)
         self.lab_cbc_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -2960,7 +3003,7 @@ class Ui_Main(object):
         self.lab_wbc_lbl.setGeometry(QRect(10, 210, 50, 30))
         self.lab_wbc_lbl.setMinimumSize(QSize(45, 30))
         self.lab_wbc_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_wbc_lbl.setFont(font35)
+        self.lab_wbc_lbl.setFont(font36)
         self.lab_wbc_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -2971,7 +3014,7 @@ class Ui_Main(object):
         self.lab_plt_lbl.setGeometry(QRect(10, 270, 50, 30))
         self.lab_plt_lbl.setMinimumSize(QSize(45, 30))
         self.lab_plt_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_plt_lbl.setFont(font35)
+        self.lab_plt_lbl.setFont(font36)
         self.lab_plt_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(50, 55, 70);\n"
 "border-left:1px solid rgb(50,55,70);\n"
@@ -2994,7 +3037,7 @@ class Ui_Main(object):
         self.lab_rbc_lbl.setGeometry(QRect(10, 240, 50, 30))
         self.lab_rbc_lbl.setMinimumSize(QSize(45, 30))
         self.lab_rbc_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_rbc_lbl.setFont(font35)
+        self.lab_rbc_lbl.setFont(font36)
         self.lab_rbc_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3016,7 +3059,7 @@ class Ui_Main(object):
         self.lab_tsh_lbl.setGeometry(QRect(400, 150, 50, 30))
         self.lab_tsh_lbl.setMinimumSize(QSize(45, 30))
         self.lab_tsh_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_tsh_lbl.setFont(font35)
+        self.lab_tsh_lbl.setFont(font36)
         self.lab_tsh_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3027,7 +3070,7 @@ class Ui_Main(object):
         self.lab_ft4_lbl.setGeometry(QRect(400, 180, 50, 30))
         self.lab_ft4_lbl.setMinimumSize(QSize(45, 30))
         self.lab_ft4_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_ft4_lbl.setFont(font35)
+        self.lab_ft4_lbl.setFont(font36)
         self.lab_ft4_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3062,7 +3105,7 @@ class Ui_Main(object):
         self.lab_dm_studies_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_dm_studies_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_dm_studies_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_dm_studies_title_lbl.setFont(font36)
+        self.lab_dm_studies_title_lbl.setFont(font37)
         self.lab_dm_studies_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3074,7 +3117,7 @@ class Ui_Main(object):
         self.lab_a1c_lbl.setGeometry(QRect(270, 180, 50, 30))
         self.lab_a1c_lbl.setMinimumSize(QSize(45, 30))
         self.lab_a1c_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_a1c_lbl.setFont(font35)
+        self.lab_a1c_lbl.setFont(font36)
         self.lab_a1c_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(50, 55, 70);\n"
 "border-left:1px solid rgb(50,55,70);\n"
@@ -3119,7 +3162,7 @@ class Ui_Main(object):
         self.lab_t3_lbl.setGeometry(QRect(400, 210, 50, 30))
         self.lab_t3_lbl.setMinimumSize(QSize(45, 30))
         self.lab_t3_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_t3_lbl.setFont(font35)
+        self.lab_t3_lbl.setFont(font36)
         self.lab_t3_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(50, 55, 70);\n"
 "border-left:1px solid rgb(50,55,70);\n"
@@ -3131,7 +3174,7 @@ class Ui_Main(object):
         self.lab_fbs_lbl.setGeometry(QRect(270, 150, 50, 30))
         self.lab_fbs_lbl.setMinimumSize(QSize(45, 30))
         self.lab_fbs_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_fbs_lbl.setFont(font35)
+        self.lab_fbs_lbl.setFont(font36)
         self.lab_fbs_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3144,7 +3187,7 @@ class Ui_Main(object):
         self.lab_tft_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_tft_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_tft_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_tft_title_lbl.setFont(font36)
+        self.lab_tft_title_lbl.setFont(font37)
         self.lab_tft_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3158,7 +3201,7 @@ class Ui_Main(object):
         self.lab_renal_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_renal_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_renal_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_renal_title_lbl.setFont(font36)
+        self.lab_renal_title_lbl.setFont(font37)
         self.lab_renal_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3170,7 +3213,7 @@ class Ui_Main(object):
         self.lab_cr_lbl.setGeometry(QRect(140, 180, 50, 30))
         self.lab_cr_lbl.setMinimumSize(QSize(45, 30))
         self.lab_cr_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_cr_lbl.setFont(font35)
+        self.lab_cr_lbl.setFont(font36)
         self.lab_cr_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(50, 55, 70);\n"
 "border-left:1px solid rgb(50,55,70);\n"
@@ -3182,7 +3225,7 @@ class Ui_Main(object):
         self.lab_bun_lbl.setGeometry(QRect(140, 150, 50, 30))
         self.lab_bun_lbl.setMinimumSize(QSize(45, 30))
         self.lab_bun_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_bun_lbl.setFont(font35)
+        self.lab_bun_lbl.setFont(font36)
         self.lab_bun_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3226,7 +3269,7 @@ class Ui_Main(object):
         self.lab_psa_lbl.setGeometry(QRect(400, 310, 50, 30))
         self.lab_psa_lbl.setMinimumSize(QSize(45, 30))
         self.lab_psa_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_psa_lbl.setFont(font35)
+        self.lab_psa_lbl.setFont(font36)
         self.lab_psa_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(50, 55, 70);\n"
 "border-left:1px solid rgb(50,55,70);\n"
@@ -3249,7 +3292,7 @@ class Ui_Main(object):
         self.lab_hdl_lbl.setGeometry(QRect(270, 280, 50, 30))
         self.lab_hdl_lbl.setMinimumSize(QSize(45, 30))
         self.lab_hdl_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_hdl_lbl.setFont(font35)
+        self.lab_hdl_lbl.setFont(font36)
         self.lab_hdl_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3271,7 +3314,7 @@ class Ui_Main(object):
         self.lab_alt_lbl.setGeometry(QRect(140, 340, 50, 30))
         self.lab_alt_lbl.setMinimumSize(QSize(45, 30))
         self.lab_alt_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_alt_lbl.setFont(font35)
+        self.lab_alt_lbl.setFont(font36)
         self.lab_alt_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3284,7 +3327,7 @@ class Ui_Main(object):
         self.lab_lft_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_lft_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_lft_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_lft_title_lbl.setFont(font36)
+        self.lab_lft_title_lbl.setFont(font37)
         self.lab_lft_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3307,7 +3350,7 @@ class Ui_Main(object):
         self.lab_tpr_lbl.setGeometry(QRect(140, 280, 50, 30))
         self.lab_tpr_lbl.setMinimumSize(QSize(45, 30))
         self.lab_tpr_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_tpr_lbl.setFont(font35)
+        self.lab_tpr_lbl.setFont(font36)
         self.lab_tpr_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3318,7 +3361,7 @@ class Ui_Main(object):
         self.lab_gtp_lbl.setGeometry(QRect(140, 370, 50, 30))
         self.lab_gtp_lbl.setMinimumSize(QSize(45, 30))
         self.lab_gtp_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_gtp_lbl.setFont(font35)
+        self.lab_gtp_lbl.setFont(font36)
         self.lab_gtp_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3373,7 +3416,7 @@ class Ui_Main(object):
         self.lab_tbil_lbl.setGeometry(QRect(140, 400, 50, 30))
         self.lab_tbil_lbl.setMinimumSize(QSize(45, 30))
         self.lab_tbil_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_tbil_lbl.setFont(font35)
+        self.lab_tbil_lbl.setFont(font36)
         self.lab_tbil_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(50, 55, 70);\n"
 "border-left:1px solid rgb(50,55,70);\n"
@@ -3385,7 +3428,7 @@ class Ui_Main(object):
         self.lab_tc_lbl.setGeometry(QRect(270, 250, 50, 30))
         self.lab_tc_lbl.setMinimumSize(QSize(45, 30))
         self.lab_tc_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_tc_lbl.setFont(font35)
+        self.lab_tc_lbl.setFont(font36)
         self.lab_tc_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3396,7 +3439,7 @@ class Ui_Main(object):
         self.lab_vitd_lbl.setGeometry(QRect(400, 280, 50, 30))
         self.lab_vitd_lbl.setMinimumSize(QSize(45, 30))
         self.lab_vitd_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_vitd_lbl.setFont(font35)
+        self.lab_vitd_lbl.setFont(font36)
         self.lab_vitd_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3418,7 +3461,7 @@ class Ui_Main(object):
         self.lab_alb_lbl.setGeometry(QRect(140, 250, 50, 30))
         self.lab_alb_lbl.setMinimumSize(QSize(45, 30))
         self.lab_alb_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_alb_lbl.setFont(font35)
+        self.lab_alb_lbl.setFont(font36)
         self.lab_alb_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3429,7 +3472,7 @@ class Ui_Main(object):
         self.lab_crp_lbl.setGeometry(QRect(10, 340, 50, 30))
         self.lab_crp_lbl.setMinimumSize(QSize(45, 30))
         self.lab_crp_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_crp_lbl.setFont(font35)
+        self.lab_crp_lbl.setFont(font36)
         self.lab_crp_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3440,7 +3483,7 @@ class Ui_Main(object):
         self.lab_esr_lbl.setGeometry(QRect(10, 370, 50, 30))
         self.lab_esr_lbl.setMinimumSize(QSize(45, 30))
         self.lab_esr_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_esr_lbl.setFont(font35)
+        self.lab_esr_lbl.setFont(font36)
         self.lab_esr_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(50, 55, 70);\n"
 "border-left:1px solid rgb(50,55,70);\n"
@@ -3474,7 +3517,7 @@ class Ui_Main(object):
         self.lab_tg_lbl.setGeometry(QRect(270, 340, 50, 30))
         self.lab_tg_lbl.setMinimumSize(QSize(45, 30))
         self.lab_tg_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_tg_lbl.setFont(font35)
+        self.lab_tg_lbl.setFont(font36)
         self.lab_tg_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(50, 55, 70);\n"
 "border-left:1px solid rgb(50,55,70);\n"
@@ -3497,7 +3540,7 @@ class Ui_Main(object):
         self.lab_ast_lbl.setGeometry(QRect(140, 310, 50, 30))
         self.lab_ast_lbl.setMinimumSize(QSize(45, 30))
         self.lab_ast_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_ast_lbl.setFont(font35)
+        self.lab_ast_lbl.setFont(font36)
         self.lab_ast_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3510,7 +3553,7 @@ class Ui_Main(object):
         self.lab_lipids_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_lipids_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_lipids_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_lipids_title_lbl.setFont(font36)
+        self.lab_lipids_title_lbl.setFont(font37)
         self.lab_lipids_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3522,7 +3565,7 @@ class Ui_Main(object):
         self.lab_ldl_lbl.setGeometry(QRect(270, 310, 50, 30))
         self.lab_ldl_lbl.setMinimumSize(QSize(45, 30))
         self.lab_ldl_lbl.setMaximumSize(QSize(60, 30))
-        self.lab_ldl_lbl.setFont(font35)
+        self.lab_ldl_lbl.setFont(font36)
         self.lab_ldl_lbl.setStyleSheet(u"color: rgb(144, 155, 188);\n"
 "border-bottom:1px solid rgb(45,50,65);\n"
 "border-left:1px solid rgb(50, 55, 70);\n"
@@ -3546,7 +3589,7 @@ class Ui_Main(object):
         self.lab_etc_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_etc_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_etc_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_etc_title_lbl.setFont(font36)
+        self.lab_etc_title_lbl.setFont(font37)
         self.lab_etc_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3560,7 +3603,7 @@ class Ui_Main(object):
         self.lab_inflm_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_inflm_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_inflm_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_inflm_title_lbl.setFont(font36)
+        self.lab_inflm_title_lbl.setFont(font37)
         self.lab_inflm_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3574,7 +3617,7 @@ class Ui_Main(object):
         self.lab_others_title_lbl.setSizePolicy(sizePolicy6)
         self.lab_others_title_lbl.setMinimumSize(QSize(0, 0))
         self.lab_others_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_others_title_lbl.setFont(font36)
+        self.lab_others_title_lbl.setFont(font37)
         self.lab_others_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3591,7 +3634,7 @@ class Ui_Main(object):
         self.lab_others_pte.setSizePolicy(sizePolicy7)
         self.lab_others_pte.setMinimumSize(QSize(0, 0))
         self.lab_others_pte.setMaximumSize(QSize(16777215, 16777215))
-        self.lab_others_pte.setFont(font29)
+        self.lab_others_pte.setFont(font30)
         self.lab_others_pte.setStyleSheet(u"color: rgb(177,188,211);\n"
 "border:1px solid rgb(50, 55, 70);\n"
 "border-top:0px;\n"
@@ -3607,7 +3650,7 @@ class Ui_Main(object):
         self.lab_inst_lbl.setGeometry(QRect(280, 60, 60, 30))
         self.lab_inst_lbl.setMinimumSize(QSize(60, 0))
         self.lab_inst_lbl.setMaximumSize(QSize(60, 16777215))
-        self.lab_inst_lbl.setFont(font29)
+        self.lab_inst_lbl.setFont(font30)
         self.lab_inst_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3618,7 +3661,7 @@ class Ui_Main(object):
         self.lab_date_lbl.setGeometry(QRect(10, 60, 60, 30))
         self.lab_date_lbl.setMinimumSize(QSize(60, 0))
         self.lab_date_lbl.setMaximumSize(QSize(60, 16777215))
-        self.lab_date_lbl.setFont(font29)
+        self.lab_date_lbl.setFont(font30)
         self.lab_date_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3629,7 +3672,7 @@ class Ui_Main(object):
         self.lab_date_led.setGeometry(QRect(70, 60, 211, 30))
         self.lab_date_led.setMinimumSize(QSize(0, 0))
         self.lab_date_led.setMaximumSize(QSize(16777215, 31))
-        self.lab_date_led.setFont(font29)
+        self.lab_date_led.setFont(font30)
         self.lab_date_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(166,177,199);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3640,7 +3683,7 @@ class Ui_Main(object):
         self.lab_inst_led.setGeometry(QRect(340, 60, 181, 30))
         self.lab_inst_led.setMinimumSize(QSize(0, 0))
         self.lab_inst_led.setMaximumSize(QSize(16777215, 31))
-        self.lab_inst_led.setFont(font29)
+        self.lab_inst_led.setFont(font30)
         self.lab_inst_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(166,177,199);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3649,12 +3692,12 @@ class Ui_Main(object):
         self.lab_title_lbl = QLabel(self.lab_results)
         self.lab_title_lbl.setObjectName(u"lab_title_lbl")
         self.lab_title_lbl.setGeometry(QRect(10, 20, 511, 41))
-        font37 = QFont()
-        font37.setFamilies([u"Verdana"])
-        font37.setPointSize(16)
-        font37.setBold(True)
-        font37.setItalic(True)
-        self.lab_title_lbl.setFont(font37)
+        font38 = QFont()
+        font38.setFamilies([u"Verdana"])
+        font38.setPointSize(16)
+        font38.setBold(True)
+        font38.setItalic(True)
+        self.lab_title_lbl.setFont(font38)
         self.lab_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);")
         self.lab_title_lbl.setAlignment(Qt.AlignCenter)
         self.lab_copy_btn = QPushButton(self.lab_results)
@@ -3708,10 +3751,10 @@ class Ui_Main(object):
         self.bmd_lspine_tscore_led.setGeometry(QRect(130, 150, 131, 30))
         self.bmd_lspine_tscore_led.setMinimumSize(QSize(0, 30))
         self.bmd_lspine_tscore_led.setMaximumSize(QSize(16777215, 25))
-        font38 = QFont()
-        font38.setFamilies([u"\ub098\ub214\ubc14\ub978\uace0\ub515"])
-        font38.setPointSize(12)
-        self.bmd_lspine_tscore_led.setFont(font38)
+        font39 = QFont()
+        font39.setFamilies([u"\ub098\ub214\ubc14\ub978\uace0\ub515"])
+        font39.setPointSize(12)
+        self.bmd_lspine_tscore_led.setFont(font39)
         self.bmd_lspine_tscore_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);\n"
 "")
@@ -3721,7 +3764,7 @@ class Ui_Main(object):
         self.bmd_inst_lbl.setGeometry(QRect(280, 60, 60, 30))
         self.bmd_inst_lbl.setMinimumSize(QSize(60, 0))
         self.bmd_inst_lbl.setMaximumSize(QSize(60, 16777215))
-        self.bmd_inst_lbl.setFont(font29)
+        self.bmd_inst_lbl.setFont(font30)
         self.bmd_inst_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3732,7 +3775,7 @@ class Ui_Main(object):
         self.bmd_inst_led.setGeometry(QRect(340, 60, 181, 30))
         self.bmd_inst_led.setMinimumSize(QSize(0, 0))
         self.bmd_inst_led.setMaximumSize(QSize(16777215, 31))
-        self.bmd_inst_led.setFont(font29)
+        self.bmd_inst_led.setFont(font30)
         self.bmd_inst_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(166,177,199);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3745,7 +3788,7 @@ class Ui_Main(object):
         self.bmd_dexxa_title_lbl.setSizePolicy(sizePolicy6)
         self.bmd_dexxa_title_lbl.setMinimumSize(QSize(0, 0))
         self.bmd_dexxa_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.bmd_dexxa_title_lbl.setFont(font36)
+        self.bmd_dexxa_title_lbl.setFont(font37)
         self.bmd_dexxa_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3757,7 +3800,7 @@ class Ui_Main(object):
         self.bmd_femur_tscore_led.setGeometry(QRect(380, 150, 131, 30))
         self.bmd_femur_tscore_led.setMinimumSize(QSize(0, 30))
         self.bmd_femur_tscore_led.setMaximumSize(QSize(16777215, 25))
-        self.bmd_femur_tscore_led.setFont(font38)
+        self.bmd_femur_tscore_led.setFont(font39)
         self.bmd_femur_tscore_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);")
         self.bmd_femur_tscore_led.setFrame(False)
@@ -3766,7 +3809,7 @@ class Ui_Main(object):
         self.bmd_date_led.setGeometry(QRect(70, 60, 211, 30))
         self.bmd_date_led.setMinimumSize(QSize(0, 0))
         self.bmd_date_led.setMaximumSize(QSize(16777215, 31))
-        self.bmd_date_led.setFont(font29)
+        self.bmd_date_led.setFont(font30)
         self.bmd_date_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(166,177,199);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3779,7 +3822,7 @@ class Ui_Main(object):
         self.bmd_others_title_lbl.setSizePolicy(sizePolicy6)
         self.bmd_others_title_lbl.setMinimumSize(QSize(0, 0))
         self.bmd_others_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.bmd_others_title_lbl.setFont(font36)
+        self.bmd_others_title_lbl.setFont(font37)
         self.bmd_others_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3795,7 +3838,7 @@ class Ui_Main(object):
         self.bmd_femur_cmb.setSizePolicy(sizePolicy6)
         self.bmd_femur_cmb.setMinimumSize(QSize(120, 30))
         self.bmd_femur_cmb.setMaximumSize(QSize(120, 31))
-        self.bmd_femur_cmb.setFont(font35)
+        self.bmd_femur_cmb.setFont(font36)
         self.bmd_femur_cmb.setStyleSheet(u"color: rgb(144, 155, 188);")
         self.bmd_femur_cmb.setFrame(False)
         self.bmd_date_lbl = QLabel(self.bmd_results)
@@ -3803,7 +3846,7 @@ class Ui_Main(object):
         self.bmd_date_lbl.setGeometry(QRect(10, 60, 60, 30))
         self.bmd_date_lbl.setMinimumSize(QSize(60, 0))
         self.bmd_date_lbl.setMaximumSize(QSize(60, 16777215))
-        self.bmd_date_lbl.setFont(font29)
+        self.bmd_date_lbl.setFont(font30)
         self.bmd_date_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3814,7 +3857,7 @@ class Ui_Main(object):
         self.bmd_lspine_lbl.setGeometry(QRect(10, 150, 120, 30))
         self.bmd_lspine_lbl.setMinimumSize(QSize(120, 30))
         self.bmd_lspine_lbl.setMaximumSize(QSize(120, 25))
-        self.bmd_lspine_lbl.setFont(font35)
+        self.bmd_lspine_lbl.setFont(font36)
         self.bmd_lspine_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(144, 155, 188);\n"
 "padding-left:10px;")
@@ -3822,10 +3865,10 @@ class Ui_Main(object):
         self.bmd_others_pte = QPlainTextEdit(self.bmd_results)
         self.bmd_others_pte.setObjectName(u"bmd_others_pte")
         self.bmd_others_pte.setGeometry(QRect(10, 240, 511, 151))
-        font39 = QFont()
-        font39.setFamilies([u"\ub098\ub214\ubc14\ub978\uace0\ub515"])
-        font39.setPointSize(10)
-        self.bmd_others_pte.setFont(font39)
+        font40 = QFont()
+        font40.setFamilies([u"\ub098\ub214\ubc14\ub978\uace0\ub515"])
+        font40.setPointSize(10)
+        self.bmd_others_pte.setFont(font40)
         self.bmd_others_pte.setStyleSheet(u"color: rgb(177,188,211);\n"
 "border:1px solid rgb(50, 55, 70);\n"
 "border-top:0px;\n"
@@ -3840,7 +3883,7 @@ class Ui_Main(object):
         self.bmd_box_lbl.setGeometry(QRect(10, 150, 511, 31))
         self.bmd_box_lbl.setMinimumSize(QSize(60, 30))
         self.bmd_box_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.bmd_box_lbl.setFont(font38)
+        self.bmd_box_lbl.setFont(font39)
         self.bmd_box_lbl.setStyleSheet(u"color: rgb(177,188,211);\n"
 "border:1px solid rgb(50, 55, 70);\n"
 "border-top:0px;\n"
@@ -3852,7 +3895,7 @@ class Ui_Main(object):
         self.bmd_title_lbl = QLabel(self.bmd_results)
         self.bmd_title_lbl.setObjectName(u"bmd_title_lbl")
         self.bmd_title_lbl.setGeometry(QRect(10, 20, 511, 41))
-        self.bmd_title_lbl.setFont(font37)
+        self.bmd_title_lbl.setFont(font38)
         self.bmd_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);")
         self.bmd_title_lbl.setAlignment(Qt.AlignCenter)
         self.bmd_copy_btn = QPushButton(self.bmd_results)
@@ -3921,7 +3964,7 @@ class Ui_Main(object):
         self.alz_inst_led.setGeometry(QRect(340, 60, 181, 30))
         self.alz_inst_led.setMinimumSize(QSize(0, 0))
         self.alz_inst_led.setMaximumSize(QSize(16777215, 31))
-        self.alz_inst_led.setFont(font29)
+        self.alz_inst_led.setFont(font30)
         self.alz_inst_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(166,177,199);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3932,7 +3975,7 @@ class Ui_Main(object):
         self.alz_mmse_led.setGeometry(QRect(80, 150, 80, 30))
         self.alz_mmse_led.setMinimumSize(QSize(0, 30))
         self.alz_mmse_led.setMaximumSize(QSize(16777215, 25))
-        self.alz_mmse_led.setFont(font38)
+        self.alz_mmse_led.setFont(font39)
         self.alz_mmse_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);")
         self.alz_mmse_led.setFrame(False)
@@ -3943,7 +3986,7 @@ class Ui_Main(object):
         self.alz_fx_studies_title_lbl.setSizePolicy(sizePolicy6)
         self.alz_fx_studies_title_lbl.setMinimumSize(QSize(0, 0))
         self.alz_fx_studies_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.alz_fx_studies_title_lbl.setFont(font36)
+        self.alz_fx_studies_title_lbl.setFont(font37)
         self.alz_fx_studies_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3955,7 +3998,7 @@ class Ui_Main(object):
         self.alz_cdr_lbl.setGeometry(QRect(200, 150, 60, 30))
         self.alz_cdr_lbl.setMinimumSize(QSize(60, 30))
         self.alz_cdr_lbl.setMaximumSize(QSize(60, 30))
-        self.alz_cdr_lbl.setFont(font35)
+        self.alz_cdr_lbl.setFont(font36)
         self.alz_cdr_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(144, 155, 188);")
         self.alz_cdr_lbl.setAlignment(Qt.AlignCenter)
@@ -3964,7 +4007,7 @@ class Ui_Main(object):
         self.alz_date_led.setGeometry(QRect(70, 60, 211, 30))
         self.alz_date_led.setMinimumSize(QSize(0, 0))
         self.alz_date_led.setMaximumSize(QSize(16777215, 31))
-        self.alz_date_led.setFont(font29)
+        self.alz_date_led.setFont(font30)
         self.alz_date_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(166,177,199);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -3975,7 +4018,7 @@ class Ui_Main(object):
         self.alz_cdr_led.setGeometry(QRect(260, 150, 80, 30))
         self.alz_cdr_led.setMinimumSize(QSize(0, 30))
         self.alz_cdr_led.setMaximumSize(QSize(16777215, 25))
-        self.alz_cdr_led.setFont(font38)
+        self.alz_cdr_led.setFont(font39)
         self.alz_cdr_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);")
         self.alz_cdr_led.setFrame(False)
@@ -3986,7 +4029,7 @@ class Ui_Main(object):
         self.alz_comm_title_lbl.setSizePolicy(sizePolicy6)
         self.alz_comm_title_lbl.setMinimumSize(QSize(0, 0))
         self.alz_comm_title_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.alz_comm_title_lbl.setFont(font36)
+        self.alz_comm_title_lbl.setFont(font37)
         self.alz_comm_title_lbl.setStyleSheet(u"background-color:rgb(38, 43, 52);\n"
 "color: rgb(125, 150, 200);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -3998,7 +4041,7 @@ class Ui_Main(object):
         self.alz_date_lbl.setGeometry(QRect(10, 60, 60, 30))
         self.alz_date_lbl.setMinimumSize(QSize(60, 0))
         self.alz_date_lbl.setMaximumSize(QSize(60, 16777215))
-        self.alz_date_lbl.setFont(font29)
+        self.alz_date_lbl.setFont(font30)
         self.alz_date_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -4009,7 +4052,7 @@ class Ui_Main(object):
         self.alz_box_lbl.setGeometry(QRect(10, 150, 511, 31))
         self.alz_box_lbl.setMinimumSize(QSize(60, 30))
         self.alz_box_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.alz_box_lbl.setFont(font38)
+        self.alz_box_lbl.setFont(font39)
         self.alz_box_lbl.setStyleSheet(u"color: rgb(177,188,211);\n"
 "border:1px solid rgb(50, 55, 70);\n"
 "border-top:0px;\n"
@@ -4022,7 +4065,7 @@ class Ui_Main(object):
         self.alz_inst_lbl.setGeometry(QRect(280, 60, 60, 30))
         self.alz_inst_lbl.setMinimumSize(QSize(60, 0))
         self.alz_inst_lbl.setMaximumSize(QSize(60, 16777215))
-        self.alz_inst_lbl.setFont(font29)
+        self.alz_inst_lbl.setFont(font30)
         self.alz_inst_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -4033,14 +4076,14 @@ class Ui_Main(object):
         self.alz_mmse_lbl.setGeometry(QRect(20, 150, 60, 30))
         self.alz_mmse_lbl.setMinimumSize(QSize(60, 30))
         self.alz_mmse_lbl.setMaximumSize(QSize(60, 30))
-        self.alz_mmse_lbl.setFont(font35)
+        self.alz_mmse_lbl.setFont(font36)
         self.alz_mmse_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(144, 155, 188);")
         self.alz_mmse_lbl.setAlignment(Qt.AlignCenter)
         self.alz_comm_pte = QPlainTextEdit(self.alz_results)
         self.alz_comm_pte.setObjectName(u"alz_comm_pte")
         self.alz_comm_pte.setGeometry(QRect(10, 240, 511, 151))
-        self.alz_comm_pte.setFont(font30)
+        self.alz_comm_pte.setFont(font31)
         self.alz_comm_pte.setStyleSheet(u"color: rgb(177,188,211);\n"
 "border:1px solid rgb(50, 55, 70);\n"
 "border-top:0px;\n"
@@ -4055,7 +4098,7 @@ class Ui_Main(object):
         self.alz_gds_led.setGeometry(QRect(430, 150, 80, 30))
         self.alz_gds_led.setMinimumSize(QSize(0, 30))
         self.alz_gds_led.setMaximumSize(QSize(16777215, 25))
-        self.alz_gds_led.setFont(font38)
+        self.alz_gds_led.setFont(font39)
         self.alz_gds_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);")
         self.alz_gds_led.setFrame(False)
@@ -4064,14 +4107,14 @@ class Ui_Main(object):
         self.alz_gds_lbl.setGeometry(QRect(370, 150, 60, 30))
         self.alz_gds_lbl.setMinimumSize(QSize(60, 30))
         self.alz_gds_lbl.setMaximumSize(QSize(60, 30))
-        self.alz_gds_lbl.setFont(font35)
+        self.alz_gds_lbl.setFont(font36)
         self.alz_gds_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(144, 155, 188);")
         self.alz_gds_lbl.setAlignment(Qt.AlignCenter)
         self.alz_title_lbl = QLabel(self.alz_results)
         self.alz_title_lbl.setObjectName(u"alz_title_lbl")
         self.alz_title_lbl.setGeometry(QRect(10, 20, 511, 41))
-        self.alz_title_lbl.setFont(font37)
+        self.alz_title_lbl.setFont(font38)
         self.alz_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);")
         self.alz_title_lbl.setAlignment(Qt.AlignCenter)
         self.alz_reset_btn = QPushButton(self.alz_results)
@@ -4303,7 +4346,7 @@ class Ui_Main(object):
         self.ipss_date_lbl.setGeometry(QRect(10, 60, 60, 30))
         self.ipss_date_lbl.setMinimumSize(QSize(60, 0))
         self.ipss_date_lbl.setMaximumSize(QSize(60, 16777215))
-        self.ipss_date_lbl.setFont(font29)
+        self.ipss_date_lbl.setFont(font30)
         self.ipss_date_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -4372,7 +4415,7 @@ class Ui_Main(object):
         self.ipss_inst_led.setGeometry(QRect(340, 60, 181, 30))
         self.ipss_inst_led.setMinimumSize(QSize(0, 0))
         self.ipss_inst_led.setMaximumSize(QSize(16777215, 31))
-        self.ipss_inst_led.setFont(font29)
+        self.ipss_inst_led.setFont(font30)
         self.ipss_inst_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(166,177,199);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -4501,7 +4544,7 @@ class Ui_Main(object):
         self.ipss_inst_lbl.setGeometry(QRect(280, 60, 60, 30))
         self.ipss_inst_lbl.setMinimumSize(QSize(60, 0))
         self.ipss_inst_lbl.setMaximumSize(QSize(60, 16777215))
-        self.ipss_inst_lbl.setFont(font29)
+        self.ipss_inst_lbl.setFont(font30)
         self.ipss_inst_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -4524,7 +4567,7 @@ class Ui_Main(object):
         self.ipss_date_led.setGeometry(QRect(70, 60, 211, 30))
         self.ipss_date_led.setMinimumSize(QSize(0, 0))
         self.ipss_date_led.setMaximumSize(QSize(16777215, 31))
-        self.ipss_date_led.setFont(font29)
+        self.ipss_date_led.setFont(font30)
         self.ipss_date_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(166,177,199);\n"
 "border-top:1px solid rgb(100,110,130);\n"
@@ -4746,7 +4789,7 @@ class Ui_Main(object):
         self.ipss_title_lbl = QLabel(self.ipss_results)
         self.ipss_title_lbl.setObjectName(u"ipss_title_lbl")
         self.ipss_title_lbl.setGeometry(QRect(10, 20, 511, 41))
-        self.ipss_title_lbl.setFont(font37)
+        self.ipss_title_lbl.setFont(font38)
         self.ipss_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);")
         self.ipss_title_lbl.setAlignment(Qt.AlignCenter)
         self.ipss_reset_btn = QPushButton(self.ipss_results)
@@ -4809,7 +4852,7 @@ class Ui_Main(object):
         self.lblr_count_total_covid_led.setGeometry(QRect(90, 50, 51, 30))
         self.lblr_count_total_covid_led.setMinimumSize(QSize(0, 30))
         self.lblr_count_total_covid_led.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_total_covid_led.setFont(font27)
+        self.lblr_count_total_covid_led.setFont(font28)
         self.lblr_count_total_covid_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);\n"
 "border-bottom:1px solid rgb(70,80,100);")
@@ -4819,7 +4862,7 @@ class Ui_Main(object):
         self.lblr_count_old_flu_ex_led.setGeometry(QRect(90, 230, 51, 30))
         self.lblr_count_old_flu_ex_led.setMinimumSize(QSize(0, 30))
         self.lblr_count_old_flu_ex_led.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_old_flu_ex_led.setFont(font30)
+        self.lblr_count_old_flu_ex_led.setFont(font31)
         self.lblr_count_old_flu_ex_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);\n"
 "padding-left:5px;")
@@ -4829,7 +4872,7 @@ class Ui_Main(object):
         self.lblr_count_total_covid_lbl.setGeometry(QRect(19, 50, 71, 30))
         self.lblr_count_total_covid_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_count_total_covid_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_total_covid_lbl.setFont(font27)
+        self.lblr_count_total_covid_lbl.setFont(font28)
         self.lblr_count_total_covid_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(155, 166, 200);\n"
 "border-bottom:1px solid rgb(70,80,100);")
@@ -4839,7 +4882,7 @@ class Ui_Main(object):
         self.lblr_count_child_flu_lbl.setGeometry(QRect(10, 200, 80, 30))
         self.lblr_count_child_flu_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_count_child_flu_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_child_flu_lbl.setFont(font30)
+        self.lblr_count_child_flu_lbl.setFont(font31)
         self.lblr_count_child_flu_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);")
         self.lblr_count_child_flu_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -4848,7 +4891,7 @@ class Ui_Main(object):
         self.lblr_count_child_flu_led.setGeometry(QRect(90, 200, 51, 30))
         self.lblr_count_child_flu_led.setMinimumSize(QSize(0, 30))
         self.lblr_count_child_flu_led.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_child_flu_led.setFont(font30)
+        self.lblr_count_child_flu_led.setFont(font31)
         self.lblr_count_child_flu_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);\n"
 "padding-left:5px;")
@@ -4858,7 +4901,7 @@ class Ui_Main(object):
         self.lblr_count_old_flu_lbl.setGeometry(QRect(10, 170, 80, 30))
         self.lblr_count_old_flu_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_count_old_flu_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_old_flu_lbl.setFont(font30)
+        self.lblr_count_old_flu_lbl.setFont(font31)
         self.lblr_count_old_flu_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);")
         self.lblr_count_old_flu_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -4867,7 +4910,7 @@ class Ui_Main(object):
         self.lblr_count_total_flu_led.setGeometry(QRect(90, 140, 51, 30))
         self.lblr_count_total_flu_led.setMinimumSize(QSize(0, 30))
         self.lblr_count_total_flu_led.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_total_flu_led.setFont(font27)
+        self.lblr_count_total_flu_led.setFont(font28)
         self.lblr_count_total_flu_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);\n"
 "border-bottom:1px solid rgb(70,80,100);")
@@ -4887,7 +4930,7 @@ class Ui_Main(object):
         self.lblr_count_old_flu_ex_lbl.setGeometry(QRect(10, 230, 80, 30))
         self.lblr_count_old_flu_ex_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_count_old_flu_ex_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_old_flu_ex_lbl.setFont(font30)
+        self.lblr_count_old_flu_ex_lbl.setFont(font31)
         self.lblr_count_old_flu_ex_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);")
         self.lblr_count_old_flu_ex_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -4905,7 +4948,7 @@ class Ui_Main(object):
         self.lblr_count_total_flu_lbl.setGeometry(QRect(19, 140, 71, 30))
         self.lblr_count_total_flu_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_count_total_flu_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_total_flu_lbl.setFont(font27)
+        self.lblr_count_total_flu_lbl.setFont(font28)
         self.lblr_count_total_flu_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(155, 166, 200);\n"
 "border-bottom:1px solid rgb(70,80,100);")
@@ -4924,7 +4967,7 @@ class Ui_Main(object):
         self.lblr_count_old_flu_led.setGeometry(QRect(90, 170, 51, 30))
         self.lblr_count_old_flu_led.setMinimumSize(QSize(0, 30))
         self.lblr_count_old_flu_led.setMaximumSize(QSize(16777215, 30))
-        self.lblr_count_old_flu_led.setFont(font30)
+        self.lblr_count_old_flu_led.setFont(font31)
         self.lblr_count_old_flu_led.setStyleSheet(u"background:transparent;\n"
 "color: rgb(177,188,211);\n"
 "padding-left:5px;")
@@ -4965,21 +5008,21 @@ class Ui_Main(object):
         self.lblr_count_title_lbl.setGeometry(QRect(10, 10, 81, 30))
         self.lblr_count_title_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_count_title_lbl.setMaximumSize(QSize(16777215, 30))
-        font40 = QFont()
-        font40.setFamilies([u"\uc57c\ub180\uc790 \uc57c\uccb4 B"])
-        font40.setPointSize(18)
-        font40.setItalic(False)
-        self.lblr_count_title_lbl.setFont(font40)
+        font41 = QFont()
+        font41.setFamilies([u"\uc57c\ub180\uc790 \uc57c\uccb4 B"])
+        font41.setPointSize(18)
+        font41.setItalic(False)
+        self.lblr_count_title_lbl.setFont(font41)
         self.lblr_count_title_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(175, 180, 200);")
         self.lblr_count_title_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.lblr_info_lbl = QTextEdit(self.labeler)
         self.lblr_info_lbl.setObjectName(u"lblr_info_lbl")
         self.lblr_info_lbl.setGeometry(QRect(10, 460, 511, 181))
-        font41 = QFont()
-        font41.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 M"])
-        font41.setPointSize(12)
-        self.lblr_info_lbl.setFont(font41)
+        font42 = QFont()
+        font42.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 M"])
+        font42.setPointSize(12)
+        self.lblr_info_lbl.setFont(font42)
         self.lblr_info_lbl.setStyleSheet(u"background:transparent;\n"
 "border:none;")
         self.lblr_info_lbl.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -5036,11 +5079,11 @@ class Ui_Main(object):
         self.lblr_step3_lbl.setGeometry(QRect(20, 170, 301, 30))
         self.lblr_step3_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_step3_lbl.setMaximumSize(QSize(16777215, 30))
-        font42 = QFont()
-        font42.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 B"])
-        font42.setPointSize(14)
-        font42.setItalic(True)
-        self.lblr_step3_lbl.setFont(font42)
+        font43 = QFont()
+        font43.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 B"])
+        font43.setPointSize(14)
+        font43.setItalic(True)
+        self.lblr_step3_lbl.setFont(font43)
         self.lblr_step3_lbl.setStyleSheet(u"border-bottom:1px solid rgb(75,80,100);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);")
@@ -5090,11 +5133,11 @@ class Ui_Main(object):
         self.lblr_preview_count_vac_lbl.setSizePolicy(sizePolicy8)
         self.lblr_preview_count_vac_lbl.setMinimumSize(QSize(0, 0))
         self.lblr_preview_count_vac_lbl.setMaximumSize(QSize(16777215, 16777215))
-        font43 = QFont()
-        font43.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 EB"])
-        font43.setPointSize(32)
-        font43.setBold(False)
-        self.lblr_preview_count_vac_lbl.setFont(font43)
+        font44 = QFont()
+        font44.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 EB"])
+        font44.setPointSize(32)
+        font44.setBold(False)
+        self.lblr_preview_count_vac_lbl.setFont(font44)
         self.lblr_preview_count_vac_lbl.setStyleSheet(u"QWidget{\n"
 "	background:none;\n"
 "	border:none;\n"
@@ -5120,11 +5163,11 @@ class Ui_Main(object):
         self.lblr_preview_ptphone_lbl.setSizePolicy(sizePolicy8)
         self.lblr_preview_ptphone_lbl.setMinimumSize(QSize(0, 0))
         self.lblr_preview_ptphone_lbl.setMaximumSize(QSize(16777215, 16777215))
-        font44 = QFont()
-        font44.setFamilies([u"D2Coding ligature"])
-        font44.setPointSize(12)
-        font44.setBold(False)
-        self.lblr_preview_ptphone_lbl.setFont(font44)
+        font45 = QFont()
+        font45.setFamilies([u"D2Coding ligature"])
+        font45.setPointSize(12)
+        font45.setBold(False)
+        self.lblr_preview_ptphone_lbl.setFont(font45)
         self.lblr_preview_ptphone_lbl.setStyleSheet(u"QWidget{\n"
 "	background:none;\n"
 "	border:none;\n"
@@ -5138,7 +5181,7 @@ class Ui_Main(object):
         self.lblr_preview_ptjmno_lbl.setSizePolicy(sizePolicy8)
         self.lblr_preview_ptjmno_lbl.setMinimumSize(QSize(0, 0))
         self.lblr_preview_ptjmno_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lblr_preview_ptjmno_lbl.setFont(font44)
+        self.lblr_preview_ptjmno_lbl.setFont(font45)
         self.lblr_preview_ptjmno_lbl.setStyleSheet(u"QWidget{\n"
 "	background:none;\n"
 "	border:none;\n"
@@ -5152,11 +5195,11 @@ class Ui_Main(object):
         self.lblr_preview_date_lbl.setSizePolicy(sizePolicy8)
         self.lblr_preview_date_lbl.setMinimumSize(QSize(0, 0))
         self.lblr_preview_date_lbl.setMaximumSize(QSize(16777215, 16777215))
-        font45 = QFont()
-        font45.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font45.setPointSize(12)
-        font45.setBold(False)
-        self.lblr_preview_date_lbl.setFont(font45)
+        font46 = QFont()
+        font46.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
+        font46.setPointSize(12)
+        font46.setBold(False)
+        self.lblr_preview_date_lbl.setFont(font46)
         self.lblr_preview_date_lbl.setStyleSheet(u"QWidget{\n"
 "	background:none;\n"
 "	border:none;\n"
@@ -5170,11 +5213,11 @@ class Ui_Main(object):
         self.lblr_preview_ptname_lbl.setSizePolicy(sizePolicy8)
         self.lblr_preview_ptname_lbl.setMinimumSize(QSize(0, 0))
         self.lblr_preview_ptname_lbl.setMaximumSize(QSize(16777215, 16777215))
-        font46 = QFont()
-        font46.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font46.setPointSize(18)
-        font46.setBold(False)
-        self.lblr_preview_ptname_lbl.setFont(font46)
+        font47 = QFont()
+        font47.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
+        font47.setPointSize(18)
+        font47.setBold(False)
+        self.lblr_preview_ptname_lbl.setFont(font47)
         self.lblr_preview_ptname_lbl.setStyleSheet(u"QWidget{\n"
 "	background:none;\n"
 "	border:none;\n"
@@ -5188,7 +5231,7 @@ class Ui_Main(object):
         self.lblr_preview_lot_lbl.setSizePolicy(sizePolicy8)
         self.lblr_preview_lot_lbl.setMinimumSize(QSize(0, 0))
         self.lblr_preview_lot_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lblr_preview_lot_lbl.setFont(font44)
+        self.lblr_preview_lot_lbl.setFont(font45)
         self.lblr_preview_lot_lbl.setStyleSheet(u"QWidget{\n"
 "	background:none;\n"
 "	border:none;\n"
@@ -5202,11 +5245,11 @@ class Ui_Main(object):
         self.lblr_preview_counter_lbl.setSizePolicy(sizePolicy8)
         self.lblr_preview_counter_lbl.setMinimumSize(QSize(0, 0))
         self.lblr_preview_counter_lbl.setMaximumSize(QSize(16777215, 16777215))
-        font47 = QFont()
-        font47.setFamilies([u"\ub098\ub214\ubc14\ub978\uace0\ub515"])
-        font47.setPointSize(14)
-        font47.setBold(True)
-        self.lblr_preview_counter_lbl.setFont(font47)
+        font48 = QFont()
+        font48.setFamilies([u"\ub098\ub214\ubc14\ub978\uace0\ub515"])
+        font48.setPointSize(14)
+        font48.setBold(True)
+        self.lblr_preview_counter_lbl.setFont(font48)
         self.lblr_preview_counter_lbl.setStyleSheet(u"QWidget{\n"
 "	background:none;\n"
 "	border:none;\n"
@@ -5220,7 +5263,7 @@ class Ui_Main(object):
         self.lblr_preview_nocount_vac_lbl.setSizePolicy(sizePolicy8)
         self.lblr_preview_nocount_vac_lbl.setMinimumSize(QSize(0, 0))
         self.lblr_preview_nocount_vac_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.lblr_preview_nocount_vac_lbl.setFont(font43)
+        self.lblr_preview_nocount_vac_lbl.setFont(font44)
         self.lblr_preview_nocount_vac_lbl.setStyleSheet(u"QWidget{\n"
 "	background:none;\n"
 "	border:none;\n"
@@ -5254,7 +5297,7 @@ class Ui_Main(object):
         self.lblr_step2_lbl.setGeometry(QRect(20, 90, 301, 30))
         self.lblr_step2_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_step2_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_step2_lbl.setFont(font42)
+        self.lblr_step2_lbl.setFont(font43)
         self.lblr_step2_lbl.setStyleSheet(u"border-bottom:1px solid rgb(75,80,100);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);")
@@ -5264,7 +5307,7 @@ class Ui_Main(object):
         self.lblr_step1_lbl.setGeometry(QRect(20, 10, 301, 30))
         self.lblr_step1_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_step1_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_step1_lbl.setFont(font42)
+        self.lblr_step1_lbl.setFont(font43)
         self.lblr_step1_lbl.setStyleSheet(u"border-bottom:1px solid rgb(75,80,100);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);")
@@ -5302,7 +5345,7 @@ class Ui_Main(object):
         self.lblr_flu_date_checker_title.setGeometry(QRect(0, 0, 151, 41))
         self.lblr_flu_date_checker_title.setMinimumSize(QSize(0, 0))
         self.lblr_flu_date_checker_title.setMaximumSize(QSize(16777215, 16777215))
-        self.lblr_flu_date_checker_title.setFont(font40)
+        self.lblr_flu_date_checker_title.setFont(font41)
         self.lblr_flu_date_checker_title.setStyleSheet(u"border:1px solid rgb(55, 66, 55);\n"
 "border-top-left-radius:10px;\n"
 "border-top-right-radius:10px;\n"
@@ -5315,7 +5358,7 @@ class Ui_Main(object):
         self.lblr_flu_date_checker_old_lbl.setGeometry(QRect(10, 50, 81, 30))
         self.lblr_flu_date_checker_old_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_flu_date_checker_old_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_flu_date_checker_old_lbl.setFont(font45)
+        self.lblr_flu_date_checker_old_lbl.setFont(font46)
         self.lblr_flu_date_checker_old_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(100, 133, 122);\n"
 "border-bottom:1px solid rgb(66, 88, 77);")
@@ -5325,11 +5368,11 @@ class Ui_Main(object):
         self.lblr_flu_date_checker_old.setGeometry(QRect(90, 50, 51, 30))
         self.lblr_flu_date_checker_old.setMinimumSize(QSize(0, 30))
         self.lblr_flu_date_checker_old.setMaximumSize(QSize(16777215, 30))
-        font48 = QFont()
-        font48.setFamilies([u"D2Coding ligature"])
-        font48.setPointSize(12)
-        font48.setBold(True)
-        self.lblr_flu_date_checker_old.setFont(font48)
+        font49 = QFont()
+        font49.setFamilies([u"D2Coding ligature"])
+        font49.setPointSize(12)
+        font49.setBold(True)
+        self.lblr_flu_date_checker_old.setFont(font49)
         self.lblr_flu_date_checker_old.setStyleSheet(u"background:transparent;\n"
 "color: rgb(188, 155, 100);\n"
 "border-bottom:1px solid rgb(66, 88, 77);")
@@ -5341,7 +5384,7 @@ class Ui_Main(object):
         self.lblr_flu_date_checker_chile_lbl.setGeometry(QRect(10, 80, 81, 30))
         self.lblr_flu_date_checker_chile_lbl.setMinimumSize(QSize(0, 30))
         self.lblr_flu_date_checker_chile_lbl.setMaximumSize(QSize(16777215, 30))
-        self.lblr_flu_date_checker_chile_lbl.setFont(font45)
+        self.lblr_flu_date_checker_chile_lbl.setFont(font46)
         self.lblr_flu_date_checker_chile_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(100, 133, 122);\n"
 "border-bottom:1px solid rgb(66, 88, 77);")
@@ -5351,7 +5394,7 @@ class Ui_Main(object):
         self.lblr_flu_date_checker_child.setGeometry(QRect(90, 80, 51, 30))
         self.lblr_flu_date_checker_child.setMinimumSize(QSize(0, 30))
         self.lblr_flu_date_checker_child.setMaximumSize(QSize(16777215, 30))
-        self.lblr_flu_date_checker_child.setFont(font48)
+        self.lblr_flu_date_checker_child.setFont(font49)
         self.lblr_flu_date_checker_child.setStyleSheet(u"background:transparent;\n"
 "color: rgb(188, 155, 100);\n"
 "border-bottom:1px solid rgb(66, 88, 77);")
@@ -5366,7 +5409,7 @@ class Ui_Main(object):
         self.c19r_address1_lbl.setGeometry(QRect(30, 190, 70, 30))
         self.c19r_address1_lbl.setMinimumSize(QSize(0, 0))
         self.c19r_address1_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_address1_lbl.setFont(font30)
+        self.c19r_address1_lbl.setFont(font31)
         self.c19r_address1_lbl.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5377,7 +5420,7 @@ class Ui_Main(object):
         self.c19r_sxsince_led.setGeometry(QRect(100, 310, 111, 30))
         self.c19r_sxsince_led.setMinimumSize(QSize(0, 30))
         self.c19r_sxsince_led.setMaximumSize(QSize(16777215, 25))
-        self.c19r_sxsince_led.setFont(font30)
+        self.c19r_sxsince_led.setFont(font31)
         self.c19r_sxsince_led.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5388,7 +5431,7 @@ class Ui_Main(object):
         self.c19r_underaged_cbx.setObjectName(u"c19r_underaged_cbx")
         self.c19r_underaged_cbx.setGeometry(QRect(270, 120, 190, 30))
         self.c19r_underaged_cbx.setMinimumSize(QSize(0, 30))
-        self.c19r_underaged_cbx.setFont(font30)
+        self.c19r_underaged_cbx.setFont(font31)
         self.c19r_underaged_cbx.setStyleSheet(u"")
         self.c19r_underaged_cbx.setCheckable(False)
         self.c19r_ptphone_led = QLineEdit(self.covid_report)
@@ -5396,7 +5439,7 @@ class Ui_Main(object):
         self.c19r_ptphone_led.setGeometry(QRect(100, 160, 120, 30))
         self.c19r_ptphone_led.setMinimumSize(QSize(0, 0))
         self.c19r_ptphone_led.setMaximumSize(QSize(16777215, 30))
-        self.c19r_ptphone_led.setFont(font30)
+        self.c19r_ptphone_led.setFont(font31)
         self.c19r_ptphone_led.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5407,7 +5450,7 @@ class Ui_Main(object):
         self.c19r_address1_led.setGeometry(QRect(100, 190, 391, 30))
         self.c19r_address1_led.setMinimumSize(QSize(0, 0))
         self.c19r_address1_led.setMaximumSize(QSize(16777215, 30))
-        self.c19r_address1_led.setFont(font30)
+        self.c19r_address1_led.setFont(font31)
         self.c19r_address1_led.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5418,7 +5461,7 @@ class Ui_Main(object):
         self.c19r_ptjmno_led.setGeometry(QRect(100, 130, 120, 30))
         self.c19r_ptjmno_led.setMinimumSize(QSize(0, 0))
         self.c19r_ptjmno_led.setMaximumSize(QSize(16777215, 30))
-        self.c19r_ptjmno_led.setFont(font30)
+        self.c19r_ptjmno_led.setFont(font31)
         self.c19r_ptjmno_led.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5429,7 +5472,7 @@ class Ui_Main(object):
         self.c19r_ptphone_lbl.setGeometry(QRect(30, 160, 70, 30))
         self.c19r_ptphone_lbl.setMinimumSize(QSize(0, 0))
         self.c19r_ptphone_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_ptphone_lbl.setFont(font30)
+        self.c19r_ptphone_lbl.setFont(font31)
         self.c19r_ptphone_lbl.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5440,7 +5483,7 @@ class Ui_Main(object):
         self.c19r_sxsince_lbl.setGeometry(QRect(30, 310, 70, 30))
         self.c19r_sxsince_lbl.setMinimumSize(QSize(0, 30))
         self.c19r_sxsince_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_sxsince_lbl.setFont(font30)
+        self.c19r_sxsince_lbl.setFont(font31)
         self.c19r_sxsince_lbl.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5455,7 +5498,7 @@ class Ui_Main(object):
         sizePolicy9.setHeightForWidth(self.c19r_notes_pte.sizePolicy().hasHeightForWidth())
         self.c19r_notes_pte.setSizePolicy(sizePolicy9)
         self.c19r_notes_pte.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_notes_pte.setFont(font30)
+        self.c19r_notes_pte.setFont(font31)
         self.c19r_notes_pte.setStyleSheet(u"border-top:1px solid rgb(60,65,80);\n"
 "border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
@@ -5469,7 +5512,7 @@ class Ui_Main(object):
         self.c19r_dx_date_lbl.setGeometry(QRect(30, 340, 70, 30))
         self.c19r_dx_date_lbl.setMinimumSize(QSize(0, 30))
         self.c19r_dx_date_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_dx_date_lbl.setFont(font30)
+        self.c19r_dx_date_lbl.setFont(font31)
         self.c19r_dx_date_lbl.setStyleSheet(u"background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
 "")
@@ -5479,7 +5522,7 @@ class Ui_Main(object):
         self.c19r_address2_led.setGeometry(QRect(100, 220, 391, 30))
         self.c19r_address2_led.setMinimumSize(QSize(0, 0))
         self.c19r_address2_led.setMaximumSize(QSize(16777215, 30))
-        self.c19r_address2_led.setFont(font30)
+        self.c19r_address2_led.setFont(font31)
         self.c19r_address2_led.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5490,7 +5533,7 @@ class Ui_Main(object):
         self.c19r_doctor_led.setGeometry(QRect(100, 490, 71, 30))
         self.c19r_doctor_led.setMinimumSize(QSize(0, 30))
         self.c19r_doctor_led.setMaximumSize(QSize(16777215, 25))
-        self.c19r_doctor_led.setFont(font30)
+        self.c19r_doctor_led.setFont(font31)
         self.c19r_doctor_led.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5501,7 +5544,7 @@ class Ui_Main(object):
         self.c19r_symp_lbl.setGeometry(QRect(30, 370, 70, 30))
         self.c19r_symp_lbl.setMinimumSize(QSize(0, 30))
         self.c19r_symp_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_symp_lbl.setFont(font30)
+        self.c19r_symp_lbl.setFont(font31)
         self.c19r_symp_lbl.setStyleSheet(u"border-top:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5510,12 +5553,12 @@ class Ui_Main(object):
         self.c19r_subtitle2_lbl = QLabel(self.covid_report)
         self.c19r_subtitle2_lbl.setObjectName(u"c19r_subtitle2_lbl")
         self.c19r_subtitle2_lbl.setGeometry(QRect(20, 280, 157, 30))
-        font49 = QFont()
-        font49.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 B"])
-        font49.setPointSize(14)
-        font49.setBold(False)
-        font49.setItalic(True)
-        self.c19r_subtitle2_lbl.setFont(font49)
+        font50 = QFont()
+        font50.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 B"])
+        font50.setPointSize(14)
+        font50.setBold(False)
+        font50.setItalic(True)
+        self.c19r_subtitle2_lbl.setFont(font50)
         self.c19r_subtitle2_lbl.setStyleSheet(u"padding-left:5px;\n"
 "color: rgb(188, 199, 233);\n"
 "background:none;")
@@ -5524,7 +5567,7 @@ class Ui_Main(object):
         self.c19r_notes_lbl.setGeometry(QRect(30, 430, 70, 30))
         self.c19r_notes_lbl.setMinimumSize(QSize(0, 30))
         self.c19r_notes_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_notes_lbl.setFont(font30)
+        self.c19r_notes_lbl.setFont(font31)
         self.c19r_notes_lbl.setStyleSheet(u"border-top:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5535,7 +5578,7 @@ class Ui_Main(object):
         self.c19r_ptname_lbl.setGeometry(QRect(30, 100, 70, 30))
         self.c19r_ptname_lbl.setMinimumSize(QSize(0, 0))
         self.c19r_ptname_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_ptname_lbl.setFont(font30)
+        self.c19r_ptname_lbl.setFont(font31)
         self.c19r_ptname_lbl.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5547,10 +5590,10 @@ class Ui_Main(object):
         sizePolicy9.setHeightForWidth(self.c19r_symp_pte.sizePolicy().hasHeightForWidth())
         self.c19r_symp_pte.setSizePolicy(sizePolicy9)
         self.c19r_symp_pte.setMaximumSize(QSize(16777215, 60))
-        font50 = QFont()
-        font50.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font50.setPointSize(10)
-        self.c19r_symp_pte.setFont(font50)
+        font51 = QFont()
+        font51.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
+        font51.setPointSize(10)
+        self.c19r_symp_pte.setFont(font51)
         self.c19r_symp_pte.setStyleSheet(u"border-top:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5562,7 +5605,7 @@ class Ui_Main(object):
         self.c19r_subtitle1_lbl.setObjectName(u"c19r_subtitle1_lbl")
         self.c19r_subtitle1_lbl.setGeometry(QRect(20, 70, 85, 30))
         self.c19r_subtitle1_lbl.setMinimumSize(QSize(0, 30))
-        self.c19r_subtitle1_lbl.setFont(font49)
+        self.c19r_subtitle1_lbl.setFont(font50)
         self.c19r_subtitle1_lbl.setStyleSheet(u"padding-left:5px;\n"
 "color: rgb(188, 199, 233);\n"
 "background:none;")
@@ -5571,7 +5614,7 @@ class Ui_Main(object):
         self.c19r_ptname_led.setGeometry(QRect(100, 100, 120, 30))
         self.c19r_ptname_led.setMinimumSize(QSize(0, 0))
         self.c19r_ptname_led.setMaximumSize(QSize(16777215, 30))
-        self.c19r_ptname_led.setFont(font30)
+        self.c19r_ptname_led.setFont(font31)
         self.c19r_ptname_led.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5582,7 +5625,7 @@ class Ui_Main(object):
         self.c19r_dx_date_led.setGeometry(QRect(100, 340, 111, 30))
         self.c19r_dx_date_led.setMinimumSize(QSize(0, 30))
         self.c19r_dx_date_led.setMaximumSize(QSize(16777215, 30))
-        self.c19r_dx_date_led.setFont(font30)
+        self.c19r_dx_date_led.setFont(font31)
         self.c19r_dx_date_led.setStyleSheet(u"background:transparent;\n"
 "padding-left:10px;\n"
 "color: rgb(166,177,199);")
@@ -5593,7 +5636,7 @@ class Ui_Main(object):
         self.c19r_adult_name_lbl.setGeometry(QRect(270, 150, 80, 30))
         self.c19r_adult_name_lbl.setMinimumSize(QSize(75, 30))
         self.c19r_adult_name_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_adult_name_lbl.setFont(font30)
+        self.c19r_adult_name_lbl.setFont(font31)
         self.c19r_adult_name_lbl.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5605,7 +5648,7 @@ class Ui_Main(object):
         self.c19r_address2_lbl.setGeometry(QRect(30, 220, 70, 30))
         self.c19r_address2_lbl.setMinimumSize(QSize(0, 0))
         self.c19r_address2_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_address2_lbl.setFont(font30)
+        self.c19r_address2_lbl.setFont(font31)
         self.c19r_address2_lbl.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5616,7 +5659,7 @@ class Ui_Main(object):
         self.c19r_ptjmno_lbl.setGeometry(QRect(30, 130, 70, 30))
         self.c19r_ptjmno_lbl.setMinimumSize(QSize(0, 0))
         self.c19r_ptjmno_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_ptjmno_lbl.setFont(font30)
+        self.c19r_ptjmno_lbl.setFont(font31)
         self.c19r_ptjmno_lbl.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "color: rgb(133, 155, 200);\n"
@@ -5627,7 +5670,7 @@ class Ui_Main(object):
         self.c19r_doctor_lbl.setGeometry(QRect(30, 489, 70, 31))
         self.c19r_doctor_lbl.setMinimumSize(QSize(0, 31))
         self.c19r_doctor_lbl.setMaximumSize(QSize(16777215, 16777215))
-        self.c19r_doctor_lbl.setFont(font30)
+        self.c19r_doctor_lbl.setFont(font31)
         self.c19r_doctor_lbl.setStyleSheet(u"border-top:1px solid rgb(60,65,80);\n"
 "border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
@@ -5639,7 +5682,7 @@ class Ui_Main(object):
         self.c19r_adult_name_led.setGeometry(QRect(350, 150, 110, 30))
         self.c19r_adult_name_led.setMinimumSize(QSize(0, 30))
         self.c19r_adult_name_led.setMaximumSize(QSize(16777215, 25))
-        self.c19r_adult_name_led.setFont(font30)
+        self.c19r_adult_name_led.setFont(font31)
         self.c19r_adult_name_led.setStyleSheet(u"border-bottom:1px solid rgb(60,65,80);\n"
 "background:transparent;\n"
 "padding-left:10px;\n"
@@ -5691,7 +5734,7 @@ class Ui_Main(object):
         self.c19r_title_lbl.setObjectName(u"c19r_title_lbl")
         self.c19r_title_lbl.setGeometry(QRect(20, 19, 491, 41))
         self.c19r_title_lbl.setMinimumSize(QSize(0, 30))
-        self.c19r_title_lbl.setFont(font33)
+        self.c19r_title_lbl.setFont(font34)
         self.c19r_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -5701,12 +5744,12 @@ class Ui_Main(object):
         self.c19r_warning_lbl.setObjectName(u"c19r_warning_lbl")
         self.c19r_warning_lbl.setGeometry(QRect(10, 540, 511, 101))
         self.c19r_warning_lbl.setMinimumSize(QSize(0, 30))
-        font51 = QFont()
-        font51.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 M"])
-        font51.setPointSize(14)
-        font51.setBold(True)
-        font51.setItalic(True)
-        self.c19r_warning_lbl.setFont(font51)
+        font52 = QFont()
+        font52.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 M"])
+        font52.setPointSize(14)
+        font52.setBold(True)
+        font52.setItalic(True)
+        self.c19r_warning_lbl.setFont(font52)
         self.c19r_warning_lbl.setStyleSheet(u"color: rgb(233, 100, 133);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -5773,7 +5816,7 @@ class Ui_Main(object):
         self.settings_reserve_2_btn.setSizePolicy(sizePolicy4)
         self.settings_reserve_2_btn.setMinimumSize(QSize(0, 30))
         self.settings_reserve_2_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.settings_reserve_2_btn.setFont(font34)
+        self.settings_reserve_2_btn.setFont(font35)
         self.settings_reserve_2_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(165, 170, 180);\n"
 "	border:none;\n"
@@ -5792,7 +5835,7 @@ class Ui_Main(object):
         self.settings_reserve_1_btn.setSizePolicy(sizePolicy4)
         self.settings_reserve_1_btn.setMinimumSize(QSize(0, 30))
         self.settings_reserve_1_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.settings_reserve_1_btn.setFont(font34)
+        self.settings_reserve_1_btn.setFont(font35)
         self.settings_reserve_1_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(165, 170, 180);\n"
 "	border:none;\n"
@@ -5811,7 +5854,7 @@ class Ui_Main(object):
         self.settings_gen_btn.setSizePolicy(sizePolicy4)
         self.settings_gen_btn.setMinimumSize(QSize(0, 30))
         self.settings_gen_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.settings_gen_btn.setFont(font34)
+        self.settings_gen_btn.setFont(font35)
         self.settings_gen_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(165, 170, 180);\n"
 "	border:none;\n"
@@ -5830,7 +5873,7 @@ class Ui_Main(object):
         self.settings_lblr_btn.setSizePolicy(sizePolicy4)
         self.settings_lblr_btn.setMinimumSize(QSize(0, 30))
         self.settings_lblr_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.settings_lblr_btn.setFont(font34)
+        self.settings_lblr_btn.setFont(font35)
         self.settings_lblr_btn.setStyleSheet(u"QPushButton {\n"
 "	color: rgb(165, 170, 180);\n"
 "	border:none;\n"
@@ -5858,7 +5901,7 @@ class Ui_Main(object):
         self.stgn_auto_backup_btn.setSizePolicy(sizePolicy6)
         self.stgn_auto_backup_btn.setMinimumSize(QSize(0, 0))
         self.stgn_auto_backup_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.stgn_auto_backup_btn.setFont(font36)
+        self.stgn_auto_backup_btn.setFont(font37)
         self.stgn_auto_backup_btn.setStyleSheet(u"QPushButton{\n"
 "	text-align:left;\n"
 "}\n"
@@ -5876,7 +5919,7 @@ class Ui_Main(object):
         self.stgn_messenger_btn.setSizePolicy(sizePolicy6)
         self.stgn_messenger_btn.setMinimumSize(QSize(0, 0))
         self.stgn_messenger_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.stgn_messenger_btn.setFont(font36)
+        self.stgn_messenger_btn.setFont(font37)
         self.stgn_messenger_btn.setStyleSheet(u"QPushButton{\n"
 "	text-align:left;\n"
 "}\n"
@@ -5897,7 +5940,7 @@ class Ui_Main(object):
         self.stgn_auto_shutdown_btn.setSizePolicy(sizePolicy6)
         self.stgn_auto_shutdown_btn.setMinimumSize(QSize(0, 0))
         self.stgn_auto_shutdown_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.stgn_auto_shutdown_btn.setFont(font36)
+        self.stgn_auto_shutdown_btn.setFont(font37)
         self.stgn_auto_shutdown_btn.setStyleSheet(u"QPushButton{\n"
 "	text-align:left;\n"
 "}\n"
@@ -5915,7 +5958,7 @@ class Ui_Main(object):
         self.stgn_auto_stats_btn.setSizePolicy(sizePolicy6)
         self.stgn_auto_stats_btn.setMinimumSize(QSize(0, 0))
         self.stgn_auto_stats_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.stgn_auto_stats_btn.setFont(font36)
+        self.stgn_auto_stats_btn.setFont(font37)
         self.stgn_auto_stats_btn.setStyleSheet(u"QPushButton{\n"
 "	text-align:left;\n"
 "}\n"
@@ -5936,7 +5979,7 @@ class Ui_Main(object):
         self.stgn_cloud_sync_btn.setSizePolicy(sizePolicy6)
         self.stgn_cloud_sync_btn.setMinimumSize(QSize(0, 0))
         self.stgn_cloud_sync_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.stgn_cloud_sync_btn.setFont(font36)
+        self.stgn_cloud_sync_btn.setFont(font37)
         self.stgn_cloud_sync_btn.setStyleSheet(u"QPushButton{\n"
 "	text-align:left;\n"
 "}\n"
@@ -5957,7 +6000,7 @@ class Ui_Main(object):
         self.stgn_vac_sys_log_btn.setSizePolicy(sizePolicy6)
         self.stgn_vac_sys_log_btn.setMinimumSize(QSize(0, 0))
         self.stgn_vac_sys_log_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.stgn_vac_sys_log_btn.setFont(font36)
+        self.stgn_vac_sys_log_btn.setFont(font37)
         self.stgn_vac_sys_log_btn.setStyleSheet(u"QPushButton{\n"
 "	text-align:left;\n"
 "}\n"
@@ -6043,7 +6086,7 @@ class Ui_Main(object):
         sizePolicy9.setHeightForWidth(self.stgn_messenger_server_pte.sizePolicy().hasHeightForWidth())
         self.stgn_messenger_server_pte.setSizePolicy(sizePolicy9)
         self.stgn_messenger_server_pte.setMaximumSize(QSize(16777215, 555555))
-        self.stgn_messenger_server_pte.setFont(font50)
+        self.stgn_messenger_server_pte.setFont(font51)
         self.stgn_messenger_server_pte.setStyleSheet(u"background-color:rgb(39, 44, 54);\n"
 "color: rgb(166,177,199);\n"
 "border:1px solid rgb(45, 50, 65);\n"
@@ -6062,7 +6105,7 @@ class Ui_Main(object):
         self.stgn_title_lbl.setObjectName(u"stgn_title_lbl")
         self.stgn_title_lbl.setGeometry(QRect(20, 20, 491, 41))
         self.stgn_title_lbl.setMinimumSize(QSize(0, 30))
-        self.stgn_title_lbl.setFont(font33)
+        self.stgn_title_lbl.setFont(font34)
         self.stgn_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(45, 50, 65);\n"
@@ -6072,13 +6115,13 @@ class Ui_Main(object):
         self.stgn_info_lbl.setObjectName(u"stgn_info_lbl")
         self.stgn_info_lbl.setGeometry(QRect(20, 500, 491, 41))
         self.stgn_info_lbl.setMinimumSize(QSize(0, 30))
-        font52 = QFont()
-        font52.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
-        font52.setPointSize(12)
-        font52.setBold(False)
-        font52.setItalic(True)
-        font52.setStyleStrategy(QFont.PreferAntialias)
-        self.stgn_info_lbl.setFont(font52)
+        font53 = QFont()
+        font53.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
+        font53.setPointSize(12)
+        font53.setBold(False)
+        font53.setItalic(True)
+        font53.setStyleStrategy(QFont.PreferAntialias)
+        self.stgn_info_lbl.setFont(font53)
         self.stgn_info_lbl.setStyleSheet(u"color: rgb(100, 120, 150);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(45, 50, 65);\n"
@@ -6134,7 +6177,7 @@ class Ui_Main(object):
         self.stlb_flu_age_75over_lbl1.setGeometry(QRect(370, 260, 31, 30))
         self.stlb_flu_age_75over_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_75over_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_75over_lbl1.setFont(font45)
+        self.stlb_flu_age_75over_lbl1.setFont(font46)
         self.stlb_flu_age_75over_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6144,7 +6187,7 @@ class Ui_Main(object):
         self.stlb_flu_old_over75_start_lbl.setGeometry(QRect(19, 260, 70, 30))
         self.stlb_flu_old_over75_start_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_old_over75_start_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_old_over75_start_lbl.setFont(font30)
+        self.stlb_flu_old_over75_start_lbl.setFont(font31)
         self.stlb_flu_old_over75_start_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6154,11 +6197,11 @@ class Ui_Main(object):
         self.stlb_flu_old_over75_start_led.setGeometry(QRect(89, 260, 81, 30))
         self.stlb_flu_old_over75_start_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_over75_start_led.setMaximumSize(QSize(16777215, 30))
-        font53 = QFont()
-        font53.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
-        font53.setPointSize(13)
-        font53.setBold(False)
-        self.stlb_flu_old_over75_start_led.setFont(font53)
+        font54 = QFont()
+        font54.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
+        font54.setPointSize(13)
+        font54.setBold(False)
+        self.stlb_flu_old_over75_start_led.setFont(font54)
         self.stlb_flu_old_over75_start_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6169,7 +6212,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_lbl.setGeometry(QRect(20, 480, 70, 30))
         self.stlb_flu_age_child_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_age_child_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_age_child_lbl.setFont(font30)
+        self.stlb_flu_age_child_lbl.setFont(font31)
         self.stlb_flu_age_child_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6178,14 +6221,14 @@ class Ui_Main(object):
         self.stlb_flu_allow_ex_cbx.setObjectName(u"stlb_flu_allow_ex_cbx")
         self.stlb_flu_allow_ex_cbx.setGeometry(QRect(10, 200, 271, 30))
         self.stlb_flu_allow_ex_cbx.setMinimumSize(QSize(0, 30))
-        self.stlb_flu_allow_ex_cbx.setFont(font30)
+        self.stlb_flu_allow_ex_cbx.setFont(font31)
         self.stlb_flu_allow_ex_cbx.setStyleSheet(u"")
         self.stlb_flu_allow_ex_cbx.setChecked(True)
         self.stlb_flu_auto_sort_cbx = QCheckBox(self.labeler_settings)
         self.stlb_flu_auto_sort_cbx.setObjectName(u"stlb_flu_auto_sort_cbx")
         self.stlb_flu_auto_sort_cbx.setGeometry(QRect(10, 170, 251, 30))
         self.stlb_flu_auto_sort_cbx.setMinimumSize(QSize(0, 30))
-        self.stlb_flu_auto_sort_cbx.setFont(font30)
+        self.stlb_flu_auto_sort_cbx.setFont(font31)
         self.stlb_flu_auto_sort_cbx.setStyleSheet(u"")
         self.stlb_flu_auto_sort_cbx.setChecked(True)
         self.stlb_flu_age_7074_lbl = QLabel(self.labeler_settings)
@@ -6193,7 +6236,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_lbl.setGeometry(QRect(220, 290, 70, 30))
         self.stlb_flu_age_7074_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_age_7074_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_age_7074_lbl.setFont(font30)
+        self.stlb_flu_age_7074_lbl.setFont(font31)
         self.stlb_flu_age_7074_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6203,7 +6246,7 @@ class Ui_Main(object):
         self.stlb_flu_old_7074_start_led.setGeometry(QRect(89, 290, 81, 30))
         self.stlb_flu_old_7074_start_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_7074_start_led.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_7074_start_led.setFont(font53)
+        self.stlb_flu_old_7074_start_led.setFont(font54)
         self.stlb_flu_old_7074_start_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6214,7 +6257,7 @@ class Ui_Main(object):
         self.stlb_flu_old_6569_start_led.setGeometry(QRect(89, 320, 81, 30))
         self.stlb_flu_old_6569_start_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_6569_start_led.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_6569_start_led.setFont(font53)
+        self.stlb_flu_old_6569_start_led.setFont(font54)
         self.stlb_flu_old_6569_start_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6225,7 +6268,7 @@ class Ui_Main(object):
         self.stlb_flu_old_7074_start_lbl.setGeometry(QRect(19, 290, 70, 30))
         self.stlb_flu_old_7074_start_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_old_7074_start_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_old_7074_start_lbl.setFont(font30)
+        self.stlb_flu_old_7074_start_lbl.setFont(font31)
         self.stlb_flu_old_7074_start_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6235,11 +6278,11 @@ class Ui_Main(object):
         self.stlb_child_flu_lot_led.setGeometry(QRect(69, 140, 150, 30))
         self.stlb_child_flu_lot_led.setMinimumSize(QSize(0, 30))
         self.stlb_child_flu_lot_led.setMaximumSize(QSize(16777215, 30))
-        font54 = QFont()
-        font54.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
-        font54.setPointSize(12)
-        font54.setBold(False)
-        self.stlb_child_flu_lot_led.setFont(font54)
+        font55 = QFont()
+        font55.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
+        font55.setPointSize(12)
+        font55.setBold(False)
+        self.stlb_child_flu_lot_led.setFont(font55)
         self.stlb_child_flu_lot_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6249,7 +6292,7 @@ class Ui_Main(object):
         self.stlb_flu_old_6569_start_lbl.setGeometry(QRect(19, 320, 70, 30))
         self.stlb_flu_old_6569_start_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_old_6569_start_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_old_6569_start_lbl.setFont(font30)
+        self.stlb_flu_old_6569_start_lbl.setFont(font31)
         self.stlb_flu_old_6569_start_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6257,11 +6300,11 @@ class Ui_Main(object):
         self.stlb_subtitle_flu_old_age_lbl = QLabel(self.labeler_settings)
         self.stlb_subtitle_flu_old_age_lbl.setObjectName(u"stlb_subtitle_flu_old_age_lbl")
         self.stlb_subtitle_flu_old_age_lbl.setGeometry(QRect(210, 230, 281, 30))
-        font55 = QFont()
-        font55.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font55.setPointSize(12)
-        font55.setBold(True)
-        self.stlb_subtitle_flu_old_age_lbl.setFont(font55)
+        font56 = QFont()
+        font56.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
+        font56.setPointSize(12)
+        font56.setBold(True)
+        self.stlb_subtitle_flu_old_age_lbl.setFont(font56)
         self.stlb_subtitle_flu_old_age_lbl.setStyleSheet(u"padding-left:10px;\n"
 "color: rgb(155, 188, 222);\n"
 "border:none;\n"
@@ -6271,7 +6314,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_lbl.setGeometry(QRect(220, 320, 70, 30))
         self.stlb_flu_age_6569_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_age_6569_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_age_6569_lbl.setFont(font30)
+        self.stlb_flu_age_6569_lbl.setFont(font31)
         self.stlb_flu_age_6569_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6281,7 +6324,7 @@ class Ui_Main(object):
         self.stlb_flu_old_over75_start_lbl1.setGeometry(QRect(170, 260, 31, 30))
         self.stlb_flu_old_over75_start_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_over75_start_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_over75_start_lbl1.setFont(font45)
+        self.stlb_flu_old_over75_start_lbl1.setFont(font46)
         self.stlb_flu_old_over75_start_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6291,7 +6334,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_led1.setGeometry(QRect(90, 450, 81, 30))
         self.stlb_flu_date_child_once_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_once_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_once_led1.setFont(font53)
+        self.stlb_flu_date_child_once_led1.setFont(font54)
         self.stlb_flu_date_child_once_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6300,7 +6343,7 @@ class Ui_Main(object):
         self.stlb_subtitle_flu_old_date_lbl = QLabel(self.labeler_settings)
         self.stlb_subtitle_flu_old_date_lbl.setObjectName(u"stlb_subtitle_flu_old_date_lbl")
         self.stlb_subtitle_flu_old_date_lbl.setGeometry(QRect(9, 230, 181, 30))
-        self.stlb_subtitle_flu_old_date_lbl.setFont(font55)
+        self.stlb_subtitle_flu_old_date_lbl.setFont(font56)
         self.stlb_subtitle_flu_old_date_lbl.setStyleSheet(u"padding-left:10px;\n"
 "color: rgb(155, 188, 222);\n"
 "border:none;\n"
@@ -6310,7 +6353,7 @@ class Ui_Main(object):
         self.stlb_flu_age_75over_led.setGeometry(QRect(290, 260, 81, 30))
         self.stlb_flu_age_75over_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_75over_led.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_75over_led.setFont(font53)
+        self.stlb_flu_age_75over_led.setFont(font54)
         self.stlb_flu_age_75over_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6321,7 +6364,7 @@ class Ui_Main(object):
         self.stlb_child_flu_lot_lbl.setGeometry(QRect(29, 140, 40, 30))
         self.stlb_child_flu_lot_lbl.setMinimumSize(QSize(40, 30))
         self.stlb_child_flu_lot_lbl.setMaximumSize(QSize(16777215, 30))
-        self.stlb_child_flu_lot_lbl.setFont(font30)
+        self.stlb_child_flu_lot_lbl.setFont(font31)
         self.stlb_child_flu_lot_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);")
         self.stlb_child_flu_lot_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -6329,7 +6372,7 @@ class Ui_Main(object):
         self.stlb_auto_input_cbx.setObjectName(u"stlb_auto_input_cbx")
         self.stlb_auto_input_cbx.setGeometry(QRect(10, 80, 300, 30))
         self.stlb_auto_input_cbx.setMinimumSize(QSize(0, 30))
-        self.stlb_auto_input_cbx.setFont(font30)
+        self.stlb_auto_input_cbx.setFont(font31)
         self.stlb_auto_input_cbx.setStyleSheet(u"")
         self.stlb_auto_input_cbx.setChecked(True)
         self.stlb_flu_date_child_twice_led1 = QLineEdit(self.labeler_settings)
@@ -6337,7 +6380,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_led1.setGeometry(QRect(90, 420, 81, 30))
         self.stlb_flu_date_child_twice_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_twice_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_twice_led1.setFont(font53)
+        self.stlb_flu_date_child_twice_led1.setFont(font54)
         self.stlb_flu_date_child_twice_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6348,7 +6391,7 @@ class Ui_Main(object):
         self.stlb_flu_old_6569_start_lbl1.setGeometry(QRect(170, 320, 31, 30))
         self.stlb_flu_old_6569_start_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_6569_start_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_6569_start_lbl1.setFont(font45)
+        self.stlb_flu_old_6569_start_lbl1.setFont(font46)
         self.stlb_flu_old_6569_start_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6358,7 +6401,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_lbl.setGeometry(QRect(20, 420, 70, 30))
         self.stlb_flu_date_child_twice_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_date_child_twice_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_date_child_twice_lbl.setFont(font30)
+        self.stlb_flu_date_child_twice_lbl.setFont(font31)
         self.stlb_flu_date_child_twice_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6368,7 +6411,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_led1.setGeometry(QRect(90, 480, 81, 30))
         self.stlb_flu_age_child_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_child_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_child_led1.setFont(font53)
+        self.stlb_flu_age_child_led1.setFont(font54)
         self.stlb_flu_age_child_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6379,7 +6422,7 @@ class Ui_Main(object):
         self.stlb_flu_age_75over_lbl.setGeometry(QRect(220, 260, 70, 30))
         self.stlb_flu_age_75over_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_age_75over_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_age_75over_lbl.setFont(font30)
+        self.stlb_flu_age_75over_lbl.setFont(font31)
         self.stlb_flu_age_75over_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6388,7 +6431,7 @@ class Ui_Main(object):
         self.stlb_auto_child_flu_lot_cbx.setObjectName(u"stlb_auto_child_flu_lot_cbx")
         self.stlb_auto_child_flu_lot_cbx.setGeometry(QRect(10, 110, 268, 30))
         self.stlb_auto_child_flu_lot_cbx.setMinimumSize(QSize(0, 30))
-        self.stlb_auto_child_flu_lot_cbx.setFont(font30)
+        self.stlb_auto_child_flu_lot_cbx.setFont(font31)
         self.stlb_auto_child_flu_lot_cbx.setStyleSheet(u"")
         self.stlb_auto_child_flu_lot_cbx.setChecked(True)
         self.stlb_flu_old_7074_start_lbl1 = QLabel(self.labeler_settings)
@@ -6396,7 +6439,7 @@ class Ui_Main(object):
         self.stlb_flu_old_7074_start_lbl1.setGeometry(QRect(170, 290, 31, 30))
         self.stlb_flu_old_7074_start_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_7074_start_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_7074_start_lbl1.setFont(font45)
+        self.stlb_flu_old_7074_start_lbl1.setFont(font46)
         self.stlb_flu_old_7074_start_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6406,7 +6449,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_led2.setGeometry(QRect(200, 480, 81, 30))
         self.stlb_flu_age_child_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_child_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_child_led2.setFont(font53)
+        self.stlb_flu_age_child_led2.setFont(font54)
         self.stlb_flu_age_child_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6417,7 +6460,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_lbl1.setGeometry(QRect(170, 450, 31, 30))
         self.stlb_flu_date_child_once_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_once_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_once_lbl1.setFont(font54)
+        self.stlb_flu_date_child_once_lbl1.setFont(font55)
         self.stlb_flu_date_child_once_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6425,7 +6468,7 @@ class Ui_Main(object):
         self.stlb_subtitle_flu_child_lbl = QLabel(self.labeler_settings)
         self.stlb_subtitle_flu_child_lbl.setObjectName(u"stlb_subtitle_flu_child_lbl")
         self.stlb_subtitle_flu_child_lbl.setGeometry(QRect(10, 400, 244, 18))
-        self.stlb_subtitle_flu_child_lbl.setFont(font55)
+        self.stlb_subtitle_flu_child_lbl.setFont(font56)
         self.stlb_subtitle_flu_child_lbl.setStyleSheet(u"padding-left:10px;\n"
 "color: rgb(155, 188, 222);\n"
 "border:none;\n"
@@ -6435,7 +6478,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_lbl1.setGeometry(QRect(170, 420, 31, 30))
         self.stlb_flu_date_child_twice_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_twice_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_twice_lbl1.setFont(font54)
+        self.stlb_flu_date_child_twice_lbl1.setFont(font55)
         self.stlb_flu_date_child_twice_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6445,7 +6488,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_lbl.setGeometry(QRect(20, 450, 70, 30))
         self.stlb_flu_date_child_once_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_date_child_once_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_date_child_once_lbl.setFont(font30)
+        self.stlb_flu_date_child_once_lbl.setFont(font31)
         self.stlb_flu_date_child_once_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6455,7 +6498,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_led2.setGeometry(QRect(200, 450, 81, 30))
         self.stlb_flu_date_child_once_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_once_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_once_led2.setFont(font53)
+        self.stlb_flu_date_child_once_led2.setFont(font54)
         self.stlb_flu_date_child_once_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6466,7 +6509,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_lbl2.setGeometry(QRect(280, 450, 31, 30))
         self.stlb_flu_date_child_once_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_once_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_once_lbl2.setFont(font54)
+        self.stlb_flu_date_child_once_lbl2.setFont(font55)
         self.stlb_flu_date_child_once_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6476,7 +6519,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_lbl2.setGeometry(QRect(280, 420, 31, 30))
         self.stlb_flu_date_child_twice_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_twice_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_twice_lbl2.setFont(font54)
+        self.stlb_flu_date_child_twice_lbl2.setFont(font55)
         self.stlb_flu_date_child_twice_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6486,7 +6529,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_led2.setGeometry(QRect(200, 420, 81, 30))
         self.stlb_flu_date_child_twice_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_twice_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_twice_led2.setFont(font53)
+        self.stlb_flu_date_child_twice_led2.setFont(font54)
         self.stlb_flu_date_child_twice_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6497,7 +6540,7 @@ class Ui_Main(object):
         self.stlb_flu_old_end_lbl.setGeometry(QRect(20, 350, 70, 30))
         self.stlb_flu_old_end_lbl.setMinimumSize(QSize(70, 30))
         self.stlb_flu_old_end_lbl.setMaximumSize(QSize(70, 30))
-        self.stlb_flu_old_end_lbl.setFont(font30)
+        self.stlb_flu_old_end_lbl.setFont(font31)
         self.stlb_flu_old_end_lbl.setStyleSheet(u"color: rgb(133, 155, 200);\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
 "background:transparent")
@@ -6507,7 +6550,7 @@ class Ui_Main(object):
         self.stlb_flu_old_end_lbl1.setGeometry(QRect(170, 350, 31, 30))
         self.stlb_flu_old_end_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_end_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_end_lbl1.setFont(font54)
+        self.stlb_flu_old_end_lbl1.setFont(font55)
         self.stlb_flu_old_end_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6517,7 +6560,7 @@ class Ui_Main(object):
         self.stlb_flu_old_end_led.setGeometry(QRect(90, 350, 81, 30))
         self.stlb_flu_old_end_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_end_led.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_end_led.setFont(font53)
+        self.stlb_flu_old_end_led.setFont(font54)
         self.stlb_flu_old_end_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6527,7 +6570,7 @@ class Ui_Main(object):
         self.stlb_title_lbl.setObjectName(u"stlb_title_lbl")
         self.stlb_title_lbl.setGeometry(QRect(20, 20, 491, 41))
         self.stlb_title_lbl.setMinimumSize(QSize(0, 30))
-        self.stlb_title_lbl.setFont(font33)
+        self.stlb_title_lbl.setFont(font34)
         self.stlb_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(45, 50, 65);\n"
@@ -6538,7 +6581,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_lbl1.setGeometry(QRect(170, 480, 31, 30))
         self.stlb_flu_age_child_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_child_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_child_lbl1.setFont(font54)
+        self.stlb_flu_age_child_lbl1.setFont(font55)
         self.stlb_flu_age_child_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6548,7 +6591,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_lbl2.setGeometry(QRect(280, 480, 31, 30))
         self.stlb_flu_age_child_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_child_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_child_lbl2.setFont(font54)
+        self.stlb_flu_age_child_lbl2.setFont(font55)
         self.stlb_flu_age_child_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6558,7 +6601,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_lbl2.setGeometry(QRect(480, 290, 31, 30))
         self.stlb_flu_age_7074_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_7074_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_7074_lbl2.setFont(font54)
+        self.stlb_flu_age_7074_lbl2.setFont(font55)
         self.stlb_flu_age_7074_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6568,7 +6611,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_lbl1.setGeometry(QRect(370, 290, 31, 30))
         self.stlb_flu_age_7074_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_7074_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_7074_lbl1.setFont(font54)
+        self.stlb_flu_age_7074_lbl1.setFont(font55)
         self.stlb_flu_age_7074_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6578,7 +6621,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_led1.setGeometry(QRect(290, 290, 81, 30))
         self.stlb_flu_age_7074_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_7074_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_7074_led1.setFont(font53)
+        self.stlb_flu_age_7074_led1.setFont(font54)
         self.stlb_flu_age_7074_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6589,7 +6632,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_led2.setGeometry(QRect(400, 290, 81, 30))
         self.stlb_flu_age_7074_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_7074_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_7074_led2.setFont(font53)
+        self.stlb_flu_age_7074_led2.setFont(font54)
         self.stlb_flu_age_7074_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6600,7 +6643,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_lbl2.setGeometry(QRect(480, 320, 31, 30))
         self.stlb_flu_age_6569_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_6569_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_6569_lbl2.setFont(font54)
+        self.stlb_flu_age_6569_lbl2.setFont(font55)
         self.stlb_flu_age_6569_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6610,7 +6653,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_lbl1.setGeometry(QRect(370, 320, 31, 30))
         self.stlb_flu_age_6569_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_6569_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_6569_lbl1.setFont(font54)
+        self.stlb_flu_age_6569_lbl1.setFont(font55)
         self.stlb_flu_age_6569_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6620,7 +6663,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_led1.setGeometry(QRect(290, 320, 81, 30))
         self.stlb_flu_age_6569_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_6569_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_6569_led1.setFont(font53)
+        self.stlb_flu_age_6569_led1.setFont(font54)
         self.stlb_flu_age_6569_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6631,7 +6674,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_led2.setGeometry(QRect(400, 320, 81, 30))
         self.stlb_flu_age_6569_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_6569_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_6569_led2.setFont(font53)
+        self.stlb_flu_age_6569_led2.setFont(font54)
         self.stlb_flu_age_6569_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6686,7 +6729,7 @@ class Ui_Main(object):
         self.about_te = QTextEdit(self.about)
         self.about_te.setObjectName(u"about_te")
         self.about_te.setGeometry(QRect(10, 20, 511, 611))
-        self.about_te.setFont(font30)
+        self.about_te.setFont(font31)
         self.about_te.setStyleSheet(u"border:none;\n"
 "border-bottom:1px solid rgb(50,55,60);")
         self.about_te.setReadOnly(True)
@@ -6806,8 +6849,8 @@ class Ui_Main(object):
         QWidget.setTabOrder(self.reminders_lwg, self.calendar_select_end_date_btn)
         QWidget.setTabOrder(self.calendar_select_end_date_btn, self.calendar_opt_prev_month_btn)
         QWidget.setTabOrder(self.calendar_opt_prev_month_btn, self.calendar_today_btn)
-        QWidget.setTabOrder(self.calendar_today_btn, self.calenda_opt_today_btn)
-        QWidget.setTabOrder(self.calenda_opt_today_btn, self.calendar_multi_day_cbx)
+        QWidget.setTabOrder(self.calendar_today_btn, self.calendar_opt_today_btn)
+        QWidget.setTabOrder(self.calendar_opt_today_btn, self.calendar_multi_day_cbx)
         QWidget.setTabOrder(self.calendar_multi_day_cbx, self.calendar_prev_month_btn)
         QWidget.setTabOrder(self.calendar_prev_month_btn, self.calendar_opt_next_month_btn)
         QWidget.setTabOrder(self.calendar_opt_next_month_btn, self.reminders_archive_btn)
@@ -6927,7 +6970,7 @@ class Ui_Main(object):
 
         self.retranslateUi(Main)
 
-        self.calendar_stack.setCurrentIndex(1)
+        self.calendar_stack.setCurrentIndex(2)
         self.reminders_stack.setCurrentIndex(1)
         self.apps_stack.setCurrentIndex(0)
         self.studies_stack.setCurrentIndex(1)
@@ -6955,7 +6998,7 @@ class Ui_Main(object):
         self.calendar_opt_title.setText(QCoreApplication.translate("Main", u"Events Add or Edit", None))
         self.calendar_opt_prev_month_btn.setText(QCoreApplication.translate("Main", u"<<", None))
         self.calendar_opt_month_year_lbl.setText(QCoreApplication.translate("Main", u"2024.01", None))
-        self.calenda_opt_today_btn.setText(QCoreApplication.translate("Main", u"Today", None))
+        self.calendar_opt_today_btn.setText(QCoreApplication.translate("Main", u"Today", None))
         self.calendar_opt_next_month_btn.setText(QCoreApplication.translate("Main", u">>", None))
         self.calendar_opt_event_led.setInputMask("")
         self.calendar_opt_event_led.setText("")
@@ -6969,6 +7012,7 @@ class Ui_Main(object):
         self.calendar_opt_write_btn.setText(QCoreApplication.translate("Main", u"Write", None))
         self.calendar_opt_close_btn.setText(QCoreApplication.translate("Main", u"Close", None))
         self.calendar_not_open_cbx.setText(QCoreApplication.translate("Main", u"NOT OPEN", None))
+        self.calendar_event_delete_btn.setText(QCoreApplication.translate("Main", u"DELETE Event", None))
         self.calendar_yearly_done_btn.setText(QCoreApplication.translate("Main", u"DONE", None))
         self.calendar_yearly_year.setText(QCoreApplication.translate("Main", u"Year", None))
         self.calendar_yearly_next_btn.setText(QCoreApplication.translate("Main", u">>", None))

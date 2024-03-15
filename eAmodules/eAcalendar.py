@@ -78,7 +78,7 @@ def connect_DB_and_load(self, year:int = None, month:int = None):
     # Get all datas in DB.
     events_for_month = [list(item) for item in list(
         cur.execute(f"""
-                    SELECT Start_Date, End_Date, Not_OPEN
+                    SELECT *
                     FROM Calendar
                     WHERE
                     Start_Date BETWEEN '{first_day_of_month}' AND '{last_day_of_month}'
@@ -88,7 +88,10 @@ def connect_DB_and_load(self, year:int = None, month:int = None):
     )]
     not_open_events = []
     open_events = []
+    LPDoM_date = ""
     for item in events_for_month:
+        if item[3] == '청구일':
+            LPDoM_date = item[0]
         if item[0] == item[1]:
             if item[2]:
                 not_open_events.append(item[0])
@@ -111,7 +114,7 @@ def connect_DB_and_load(self, year:int = None, month:int = None):
     
     # Close DB connection
     con.close()
-    return not_open_events, open_events
+    return not_open_events, open_events, LPDoM_date
 
 
 #= Calendar Styling, for calendar_wdg and calendar_opt_wdg
@@ -144,23 +147,26 @@ def calendar_styling(self, calendar_name:str):
                              color:rgb(60, 60, 70);
                          }
                          """)
+    
 
 #= Update Calendar_WDG
 def calendar_update(self):
     calendar_styling(self, 'calendar_wdg')
+    update_LPDoM(self)
     # get DB data
-    not_open_events, open_events = connect_DB_and_load(self)
+    not_open_events, open_events, LPDoM_date = connect_DB_and_load(self)
     if open_events:
-        print(open_events)
         for event in open_events:
             e_day = QDate.fromString(event, "yyyy.MM.dd")
             self.calendar_wdg.setDateTextFormat(e_day, EVENT)
     if not_open_events:
-        print(not_open_events)
         for event in not_open_events:
             h_day = QDate.fromString(event, "yyyy.MM.dd")
             self.calendar_wdg.setDateTextFormat(h_day, HOLIDAYS)
-            
+    if LPDoM_date:
+        LPDoM = QDate.fromString(LPDoM_date, "yyyy.MM.dd")
+        self.calendar_wdg.setDateTextFormat(LPDoM, LPDOM)
+    # Write day_info_lwg of selected date.            
     date_selected(self)   
             
 
@@ -189,23 +195,25 @@ def date_selected(self):
     for event in events_of_day:
         if event[1]:
             item = QtWidgets.QListWidgetItem(event[0])
-            item.setFlags(
-                Qt.ItemIsSelectable|Qt.ItemIsDragEnabled|Qt.ItemIsEnabled
-            )
+            # item.setFlags(
+            #     Qt.ItemIsSelectable|Qt.ItemIsDragEnabled|Qt.ItemIsEnabled
+            # )
             # Set Color of sublist item according to status
             item.setForeground(QtGui.QBrush(QtGui.QColor(225, 90, 100)))
             # Add to QListWidget
             self.calendar_day_info_lwg.addItem(item)
     for event in events_of_day:
         if not event[1]:
-            self.calendar_day_info_lwg.addItem(event[0])
+            item = QtWidgets.QListWidgetItem(event[0])
+            if event[0] == '청구일':
+                item.setForeground(QtGui.QBrush(QtGui.QColor(222, 133, 100)))
+            self.calendar_day_info_lwg.addItem(item)
             
             
 ## Show and Select TODAY on today button click.
 def go_today(self):
     self.calendar_wdg.showToday()
     self.calendar_wdg.setSelectedDate(self.infos.date_today)
-
 
 
 ## Add Event, from Stack(0)
@@ -224,6 +232,12 @@ def add_event_from_main(self):
         not_open = True
     else:
         not_open = False
+    # 사용자는 '청구일'을 일정 제목으로 사용할 수 없음.
+    # eGhisAssistant가 자동으로 계산, 관리.
+    if event_title == '청구일':
+        eApopup.warning(text = '[청구일]은;\n입력할 수 없는 일정 제목입니다.\n자동으로 관리되는 일정 제목입니다.')
+        self.calendar_day_info_led.setText("")
+        return
     date = self.calendar_wdg.selectedDate().toString("yyyy.MM.dd")
     # Load DB and Verify if Duplicate First
     con = sqlite3.connect("./database/eAcalrem.db")
@@ -255,20 +269,28 @@ def options_btn_clicked(self):
     # 결국 reset과 같은 역할.
     sel_date = self.calendar_wdg.selectedDate()
     self.calendar_opt_wdg.setSelectedDate(sel_date)
+    calendar_opt_page_changed(self)
+    self.calendar_event_delete_btn.setEnabled(False)
     self.calendar_event_date_dte.setDate(sel_date)
+    self.calendar_opt_event_led.setText("")
     self.calendar_multi_day_cbx.setChecked(False)
     self.calendar_select_end_date_btn.setEnabled(False)
     self.calendar_select_end_date_btn.setChecked(False)    
     self.calendar_start_date_lbl.setText(sel_date.toString("yyyy.MM.dd(ddd)"))
     self.calendar_end_date_lbl.setText("")
+    self.calendar_not_open_cbx.setChecked(False)
     self.calendar_stack.setCurrentIndex(1)
-    self.infos.opened_event_title = ""
+    self.infos.opened_event = []
     
     
 def event_double_clicked(self):
     event_title = self.calendar_day_info_lwg.currentItem().text()
+    if event_title == '청구일':
+        eApopup.warning(text = '[청구일]은;\n편집할 수 없는 일정입니다.\n자동으로 관리됩니다.')
+        self.calendar_day_info_lwg.setCurrentItem(None)
+        return
     target_date = self.calendar_wdg.selectedDate()
-    self.infos.opened_event_title = event_title
+    self.calendar_event_delete_btn.setEnabled(True)
     # Load DB
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()
@@ -284,6 +306,8 @@ def event_double_clicked(self):
                          """).fetchone()
     # Close Connection
     con.close()
+    # Save Opened Event for later
+    self.infos.opened_event = list(target)
     # Writing event info to gui
     start_date = QDate.fromString(target[0], "yyyy.MM.dd")
     self.calendar_opt_wdg.setSelectedDate(start_date)
@@ -301,7 +325,7 @@ def event_double_clicked(self):
     else:
         self.calendar_not_open_cbx.setChecked(False)
     self.calendar_opt_event_led.setText(target[3])
-    print(self.infos.opened_event_title)
+    print(self.infos.opened_event)
     self.calendar_stack.setCurrentIndex(1)
 
 
@@ -349,6 +373,12 @@ def cal_opt_clicked(self):
         self.calendar_end_date_lbl.setText("")
 
 
+def calendar_opt_page_changed(self):
+    month = self.calendar_opt_wdg.monthShown()
+    year = self.calendar_opt_wdg.yearShown()
+    self.calendar_opt_month_year_lbl.setText(f'{year}.{str(month).zfill(2)}')
+
+
 def multi_day_status_toggle(self):
     toggle = self.calendar_multi_day_cbx.isChecked()
     self.calendar_select_end_date_btn.setEnabled(toggle)
@@ -361,11 +391,26 @@ def multi_day_status_toggle(self):
         self.calendar_start_date_lbl.setStyleSheet("color:transparent;")
         self.calendar_from_to_lbl.setStyleSheet("color:transparent;")
         self.calendar_end_date_lbl.setStyleSheet("color:transparent;")
+        
+
+def not_open_check_toggle(self):
+    if self.calendar_not_open_cbx.isChecked():
+        self.calendar_day_info_led.setStyleSheet("color:transparent")
 
 
 ## Add a Event from OPT
 def write_btn_clicked(self):
+    # Event title은 rstrip은 해서 가져오자.
+    event_title = self.calendar_opt_event_led.text().rstrip()
+    if event_title == "":
+        eApopup.warning(text = "일정이 입력되지 않았습니다.")
+        return
+    elif event_title == "청구일":
+        eApopup.warning(text = "[청구일]은\n추가 또는 편집할 수 없습니다.\n자동으로 관리됩니다.")
+        return
+    
     start_date = self.calendar_event_date_dte.date().toString("yyyy.MM.dd")
+    
     # Multi Day 체크 되어있는 경우에는 end_date를 end_date_lbl에서 역으로 다시 가져오고,
     if self.calendar_multi_day_cbx.isChecked():
         end_date = QDate.fromString(self.calendar_end_date_lbl.text(), "yyyy.MM.dd(ddd)").toString("yyyy.MM.dd")
@@ -391,10 +436,22 @@ def write_btn_clicked(self):
         not_open = 1
     else: 
         not_open = 0
-    # Event title은 rstrip은 해서 가져오자.
-    event_title = self.calendar_opt_event_led.text().rstrip()
     
     event_to_write = [start_date, end_date, not_open, event_title]
+    
+    # 새로 입력인지, 기일정의 편집인지를 확인해서 각각의 맞는 method로 전달하자.
+    if not self.infos.opened_event:
+        new_event_save(event_to_write)
+    else:
+        edit_event(self, event_to_write)
+    # Reset and Go BACK
+    options_btn_clicked(self)
+    calendar_update(self)
+    self.calendar_stack.setCurrentIndex(0)
+
+
+# Called From write_btn_clicked if new item
+def new_event_save(event_to_write:list):    
     # Load DB
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()
@@ -403,296 +460,217 @@ def write_btn_clicked(self):
     # Commit and Close Connection
     con.commit()
     con.close()
+
+
+# Called From write_btn_clicked if editing item
+def edit_event(self, event_to_write:list):
+    target_event = self.infos.opened_event
+    # Load DB
+    con = sqlite3.connect("./database/eAcalrem.db")
+    cur = con.cursor()
+    # Find correct event from DB
+    cur.execute(f"""UPDATE Calendar 
+                SET Start_Date = '{event_to_write[0]}',
+                End_Date = '{event_to_write[1]}',
+                Not_OPEN = '{event_to_write[2]}',
+                Event_Title = '{event_to_write[3]}'
+                WHERE Start_Date = '{target_event[0]}' AND
+                End_Date = '{target_event[1]}' AND
+                Not_OPEN = '{target_event[2]}' AND
+                Event_Title = '{target_event[3]}'
+                """)
+    # Close Connection
+    con.commit()
+    con.close()
+    
+    
+# Delete existing Event
+def delete_event(self):
+    target_event = self.infos.opened_event
+    # Load DB
+    con = sqlite3.connect("./database/eAcalrem.db")
+    cur = con.cursor()
+    # Find correct event from DB
+    cur.execute(f"""
+                DELETE FROM Calendar
+                WHERE Start_Date = '{target_event[0]}' AND
+                End_Date = '{target_event[1]}' AND
+                Not_OPEN = '{target_event[2]}' AND
+                Event_Title = '{target_event[3]}'   
+                """)
+    # Close Connection
+    con.commit()
+    con.close()
     # Reset and Go BACK
     options_btn_clicked(self)
     calendar_update(self)
     self.calendar_stack.setCurrentIndex(0)
+
+
+## Yearly View
+# Toggle between yearly and calendar main page.
+def yearly_page_toggle(self):
+    self.calendar_yearly_year_led.setText(str(self.infos.date_today.year()))
+    index = self.calendar_stack.currentIndex()
+    if index == 0:
+        self.calendar_stack.setCurrentIndex(2)
+        view_yearly(self)
+    else:
+        self.calendar_stack.setCurrentIndex(0)
     
 
+def year_is_valid(target_year:str):
+    if not target_year.isdigit():
+        eApopup.warning(text="년도를 정확히 입력해주세요.")
+        return False
+    elif not 2022 <= int(target_year) <= 2042:
+        eApopup.warning(text="년도를 확인해주세요.")
+        return False
+    else:
+        return True
+    
+    
+def year_navigation_btn(self, prev:bool = False):
+    target_year = self.calendar_yearly_year_led.text().rstrip()
+    if not year_is_valid(target_year):
+        return
+    if prev:
+        self.calendar_yearly_year_led.setText(f'{int(target_year)-1}')
+    else:
+        self.calendar_yearly_year_led.setText(f'{int(target_year)+1}')
+    view_yearly(self)
+    
+
+def view_yearly(self):
+    self.calendar_yearly_lwg.clear()    
+    target_year = self.calendar_yearly_year_led.text().rstrip()
+    if not year_is_valid(target_year):
+        return
+    # Load DB
+    con = sqlite3.connect("./database/eAcalrem.db")
+    cur = con.cursor()
+    # Find correct event from DB
+    events_in_target = cur.execute(f"""
+                                   SELECT * FROM Calendar
+                                   WHERE
+                                   (Start_Date BETWEEN '{target_year}.01.01' AND '{target_year}.12.31')
+                                   OR
+                                   (End_Date BETWEEN '{target_year}.01.01' AND '{target_year}.12.31')
+                                   ORDER BY Start_Date
+                                   """).fetchall()
+    # Close Connection
+    con.close()
+    # GUI에 전용 형식(?)에 맞게 써주면 됨.
+    for event in events_in_target:
+        start_date = QDate.fromString(event[0], "yyyy.MM.dd").toString("yyyy.MM.dd(ddd)")
+        end_date = QDate.fromString(event[1], "yyyy.MM.dd").toString("yyyy.MM.dd(ddd)")
+        content = f'## {start_date} | {event[3]}'
+        if start_date != end_date:
+            content = f'{content}\n ~ {end_date} |'
         
-# ## Calendar navigation.
-# def go_to(self):
-#     target_ym = eApopup.get_text(
-#         text = "년.월을 입력하세요.\neg. 202401"
-#     )
-#     if not target_ym: return
-#     if not target_ym.isdigit():
-#         eApopup.warning(text = "잘못된 입력입니다.")
-#         return
-#     if not QDate.fromString(target_ym, "yyyyMM").isValid():
-#         eApopup.warning(text = "잘못된 입력입니다.")
-#         return
-    
-#     self.calendar_wdg.setCurrentPage(int(target_ym[:4]), int(target_ym[4:]))
-
-
-# ## Only on date selection(activated from calendar widget), get that date's events if exist.
-# def get_event_selected_date(self):
-#     # First clear the day info widget
-#     self.calendar_events_lwg.clear()
-#     # Get selected date
-#     sel_date = self.calendar_wdg.selectedDate()
-#     self.calendar_events_lwg.addItem(f'### {sel_date.toString("yyyy.MM.dd ddd")}')
-#     # Load and Fetch from DB.
-#     con = sqlite3.connect("./database/eAcalrem.db")
-#     cur = con.cursor()
-#     targetDayEvents = cur.execute(f'SELECT * FROM Calendar WHERE Year={sel_date.year()} AND Month={sel_date.month()} AND Day = {sel_date.day()}').fetchall()
-#     # If no event in target date; DO NOTHING
-#     if not targetDayEvents: return
-#     # If there is, add event's 'Detail' column content to the list;
-#     # But if multiple events for specific day, I want Holiday on top.
-#     # Maybe easier way exists but separate for loop for now.
-#     for event in targetDayEvents:
-#         if event[3]:
-#             self.calendar_events_lwg.addItem(f'* {event[7]}')
-#     for event in targetDayEvents:
-#         if not event[3]:
-#             self.calendar_events_lwg.addItem(f'- {event[7]}')
-#     # After adding all events, if any item has '*' as prefix, style them with given font color
-#     for i in range(self.calendar_events_lwg.count()):
-#         if "*" in self.calendar_events_lwg.item(i).text():
-#             self.calendar_events_lwg.item(i).setForeground(QtGui.QBrush(QtGui.QColor(195, 95, 100)))
-
-
-
-
-
-# ## Calendar Events
-# ######## Working #########
-
-# def get_event_from_DB(self, from_listwdg:bool=False):
-#     if not from_listwdg:
-#         selectedDate = self.infos.opened_event[0]
-#         selectedEvent = self.infos.opened_event[1][2:]
-#     else:
-#         selectedDate = self.calendar_wdg.selectedDate()
-#         selectedEvent = self.calendar_events_lwg.currentItem().text()[2:]
+        item = QtWidgets.QListWidgetItem(content)
+        # Set Color of sublist item according to status
+        if event[2]:
+            item.setForeground(QtGui.QBrush(QtGui.QColor(225, 90, 100)))
+        self.calendar_yearly_lwg.addItem(item)
         
-#     target_eventz = []
-#     # DB 연결
-#     con = sqlite3.connect("./database/eAcalrem.db")
-#     cur = con.cursor()
-#     # 해당 event 불러오기
-#     target_event = cur.execute(f'''SELECT * FROM Calendar WHERE
-#                                Year = "{selectedDate.toString('yyyy')}" AND
-#                                Month = "{selectedDate.toString('MM')}" AND
-#                                Day = "{selectedDate.toString('dd')}" AND
-#                                Event_Title = "{selectedEvent}"
-#                                ''').fetchone()
-#     if not target_event[4]:
-#         target_eventz.append(list(target_event))
-#     else:
-#         start_date = QDate.fromString(str(target_event[5]), "yyyyMMdd")
-#         end_date = QDate.fromString(str(target_event[6]), "yyyyMMdd")
-#         for i in range(start_date.daysTo(end_date)+1):
-#             date = start_date.addDays(i)
-#             print(date)
-#             targetEvent = cur.execute(f'''SELECT * FROM Calendar WHERE
-#                                       Year = "{date.toString('yyyy')}" AND
-#                                       Month = "{date.toString('MM')}" AND
-#                                       Day = "{date.toString('dd')}" AND
-#                                       Event_Title = "{selectedEvent}"
-#                                       ''').fetchone()
-#             target_eventz.append(list(targetEvent))
 
-#     # DB 저장 및 연결해제
-#     con.commit()
-#     con.close()
-
-#     return target_eventz
-
-
-# def open_in_window(self):
-#     if self.calendar_events_lwg.currentItem().text().startswith("###"): return
-#     target_eventz = get_event_from_DB(self, from_listwdg = True)
-#     if len(target_eventz) > 1:
-#         eApopup.notify(text = "이 일정은 Multi Day 일정입니다.\n모든 날짜에 동일 적용됩니다.")
+#======= Finding LPDOM
+#- 청구일의 전제 조건. 1) 일요일 아니고, 2) 토요일은 기본적으로 아니되, 장날이 아닌 토요일은 제외. 3) 휴진일/공휴일이 아니어야지..
+def find_LPDoM(self):
+    today_date = self.infos.date_today
+    today_year = today_date.year()
+    today_month = today_date.month()
+    today_month_last_day = today_date.daysInMonth()
+    LPDoM = QDate(today_year, today_month, today_month_last_day)
+    # Load DB
+    con = sqlite3.connect("./database/eAcalrem.db")
+    cur = con.cursor()
+    # Find correct event from DB
+    not_open_days = cur.execute(f"""
+                                SELECT * FROM Calendar
+                                WHERE Not_Open = '1'
+                                AND
+                                ((Start_Date BETWEEN
+                                '{today_year}.{str(today_month).zfill(2)}.01'
+                                AND '{today_year}.{str(today_month).zfill(2)}.{today_month_last_day}')
+                                OR
+                                (End_Date BETWEEN
+                                '{today_year}.{str(today_month).zfill(2)}.01'
+                                AND '{today_year}.{str(today_month).zfill(2)}.{today_month_last_day}'))
+                                """).fetchall()
+    # Close Connection
+    con.close()
+    # DB에서 불러온 이달의 휴일(일정)을 QDate Object로 변환 및 Multi Day일정이 있는 경우, 모두 단일 항목으로 리스트화.
+    not_open_dates = []
+    for day in not_open_days:
+        if day[0] == day[1]:
+            not_open_dates.append(QDate.fromString(day[0], "yyyy.MM.dd"))
+        else:
+            start = QDate.fromString(day[0], "yyyy.MM.dd")
+            end = QDate.fromString(day[1], "yyyy.MM.dd")
+            days = start.daysTo(end)
+            for i in range(days+1):
+                not_open_dates.append(start.addDays(i))
+    # 위 언급된 청구일의 전제조건을 기준으로, 합당하지 않는 경우 while loop를 통해 찾아질때까지 돌려~~
+    while True:
+        # 현재 LPDoM target이 일요일이면 하루 앞으로..
+        if LPDoM.dayOfWeek() == 7:
+            LPDoM = LPDoM.addDays(-1)
+        # 토요일이면, 장날은 아닌지 확인하고, 장날이 아니라면, 노는날..
+        elif LPDoM.dayOfWeek() == 6 and LPDoM.day() % 5 != 0:
+            LPDoM = LPDoM.addDays(-1)
+        # 휴진일/공휴일이라면 하루 앞으로..
+        elif LPDoM in not_open_dates:
+            LPDoM = LPDoM.addDays(-1)
+        # 위 전제 조건이 모두 아니라면, 청구일 당첨~ while loop 탈출~
+        else:
+            break
     
-#     self.call_calrem('cal')
-#     self.calrem_adit.event_adit_delete_btn.setEnabled(True)
-    
-#     target = target_eventz[0]
-    
-#     target_date = QDate(target[0], target[1], target[2])
-#     self.calrem_adit.adit_cal_wdg.setSelectedDate(target_date)
-#     if target[4] != None and target[4] != "" and target[4] != 0:
-#         start_date = QDate.fromString(str(target[5]), "yyyyMMdd")
-#         end_date = QDate.fromString(str(target[6]), "yyyyMMdd")
-#         self.calrem_adit.event_adit_end_date_cbx.setChecked(True)
-#         self.calrem_adit.event_adit_end_date_lbl.setText(end_date.toString("yyyy.MM.dd ddd"))
-#         for i in range(start_date.daysTo(end_date)+1):
-#             self.calrem_adit.adit_cal_wdg.setDateTextFormat(start_date.addDays(i), SELECTED_DAY)
-
-#     if target[3]:
-#         self.calrem_adit.event_adit_day_off_cbx.setChecked(True)
-    
-#     self.calrem_adit.event_adit_event_led.setText(target[7])
-#     self.calrem_adit.event_adit_event_notes_ted.setText(target[8])
-    
-#     self.open_event_or_reminder('event')
+    return LPDoM
 
 
-# def add_event(new_eventz:list):
-#     con = sqlite3.connect("./database/eAcalrem.db")
-#     cur = con.cursor()
-#     for new_event in new_eventz:
-#         cur.execute(f"INSERT INTO Calendar VALUES {str(tuple(new_event))}")
-#     con.commit()
-#     con.close()
-    
-
-# def delete_event(target_eventz:list):
-#     print("delete_event func")
-#     print(target_eventz)
-#     con = sqlite3.connect("./database/eAcalrem.db")
-#     cur = con.cursor()
-#     for target_event in target_eventz:
-#         print(target_event)
-#         cur.execute(f'''DELETE FROM Calendar WHERE
-#                     Year = "{target_event[0]}" AND
-#                     Month = "{target_event[1]}" AND
-#                     Day = "{target_event[2]}" AND
-#                     Event_Title = "{target_event[7]}"
-#                     ''')
-#         print(f'''DELETE FROM Calendar WHERE
-#                     Year = "{target_event[0]}" AND
-#                     Month = "{target_event[1]}" AND
-#                     Day = "{target_event[2]}" AND
-#                     Event_Title = "{target_event[7]}"
-#                     ''')
-#     con.commit()
-#     con.close()
-
-
-# ##########################
-# def add_new(self):
-#     self.calendar_events_lwg.clearSelection()
-#     self.calendar_adit.CalendarAdit.setText("Add NEW Event")
-#     self.calendar_adit.reset_it()
-#     self.calendar_adit.show()
-    
-# def edit_current(self):
-#     targetDate = self.calendar_wdg.selectedDate()
-#     targetEventDetail = self.calendar_events_lwg.currentItem().text()
-#     if "*" in targetEventDetail:
-#         targetEventDetail = targetEventDetail.replace("*", "")    
-    
-#     self.calendar_adit.CalendarAdit.setText("Edit Event")
-#     self.calendar_adit.caladit_wdg.setSelectedDate(targetDate)
-#     self.calendar_adit.caladit_event_detail.setText(targetEventDetail)
-#     self.calendar_adit.show()
-    
-
-# #= Finding LPDOM
-# #- 청구일의 전제 조건. 1) 일요일 아니고, 2) 토요일은 기본적으로 아니되, 장날이 아닌 토요일은 제외. 3) 휴진일/공휴일이 아니어야지..
-# def find_LPDOM(self, holidays:list = None, year_month:list = None):
-#     holiday_objects = []
-#     if holidays != None:
-#         for holiday in holidays:
-#             holiday_objects.append(QDate(*holiday[:3]))
-    
-#     if year_month == None:
-#         targetYear = self.calendar_wdg.yearShown()
-#         targetMonth = self.calendar_wdg.monthShown()
-#     else: 
-#         targetYear = year_month[0]
-#         targetMonth = year_month[1]
-    
-#     daysInTargetMonth = QDate(targetYear, targetMonth, 1).daysInMonth()
-#     lastDayOfMonth = QDate(targetYear, targetMonth, daysInTargetMonth)
-
-#     while True:
-#         # 이번달 마지막일이 일요일이면 하루 앞으로..
-#         if lastDayOfMonth.dayOfWeek() == 7:
-#             lastDayOfMonth = lastDayOfMonth.addDays(-1)
-#         # 토요일이면, 장날은 아닌지 확인하고, 아니면 하루 앞으로..
-#         elif lastDayOfMonth.dayOfWeek() == 6 and lastDayOfMonth.day() % 5 != 0:
-#             lastDayOfMonth = lastDayOfMonth.addDays(-1)
-#         # 휴진일/공휴일이라면 하루 앞으로..
-#         elif lastDayOfMonth in holiday_objects:
-#             lastDayOfMonth = lastDayOfMonth.addDays(-1)
-#         else:
-#             break
-    
-#     return lastDayOfMonth
-
-# #- Get LPDOM and Set ALRM_LBL
-# def claimAlarm(self):
-#     targetYear = self.infos.date_today.year()
-#     targetMonth = self.infos.date_today.month()
-#     calendar_events = connect_DB_and_load(self, year = targetYear, month = targetMonth)
-#     if calendar_events == None:
-#         holidays = []
-#         schedules = []
-#     else:
-#         holidays = calendar_events[0]
-#         schedules = calendar_events[1]
-    
-#     # lpdom = Last Practice Day of Month
-#     lpdom = find_LPDOM(self, holidays, year_month = [targetYear, targetMonth])
-#     if self.infos.date_today == lpdom:
-#         self.claim_alarm_lbl.setStyleSheet(ALRM_ON_STYLE)
-#         self.infos.lpdom = True
-#     else:
-#         self.claim_alarm_lbl.setStyleSheet(ALRM_OFF_STYLE)
-#         self.infos.lpdom = False
-
-
-
-# ####################  Calender Yearly List View  ####################
-
-# def prev_next_year_clicked(self, btn_name:str):
-#     btn_names = ['prev', 'next']
-#     if btn_name not in btn_names: return
-    
-#     if not self.popup.events_year_led.text().isdigit():
-#         eApopup.warning(text = "년도를 정확히 입력해주세요.")
-#         return
-    
-#     currentYear = int(self.popup.events_year_led.text())
-    
-#     if btn_name == 'prev':
-#         currentYear -= 1
-#     else: 
-#         currentYear += 1
-        
-#     self.popup.events_year_led.setText(str(currentYear))
-#     calendar_yearly_list_view(self)
-
-# def calendar_yearly_list_view(self):
-#     target = self.popup.events_year_led.text()
-#     if not target.isdigit(): return
-#     else: target_year = int(target)
-    
-#     # Load DB
-#     con = sqlite3.connect("./database/eAcalrem.db")
-#     cur = con.cursor()
-#     # Get DB Data, Yearly
-#     target_events = cur.execute(f'SELECT * FROM Calendar WHERE Year = "{target_year}" ORDER BY "Month" ASC, "Day" ASC').fetchall()
-#     # Close DB connection
-#     con.close()
-    
-#     target_events_gui = []
-#     for target_event in target_events:
-#         target_date = QDate(target_event[0], target_event[1], target_event[2])
-#         target_event_gui = f'{target_date.toString("yyyy.MM.dd (ddd)")}'
-#         if target_event[4] == 1:
-#             start_date = QDate.fromString(str(target_event[5]), "yyyyMMdd")
-#             end_date = QDate.fromString(str(target_event[6]), "yyyyMMdd")
-#             if target_date == start_date:
-#                 target_event_gui = f'{target_event_gui} ~ {end_date.toString("yyyy.MM.dd (ddd)")} - '
-#             else: continue
-#         else: target_event_gui = f'{target_event_gui} - '
-#         target_event_gui = target_event_gui + target_event[7]
-#         if target_event[3] == 1:
-#             target_event_gui = target_event_gui + " *"
-#         target_events_gui.append(target_event_gui)
-    
-#     self.popup.events_lwg.clear()
-#     self.popup.events_lwg.addItems(target_events_gui)
-    
-#     for i in range(self.popup.events_lwg.count()):
-#         if self.popup.events_lwg.item(i).text().endswith("*"):
-#             self.popup.events_lwg.item(i).setForeground(QtGui.QBrush(QtGui.QColor(195, 95, 100)))
-    
-# #########################################################
+# LPDoM은 eGhisAssistant가 실행될때 마다 이번달의 LPDoM을 계산하고, 입력.
+# 기입력된 LPDoM이 있는경우, 삭제하고 새로 입력. (새로운 일정이 수시로 생길 수 있으니까~)
+# 마찬가지로 이달에 새로운 일정이 추가될때 마다 확인하자!
+def update_LPDoM(self):
+    LPDoM = find_LPDoM(self)
+    new_LPDoM = (LPDoM.toString("yyyy.MM.dd"), LPDoM.toString("yyyy.MM.dd"), 0, "청구일")
+    this_year = self.infos.date_today.toString("yyyy")
+    this_month = self.infos.date_today.toString("MM")
+    this_month_last_day = self.infos.date_today.daysInMonth()
+    # Load DB
+    con = sqlite3.connect("./database/eAcalrem.db")
+    cur = con.cursor()
+    # Find correct event from DB
+    existing_lpdom = cur.execute(f"""
+                                 SELECT * FROM Calendar
+                                 WHERE
+                                 Event_Title = '청구일' AND
+                                 (Start_Date BETWEEN '{this_year}.{this_month}.01' AND '{this_year}.{this_month}.{this_month_last_day}')
+                                 """).fetchone()
+    # 입력된 청구일이 없으면 단순히 입력해주고
+    if not existing_lpdom:
+        cur.execute(f"""
+                    INSERT INTO Calendar
+                    Values(?, ?, ?, ?);
+                    """, new_LPDoM)
+    # 기입력 청구일과 정보가 동일하면, 냅두면 되고
+    elif new_LPDoM == existing_lpdom:
+        return
+    # 기입력 청구일과 새로 계산된 청구일의 정보가 다르다면, 기존꺼는 지우고, 새로 입력하자.
+    else:
+        cur.execute(f"""
+                    DELETE FROM Calendar
+                    WHERE
+                    (Start_Date BETWEEN '{this_year}.{this_month}.01' AND '{this_year}.{this_month}.{this_month_last_day}')
+                    AND Event_Title = '청구일'
+                    """)
+        cur.execute(f"""
+                    INSERT INTO Calendar
+                    Values(?, ?, ?, ?);
+                    """, new_LPDoM)
+    # Close Connection
+    con.commit()
+    con.close()
+    # Calendar_Update마다 실행되기때문에 따로 해줄필요는 없음. 

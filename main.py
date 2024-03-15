@@ -23,7 +23,7 @@ class Infos():
     # Opened Reminder
     opened_reminder_text = ""
     # Opened Event
-    opened_event_title = ""
+    opened_event = []
     # 현재 선택된 환자 이름 일시 저장. 매초 확인, 매초 환자 변경여부 확인 위해 사용.
     pt_name_now = ""
     # 오늘이 청구일인지 아닌지 설정해놓기.
@@ -58,15 +58,26 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.calendar_prev_month_btn.clicked.connect(lambda:self.calendar_wdg.showPreviousMonth())
         self.calendar_today_btn.clicked.connect(lambda:eAcalendar.go_today(self))
         self.calendar_next_month_btn.clicked.connect(lambda:self.calendar_wdg.showNextMonth())
+        self.calendar_yearly_btn.clicked.connect(lambda:eAcalendar.yearly_page_toggle(self))
         self.calendar_day_info_lwg.itemActivated.connect(lambda:eAcalendar.event_double_clicked(self))
         self.calendar_day_info_led.returnPressed.connect(lambda:eAcalendar.add_event_from_main(self))
         self.calendar_day_options_btn.clicked.connect(lambda:eAcalendar.options_btn_clicked(self))
-        # Calendar OPT
+        # Calendar OPT View
         eAcalendar.calendar_styling(self, 'calendar_opt_wdg')
+        self.calendar_opt_prev_month_btn.clicked.connect(lambda:self.calendar_opt_wdg.showPreviousMonth())
+        self.calendar_opt_today_btn.clicked.connect(lambda:self.calendar_opt_wdg.showToday())
+        self.calendar_opt_next_month_btn.clicked.connect(lambda:self.calendar_opt_wdg.showNextMonth())
+        self.calendar_opt_wdg.currentPageChanged.connect(lambda:eAcalendar.calendar_opt_page_changed(self))
         self.calendar_opt_wdg.clicked.connect(lambda:eAcalendar.cal_opt_clicked(self))
+        self.calendar_event_delete_btn.clicked.connect(lambda:eAcalendar.delete_event(self))
         self.calendar_multi_day_cbx.stateChanged.connect(lambda:eAcalendar.multi_day_status_toggle(self))
         self.calendar_opt_close_btn.clicked.connect(lambda:self.calendar_stack.setCurrentIndex(0))
         self.calendar_opt_write_btn.clicked.connect(lambda:eAcalendar.write_btn_clicked(self))
+        # Yearly View
+        self.calendar_yearly_prev_btn.clicked.connect(lambda:eAcalendar.year_navigation_btn(self, prev = True))
+        self.calendar_yearly_next_btn.clicked.connect(lambda:eAcalendar.year_navigation_btn(self))
+        self.calendar_yearly_year_led.returnPressed.connect(lambda:eAcalendar.view_yearly(self))
+        self.calendar_yearly_done_btn.clicked.connect(lambda:eAcalendar.yearly_page_toggle(self))
         
         # Reminders--------------------------------------------------------------------------------#
         #TODO history to active? what about recurring reminders?
