@@ -126,6 +126,19 @@ def get_text(text:str, default_text:str="", password:bool = False):
     if not ok: return
     else: return inputbox.textValue()
 
+## Single line text input, long text
+def get_text_big(text:str, default_text:str="", password:bool = False):
+    inputbox = QInputDialog()
+    inputbox.setWindowFlags(Qt.FramelessWindowHint)
+    inputbox.setStyleSheet(eAstyles.INPUTBOX_BIG)
+    inputbox.setLabelText(text)
+    inputbox.setTextValue(default_text)
+    if password: inputbox.setTextEchoMode(QLineEdit.Password)    
+    inputbox.setInputMode(QInputDialog.TextInput)
+    ok = inputbox.exec()
+    if not ok: return
+    else: return inputbox.textValue()
+
 ## Multi-line text input. (QPlainTextEdit)
 def get_multiline_text(title:str, default_text:str = ""):
     inputbox = QInputDialog()

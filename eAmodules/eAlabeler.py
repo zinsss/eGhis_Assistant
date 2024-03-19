@@ -138,7 +138,7 @@ def prepare_labeler(self):
         else:
             index = self.lblr_vaccines_cmb.count()
             self.lblr_vaccines_cmb.insertSeparator(index)
-    self.lblr_preview_date_lbl.setText(self.parent.infos.date_today.toString("yyyy년MM월dd일(ddd)"))
+    self.lblr_preview_date_lbl.setText(self.infos.date_today.toString("yyyy년MM월dd일(ddd)"))
     connect_DB(self)
     counter_update(self)
     flu_date_check(self)
@@ -148,8 +148,8 @@ def counter_update(self):
     Count.update_counter()
     # 코로나 19 카운트
     self.lblr_count_total_covid_led.setText(str(Count.COVID_Total))
-    self.lblr_count_pf_xbb_led.setText(str(Count.PF_XBB_1_5))
-    self.lblr_count_md_xbb_led.setText(str(Count.MD_XBB_1_5))
+    self.lblr_count_pf_led.setText(str(Count.PF_XBB_1_5))
+    self.lblr_count_md_led.setText(str(Count.MD_XBB_1_5))
     # 독감 카운트
     self.lblr_count_total_flu_led.setText(str(Count.Flu_Total_Count)+f'({Count.Flu_Total_All})')
     self.lblr_count_old_flu_led.setText(str(Count.Flu_Old))
@@ -177,7 +177,7 @@ def connect_DB(self):
     )    
     # Load Dates. And check if today already exist.
     dates_in_db = [item[0] for item in cur.execute('SELECT Date FROM Counter').fetchall()]
-    today = self.parent.infos.date_today.toString("yyyyMMdd")
+    today = self.infos.date_today.toString("yyyyMMdd")
     # DB 테이블에 오늘이 없다면 새로 작성해야하니 패스
     if today not in dates_in_db:
         return    
@@ -202,7 +202,7 @@ def write_DB(self):
     # GUI도 업데이트 해주고..
     counter_update(self)    
     # 먼저 입력될 순서에 맞게 리스트로 만들어주자.
-    today = self.parent.infos.date_today.toString("yyyyMMdd")    
+    today = self.infos.date_today.toString("yyyyMMdd")    
     data_to_write = []
     data_to_write.append(today)
     data_to_write.append(Count.COVID_Total)
@@ -241,17 +241,16 @@ def fetch_write_ptinfo(self):
     # 1단계 완료.
     Steps.ONE = True
     
-def fetch_write_ptinfo_from_main(self):
+def fetch_and_write_ptinfo(self):
     try:
         currentPT = eAwinauto.current_ptinfo()
-        self.popup.lblr_preview_ptname_lbl.setText(f"{currentPT['ptname']}({currentPT['ptno']})")
-        self.popup.lblr_preview_ptjmno_lbl.setText(currentPT['ptjmno'])
-        self.popup.lblr_preview_ptphone_lbl.setText(currentPT['ptphone'])
+        self.lblr_preview_ptname_lbl.setText(f"{currentPT['ptname']}({currentPT['ptno']})")
+        self.lblr_preview_ptjmno_lbl.setText(currentPT['ptjmno'])
+        self.lblr_preview_ptphone_lbl.setText(currentPT['ptphone'])
     except TypeError:
         return
     # 1단계 완료.
     Steps.ONE = True
-    self.call_popup(3)
 
 #= Vaccine을 선택했다면...
 def vac_combo_selected(self):
@@ -294,24 +293,24 @@ def vac_combo_selected(self):
 #- 국가독감접종사업 날짜 확인.
 def flu_date_check(self):
     # 노인독감 사업기간
-    if self.parent.infos.date_today < FluSettings.DATE_75_OVER:
+    if self.infos.date_today < FluSettings.DATE_75_OVER:
         self.lblr_flu_date_checker_old.setText("X")
-    elif FluSettings.DATE_75_OVER <= self.parent.infos.date_today < FluSettings.DATE_7074:
+    elif FluSettings.DATE_75_OVER <= self.infos.date_today < FluSettings.DATE_7074:
         self.lblr_flu_date_checker_old.setText("75~")
-    elif FluSettings.DATE_7074 <= self.parent.infos.date_today < FluSettings.DATE_6569:
+    elif FluSettings.DATE_7074 <= self.infos.date_today < FluSettings.DATE_6569:
         self.lblr_flu_date_checker_old.setText("70~")
-    elif FluSettings.DATE_6569 <= self.parent.infos.date_today <= FluSettings.OLD_END_DATE:
+    elif FluSettings.DATE_6569 <= self.infos.date_today <= FluSettings.OLD_END_DATE:
         self.lblr_flu_date_checker_old.setText("65~")
-    elif FluSettings.OLD_END_DATE < self.parent.infos.date_today:
+    elif FluSettings.OLD_END_DATE < self.infos.date_today:
         self.lblr_flu_date_checker_old.setText("X")
     # 소아독감 사업기간
-    if self.parent.infos.date_today < FluSettings.DATE_CHILD_TWICE:
+    if self.infos.date_today < FluSettings.DATE_CHILD_TWICE:
         self.lblr_flu_date_checker_child.setText("X")
-    elif FluSettings.DATE_CHILD_TWICE <= self.parent.infos.date_today < FluSettings.DATE_CHILD_ONCE:
+    elif FluSettings.DATE_CHILD_TWICE <= self.infos.date_today < FluSettings.DATE_CHILD_ONCE:
         self.lblr_flu_date_checker_child.setText("x2~")
-    elif FluSettings.DATE_CHILD_ONCE <= self.parent.infos.date_today < FluSettings.ONCE_CHILD_END_DATE:
+    elif FluSettings.DATE_CHILD_ONCE <= self.infos.date_today < FluSettings.ONCE_CHILD_END_DATE:
         self.lblr_flu_date_checker_child.setText("x1~")
-    elif FluSettings.ONCE_CHILD_END_DATE < self.parent.infos.date_today:
+    elif FluSettings.ONCE_CHILD_END_DATE < self.infos.date_today:
         self.lblr_flu_date_checker_child.setText("X")
 
 def flu_group_org(self, ptjmno:str):
@@ -357,7 +356,7 @@ def flu_vac_check(self, influ_group:int):
         if flu_child_today == 2:
             ok = eApopup.confirm(text = "지금은 2회 접종자 접종기간입니다.\n2회 접종 대상자인가요?")
             if not ok: 
-                eApopup.notify(text = "사업기간에 재 방문 안내 필요.")
+                eApopup.notify(text = "사업기간에 재방문 안내 필요.")
                 return
             else: count = True
         else: count = True
@@ -369,12 +368,13 @@ def flu_vac_check(self, influ_group:int):
             
     flu_count_check(self, influ_group, count, paying, as_Ex)
     
+    
 def flu_count_check(self, influ_group:int, count:bool, paying:bool, as_Ex:bool):
     if influ_group == 0 and paying:
         flu_label_write(self, influ_group, paying = True)
         return    
     if count:
-        if int(int(self.lblr_count_total_flu_led.text().split("(")[0])) <= 99:
+        if int(self.lblr_count_total_flu_led.text().split("(")[0]) <= 99:
             flu_label_write(self, influ_group, count = True)
         else: 
             eApopup.warning(text = "하루 100회 접종이 마감되었습니다.")
@@ -386,6 +386,7 @@ def flu_count_check(self, influ_group:int, count:bool, paying:bool, as_Ex:bool):
             eApopup.warning(text = "접종이 불가능합니다.")
             return
         else: flu_label_write(self, influ_group, as_Ex = True)
+        
 
 def flu_label_write(self, influ_group:int, count:bool = False, as_Ex:bool = False, paying:bool = False):
     # 일반 접종의 경우 빠르게 처리해주고.
@@ -622,6 +623,7 @@ def covid_org(self, vaccine:str):
     eAwinauto.vaccine_pt(self, 2, self.lblr_preview_ptjmno_lbl.text())
     Steps.TWO = True    
     Count.Selected = vaccine
+    
 
 #= 프린트와 동시에 필요시 DB에 카운터 정보 저장.
 def print_save_it(self, counter:object = None):
@@ -689,7 +691,7 @@ def print_save_it(self, counter:object = None):
 #- 리셋하기 함수
 def reset_it(self):
     # 날짜는 다시 적어주고(혹시 모르니까) 나머지 라벨 폼은 전부 공란으로
-    self.lblr_preview_date_lbl.setText(self.parent.infos.date_today.toString("yyyy년MM월dd일(ddd)"))
+    self.lblr_preview_date_lbl.setText(self.infos.date_today.toString("yyyy년MM월dd일(ddd)"))
     self.lblr_preview_nocount_vac_lbl.setText("")
     self.lblr_preview_count_vac_lbl.setText("")
     self.lblr_preview_counter_lbl.setText("")

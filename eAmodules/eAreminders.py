@@ -206,7 +206,7 @@ def show_reminder_history(self):
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()    
     # Load Current Items
-    items = [list(item) for item in cur.execute(f'SELECT * FROM Archive ORDER BY Status_Changed LIMIT {limit}').fetchall()]
+    items = [list(item) for item in cur.execute(f'SELECT * FROM Archive ORDER BY Status_Changed DESC LIMIT {limit}').fetchall()]
     # Close DB connection
     con.commit()
     con.close()
@@ -219,9 +219,9 @@ def show_reminder_history(self):
         else:
             gui_content = "[취소@"
             gui_color = (155, 111, 133)
-        gui_content = f'{gui_content}{QDate.fromString(item[4], "yyyy.MM.dd").toString("yyyy.MM.dd(ddd)")}]\n{item[1]}'
+        gui_content = f'{gui_content}{QDate.fromString(item[4], "yyyy.MM.dd").toString("yyyy.MM.dd ddd")}]\n{item[1]}'
         if item[3] != "":
-            gui_content = f'{gui_content}\n::DUE {QDate.fromString(item[3], "yyyy.MM.dd").toString("yyyy.MM.dd(ddd)")}'
+            gui_content = f'{gui_content}\n::DUE {QDate.fromString(item[3], "yyyy.MM.dd").toString("yyyy.MM.dd ddd")}'
         if item[2] != "":
             for line in item[2].splitlines():
                 gui_content = f'{gui_content}\n - {line}'

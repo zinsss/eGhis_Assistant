@@ -1209,6 +1209,47 @@ class Ui_Main(object):
         QListWidgetItem(self.reminders_sublist_lwg)
         self.reminders_sublist_lwg.setObjectName(u"reminders_sublist_lwg")
         self.reminders_sublist_lwg.setGeometry(QRect(10, 60, 501, 211))
+        palette1 = QPalette()
+        palette1.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette1.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Active, QPalette.Text, brush)
+        palette1.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette1.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette1.setBrush(QPalette.Active, QPalette.HighlightedText, brush2)
+        palette1.setBrush(QPalette.Active, QPalette.AlternateBase, brush3)
+        brush7 = QBrush(QColor(166, 177, 199, 128))
+        brush7.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush7)
+#endif
+        palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette1.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Inactive, QPalette.Text, brush)
+        palette1.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette1.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette1.setBrush(QPalette.Inactive, QPalette.HighlightedText, brush2)
+        palette1.setBrush(QPalette.Inactive, QPalette.AlternateBase, brush3)
+        brush8 = QBrush(QColor(166, 177, 199, 128))
+        brush8.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush8)
+#endif
+        palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
+        palette1.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Disabled, QPalette.Text, brush)
+        palette1.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
+        palette1.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        palette1.setBrush(QPalette.Disabled, QPalette.HighlightedText, brush2)
+        palette1.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush3)
+        brush9 = QBrush(QColor(166, 177, 199, 128))
+        brush9.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush9)
+#endif
+        self.reminders_sublist_lwg.setPalette(palette1)
         self.reminders_sublist_lwg.setFont(font20)
         self.reminders_sublist_lwg.setStyleSheet(u"border-left:1px solid rgb(50, 60, 70);\n"
 "border-bottom:1px solid rgb(50, 60, 70);\n"
@@ -1629,6 +1670,47 @@ class Ui_Main(object):
         self.reminders_archive_lwg = QListWidget(self.reminders_archive)
         self.reminders_archive_lwg.setObjectName(u"reminders_archive_lwg")
         self.reminders_archive_lwg.setGeometry(QRect(0, 40, 511, 281))
+        palette2 = QPalette()
+        palette2.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette2.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette2.setBrush(QPalette.Active, QPalette.Text, brush)
+        palette2.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette2.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette2.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette2.setBrush(QPalette.Active, QPalette.HighlightedText, brush2)
+        palette2.setBrush(QPalette.Active, QPalette.AlternateBase, brush3)
+        brush10 = QBrush(QColor(166, 177, 199, 128))
+        brush10.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette.Active, QPalette.PlaceholderText, brush10)
+#endif
+        palette2.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette2.setBrush(QPalette.Inactive, QPalette.Text, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette2.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette2.setBrush(QPalette.Inactive, QPalette.HighlightedText, brush2)
+        palette2.setBrush(QPalette.Inactive, QPalette.AlternateBase, brush3)
+        brush11 = QBrush(QColor(166, 177, 199, 128))
+        brush11.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush11)
+#endif
+        palette2.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
+        palette2.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette2.setBrush(QPalette.Disabled, QPalette.Text, brush)
+        palette2.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
+        palette2.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette2.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        palette2.setBrush(QPalette.Disabled, QPalette.HighlightedText, brush2)
+        palette2.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush3)
+        brush12 = QBrush(QColor(166, 177, 199, 128))
+        brush12.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush12)
+#endif
+        self.reminders_archive_lwg.setPalette(palette2)
         self.reminders_archive_lwg.setFont(font20)
         self.reminders_archive_lwg.setStyleSheet(u"")
         self.reminders_archive_lwg.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -2555,9 +2637,55 @@ class Ui_Main(object):
         QListWidgetItem(self.qsv_lwg)
         self.qsv_lwg.setObjectName(u"qsv_lwg")
         self.qsv_lwg.setGeometry(QRect(10, 10, 511, 581))
-        self.qsv_lwg.setFont(font31)
-        self.qsv_lwg.setStyleSheet(u"border:none;\n"
-"border-bottom:1px solid rgb(55,60,75);")
+        palette3 = QPalette()
+        palette3.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette3.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette3.setBrush(QPalette.Active, QPalette.Text, brush)
+        palette3.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette3.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette3.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette3.setBrush(QPalette.Active, QPalette.HighlightedText, brush2)
+        palette3.setBrush(QPalette.Active, QPalette.AlternateBase, brush3)
+        brush13 = QBrush(QColor(166, 177, 199, 128))
+        brush13.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette.Active, QPalette.PlaceholderText, brush13)
+#endif
+        palette3.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette3.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette3.setBrush(QPalette.Inactive, QPalette.Text, brush)
+        palette3.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette3.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette3.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette3.setBrush(QPalette.Inactive, QPalette.HighlightedText, brush2)
+        palette3.setBrush(QPalette.Inactive, QPalette.AlternateBase, brush3)
+        brush14 = QBrush(QColor(166, 177, 199, 128))
+        brush14.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush14)
+#endif
+        palette3.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
+        palette3.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette3.setBrush(QPalette.Disabled, QPalette.Text, brush)
+        palette3.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
+        palette3.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette3.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        palette3.setBrush(QPalette.Disabled, QPalette.HighlightedText, brush2)
+        palette3.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush3)
+        brush15 = QBrush(QColor(166, 177, 199, 128))
+        brush15.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush15)
+#endif
+        self.qsv_lwg.setPalette(palette3)
+        self.qsv_lwg.setFont(font28)
+        self.qsv_lwg.setStyleSheet(u"QListWidget::item:selected{\n"
+"    background-color: rgb(52, 57, 75);\n"
+"}\n"
+"QListWidget{\n"
+"	border:none;\n"
+"	border-bottom:1px solid rgb(55,60,75);\n"
+"}")
         self.qsv_lwg.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.qsv_lwg.setEditTriggers(QAbstractItemView.SelectedClicked)
         self.qsv_lwg.setProperty("showDropIndicator", False)
@@ -2684,13 +2812,16 @@ class Ui_Main(object):
         self.mdoc_save_btn.setMaximumSize(QSize(16777215, 16777215))
         self.mdoc_save_btn.setFont(font5)
         self.mdoc_save_btn.setStyleSheet(u"QPushButton {\n"
-"	color: rgb(220, 220, 220);\n"
+"	color: rgb(70, 75, 90);\n"
 "	background-color:rgb(45,50,60);\n"
 "	border:0px;\n"
 "	border-top-right-radius:10%;\n"
 "	border-bottom-right-radius:10%;\n"
 "	border:1px solid rgb(50,55,70);\n"
 "	border-left:none;\n"
+"}\n"
+"QPushButton:enabled{\n"
+"	color: rgb(220, 220, 220);\n"
 "}\n"
 "QPushButton:hover {    \n"
 "	color:rgb(250,250,255);\n"
@@ -2699,15 +2830,15 @@ class Ui_Main(object):
 "	background-color:rgb(50,55,65);\n"
 "}")
         self.mdoc_save_btn.setFlat(True)
-        self.mdoc_copypaste_btn = QPushButton(self.med_docs)
-        self.mdoc_copypaste_btn.setObjectName(u"mdoc_copypaste_btn")
-        self.mdoc_copypaste_btn.setGeometry(QRect(380, 610, 141, 30))
-        sizePolicy4.setHeightForWidth(self.mdoc_copypaste_btn.sizePolicy().hasHeightForWidth())
-        self.mdoc_copypaste_btn.setSizePolicy(sizePolicy4)
-        self.mdoc_copypaste_btn.setMinimumSize(QSize(0, 30))
-        self.mdoc_copypaste_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.mdoc_copypaste_btn.setFont(font5)
-        self.mdoc_copypaste_btn.setStyleSheet(u"QPushButton {	\n"
+        self.mdoc_copy_btn = QPushButton(self.med_docs)
+        self.mdoc_copy_btn.setObjectName(u"mdoc_copy_btn")
+        self.mdoc_copy_btn.setGeometry(QRect(380, 610, 141, 30))
+        sizePolicy4.setHeightForWidth(self.mdoc_copy_btn.sizePolicy().hasHeightForWidth())
+        self.mdoc_copy_btn.setSizePolicy(sizePolicy4)
+        self.mdoc_copy_btn.setMinimumSize(QSize(0, 30))
+        self.mdoc_copy_btn.setMaximumSize(QSize(16777215, 16777215))
+        self.mdoc_copy_btn.setFont(font5)
+        self.mdoc_copy_btn.setStyleSheet(u"QPushButton {	\n"
 "	color: rgb(200, 120, 100);\n"
 "	background-color:rgb(45,50,60);\n"
 "	border:0px;\n"
@@ -2720,16 +2851,16 @@ class Ui_Main(object):
 "QPushButton:pressed {\n"
 "	background-color:rgb(50,55,65);\n"
 "}")
-        self.mdoc_copypaste_btn.setFlat(True)
-        self.mdoc_copy_btn = QPushButton(self.med_docs)
-        self.mdoc_copy_btn.setObjectName(u"mdoc_copy_btn")
-        self.mdoc_copy_btn.setGeometry(QRect(180, 610, 61, 30))
-        sizePolicy4.setHeightForWidth(self.mdoc_copy_btn.sizePolicy().hasHeightForWidth())
-        self.mdoc_copy_btn.setSizePolicy(sizePolicy4)
-        self.mdoc_copy_btn.setMinimumSize(QSize(0, 30))
-        self.mdoc_copy_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.mdoc_copy_btn.setFont(font5)
-        self.mdoc_copy_btn.setStyleSheet(u"QPushButton {	\n"
+        self.mdoc_copy_btn.setFlat(True)
+        self.mdoc_delete_btn = QPushButton(self.med_docs)
+        self.mdoc_delete_btn.setObjectName(u"mdoc_delete_btn")
+        self.mdoc_delete_btn.setGeometry(QRect(180, 610, 61, 30))
+        sizePolicy4.setHeightForWidth(self.mdoc_delete_btn.sizePolicy().hasHeightForWidth())
+        self.mdoc_delete_btn.setSizePolicy(sizePolicy4)
+        self.mdoc_delete_btn.setMinimumSize(QSize(0, 30))
+        self.mdoc_delete_btn.setMaximumSize(QSize(16777215, 16777215))
+        self.mdoc_delete_btn.setFont(font5)
+        self.mdoc_delete_btn.setStyleSheet(u"QPushButton {	\n"
 "	color: rgb(220, 150, 175);\n"
 "	background-color:rgb(45,50,60);\n"
 "	border:0px;\n"
@@ -2743,49 +2874,92 @@ class Ui_Main(object):
 "QPushButton:pressed {\n"
 "	background-color:rgb(50,55,65);\n"
 "}")
-        self.mdoc_copy_btn.setFlat(True)
-        self.clip_lwg_2 = QListWidget(self.med_docs)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        QListWidgetItem(self.clip_lwg_2)
-        self.clip_lwg_2.setObjectName(u"clip_lwg_2")
-        self.clip_lwg_2.setGeometry(QRect(10, 10, 511, 261))
-        self.clip_lwg_2.setFont(font28)
-        self.clip_lwg_2.setStyleSheet(u"border:none;\n"
+        self.mdoc_delete_btn.setFlat(True)
+        self.mdoc_lwg = QListWidget(self.med_docs)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        QListWidgetItem(self.mdoc_lwg)
+        self.mdoc_lwg.setObjectName(u"mdoc_lwg")
+        self.mdoc_lwg.setGeometry(QRect(10, 10, 511, 271))
+        palette4 = QPalette()
+        palette4.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette4.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette4.setBrush(QPalette.Active, QPalette.Text, brush)
+        palette4.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette4.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette4.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette4.setBrush(QPalette.Active, QPalette.HighlightedText, brush2)
+        palette4.setBrush(QPalette.Active, QPalette.AlternateBase, brush3)
+        brush16 = QBrush(QColor(166, 177, 199, 128))
+        brush16.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette.Active, QPalette.PlaceholderText, brush16)
+#endif
+        palette4.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette4.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette4.setBrush(QPalette.Inactive, QPalette.Text, brush)
+        palette4.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette4.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette4.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette4.setBrush(QPalette.Inactive, QPalette.HighlightedText, brush2)
+        palette4.setBrush(QPalette.Inactive, QPalette.AlternateBase, brush3)
+        brush17 = QBrush(QColor(166, 177, 199, 128))
+        brush17.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush17)
+#endif
+        palette4.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
+        palette4.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette4.setBrush(QPalette.Disabled, QPalette.Text, brush)
+        palette4.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
+        palette4.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette4.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        palette4.setBrush(QPalette.Disabled, QPalette.HighlightedText, brush2)
+        palette4.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush3)
+        brush18 = QBrush(QColor(166, 177, 199, 128))
+        brush18.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush18)
+#endif
+        self.mdoc_lwg.setPalette(palette4)
+        self.mdoc_lwg.setFont(font1)
+        self.mdoc_lwg.setStyleSheet(u"border:none;\n"
 "border-bottom:1px solid rgb(55,60,75);")
-        self.clip_lwg_2.setDragDropMode(QAbstractItemView.InternalMove)
-        self.clip_lwg_2.setAlternatingRowColors(True)
-        self.clip_lwg_2.setLayoutMode(QListView.SinglePass)
-        self.clip_lwg_2.setSpacing(1)
-        self.clip_lwg_2.setViewMode(QListView.ListMode)
-        self.clip_lwg_2.setUniformItemSizes(False)
-        self.clip_lwg_2.setSelectionRectVisible(False)
+        self.mdoc_lwg.setEditTriggers(QAbstractItemView.SelectedClicked)
+        self.mdoc_lwg.setDragDropMode(QAbstractItemView.InternalMove)
+        self.mdoc_lwg.setAlternatingRowColors(True)
+        self.mdoc_lwg.setLayoutMode(QListView.SinglePass)
+        self.mdoc_lwg.setSpacing(1)
+        self.mdoc_lwg.setViewMode(QListView.ListMode)
+        self.mdoc_lwg.setUniformItemSizes(False)
+        self.mdoc_lwg.setSelectionRectVisible(False)
         self.mdoc_doc_title_lbl = QLabel(self.med_docs)
         self.mdoc_doc_title_lbl.setObjectName(u"mdoc_doc_title_lbl")
-        self.mdoc_doc_title_lbl.setGeometry(QRect(20, 290, 491, 41))
+        self.mdoc_doc_title_lbl.setGeometry(QRect(10, 300, 511, 41))
         self.mdoc_doc_title_lbl.setMinimumSize(QSize(0, 30))
         font34 = QFont()
-        font34.setFamilies([u"Lucida Sans"])
-        font34.setPointSize(14)
+        font34.setFamilies([u"Mapo\ub2f9\uc778\ub9ac\ubc1c\uc804\uc18c"])
+        font34.setPointSize(12)
         font34.setBold(True)
-        font34.setItalic(True)
+        font34.setItalic(False)
         self.mdoc_doc_title_lbl.setFont(font34)
         self.mdoc_doc_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(45, 50, 65);\n"
-"border-radius:10px;")
-        self.mdoc_doc_title_lbl.setAlignment(Qt.AlignCenter)
+"border-radius:10px;\n"
+"padding-left:5px;")
+        self.mdoc_doc_title_lbl.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.mdoc_edit_btn = QPushButton(self.med_docs)
         self.mdoc_edit_btn.setObjectName(u"mdoc_edit_btn")
         self.mdoc_edit_btn.setGeometry(QRect(60, 610, 50, 30))
@@ -2808,6 +2982,7 @@ class Ui_Main(object):
 "QPushButton:pressed {\n"
 "	background-color:rgb(50,55,65);\n"
 "}")
+        self.mdoc_edit_btn.setCheckable(True)
         self.mdoc_edit_btn.setFlat(True)
         self.apps_stack.addWidget(self.med_docs)
         self.studies = QWidget()
@@ -4364,48 +4539,48 @@ class Ui_Main(object):
         self.ipss_1_cmb.setGeometry(QRect(460, 200, 50, 30))
         self.ipss_1_cmb.setMinimumSize(QSize(0, 0))
         self.ipss_1_cmb.setMaximumSize(QSize(16777215, 30))
-        palette1 = QPalette()
-        brush7 = QBrush(QColor(133, 166, 255, 255))
-        brush7.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Active, QPalette.WindowText, brush7)
-        brush8 = QBrush(QColor(0, 0, 0, 0))
-        brush8.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Active, QPalette.Button, brush8)
-        palette1.setBrush(QPalette.Active, QPalette.Text, brush7)
-        palette1.setBrush(QPalette.Active, QPalette.ButtonText, brush7)
-        palette1.setBrush(QPalette.Active, QPalette.Base, brush8)
-        palette1.setBrush(QPalette.Active, QPalette.Window, brush8)
-        palette1.setBrush(QPalette.Active, QPalette.Highlight, brush8)
-        brush9 = QBrush(QColor(133, 166, 255, 128))
-        brush9.setStyle(Qt.NoBrush)
+        palette5 = QPalette()
+        brush19 = QBrush(QColor(133, 166, 255, 255))
+        brush19.setStyle(Qt.SolidPattern)
+        palette5.setBrush(QPalette.Active, QPalette.WindowText, brush19)
+        brush20 = QBrush(QColor(0, 0, 0, 0))
+        brush20.setStyle(Qt.SolidPattern)
+        palette5.setBrush(QPalette.Active, QPalette.Button, brush20)
+        palette5.setBrush(QPalette.Active, QPalette.Text, brush19)
+        palette5.setBrush(QPalette.Active, QPalette.ButtonText, brush19)
+        palette5.setBrush(QPalette.Active, QPalette.Base, brush20)
+        palette5.setBrush(QPalette.Active, QPalette.Window, brush20)
+        palette5.setBrush(QPalette.Active, QPalette.Highlight, brush20)
+        brush21 = QBrush(QColor(133, 166, 255, 128))
+        brush21.setStyle(Qt.NoBrush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush9)
+        palette5.setBrush(QPalette.Active, QPalette.PlaceholderText, brush21)
 #endif
-        palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush7)
-        palette1.setBrush(QPalette.Inactive, QPalette.Button, brush8)
-        palette1.setBrush(QPalette.Inactive, QPalette.Text, brush7)
-        palette1.setBrush(QPalette.Inactive, QPalette.ButtonText, brush7)
-        palette1.setBrush(QPalette.Inactive, QPalette.Base, brush8)
-        palette1.setBrush(QPalette.Inactive, QPalette.Window, brush8)
-        palette1.setBrush(QPalette.Inactive, QPalette.Highlight, brush8)
-        brush10 = QBrush(QColor(133, 166, 255, 128))
-        brush10.setStyle(Qt.NoBrush)
+        palette5.setBrush(QPalette.Inactive, QPalette.WindowText, brush19)
+        palette5.setBrush(QPalette.Inactive, QPalette.Button, brush20)
+        palette5.setBrush(QPalette.Inactive, QPalette.Text, brush19)
+        palette5.setBrush(QPalette.Inactive, QPalette.ButtonText, brush19)
+        palette5.setBrush(QPalette.Inactive, QPalette.Base, brush20)
+        palette5.setBrush(QPalette.Inactive, QPalette.Window, brush20)
+        palette5.setBrush(QPalette.Inactive, QPalette.Highlight, brush20)
+        brush22 = QBrush(QColor(133, 166, 255, 128))
+        brush22.setStyle(Qt.NoBrush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush10)
+        palette5.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush22)
 #endif
-        palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush7)
-        palette1.setBrush(QPalette.Disabled, QPalette.Button, brush8)
-        palette1.setBrush(QPalette.Disabled, QPalette.Text, brush7)
-        palette1.setBrush(QPalette.Disabled, QPalette.ButtonText, brush7)
-        palette1.setBrush(QPalette.Disabled, QPalette.Base, brush8)
-        palette1.setBrush(QPalette.Disabled, QPalette.Window, brush8)
-        palette1.setBrush(QPalette.Disabled, QPalette.Highlight, brush8)
-        brush11 = QBrush(QColor(133, 166, 255, 128))
-        brush11.setStyle(Qt.NoBrush)
+        palette5.setBrush(QPalette.Disabled, QPalette.WindowText, brush19)
+        palette5.setBrush(QPalette.Disabled, QPalette.Button, brush20)
+        palette5.setBrush(QPalette.Disabled, QPalette.Text, brush19)
+        palette5.setBrush(QPalette.Disabled, QPalette.ButtonText, brush19)
+        palette5.setBrush(QPalette.Disabled, QPalette.Base, brush20)
+        palette5.setBrush(QPalette.Disabled, QPalette.Window, brush20)
+        palette5.setBrush(QPalette.Disabled, QPalette.Highlight, brush20)
+        brush23 = QBrush(QColor(133, 166, 255, 128))
+        brush23.setStyle(Qt.NoBrush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush11)
+        palette5.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush23)
 #endif
-        self.ipss_1_cmb.setPalette(palette1)
+        self.ipss_1_cmb.setPalette(palette5)
         self.ipss_1_cmb.setFont(font1)
         self.ipss_1_cmb.setStyleSheet(u"border:none;\n"
 "border-bottom:1px solid rgb(44,55,77);")
@@ -5066,7 +5241,6 @@ class Ui_Main(object):
 "    background-color: rgb(60, 65, 80);\n"
 "    color: rgb(240, 240, 245);\n"
 "    border:1px solid rgb(88, 99, 111);\n"
-"    border-radius:10%;\n"
 "    padding:5px;\n"
 "	outline:0px;\n"
 "	selection-background-color: rgb(60, 65, 80);\n"
@@ -5215,7 +5389,7 @@ class Ui_Main(object):
         self.lblr_preview_ptname_lbl.setMaximumSize(QSize(16777215, 16777215))
         font47 = QFont()
         font47.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font47.setPointSize(18)
+        font47.setPointSize(14)
         font47.setBold(False)
         self.lblr_preview_ptname_lbl.setFont(font47)
         self.lblr_preview_ptname_lbl.setStyleSheet(u"QWidget{\n"
@@ -5734,7 +5908,12 @@ class Ui_Main(object):
         self.c19r_title_lbl.setObjectName(u"c19r_title_lbl")
         self.c19r_title_lbl.setGeometry(QRect(20, 19, 491, 41))
         self.c19r_title_lbl.setMinimumSize(QSize(0, 30))
-        self.c19r_title_lbl.setFont(font34)
+        font52 = QFont()
+        font52.setFamilies([u"Lucida Sans"])
+        font52.setPointSize(14)
+        font52.setBold(True)
+        font52.setItalic(True)
+        self.c19r_title_lbl.setFont(font52)
         self.c19r_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -5744,12 +5923,12 @@ class Ui_Main(object):
         self.c19r_warning_lbl.setObjectName(u"c19r_warning_lbl")
         self.c19r_warning_lbl.setGeometry(QRect(10, 540, 511, 101))
         self.c19r_warning_lbl.setMinimumSize(QSize(0, 30))
-        font52 = QFont()
-        font52.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 M"])
-        font52.setPointSize(14)
-        font52.setBold(True)
-        font52.setItalic(True)
-        self.c19r_warning_lbl.setFont(font52)
+        font53 = QFont()
+        font53.setFamilies([u"\uc11c\uc6b8\ud55c\uac15 \uc7a5\uccb4 M"])
+        font53.setPointSize(14)
+        font53.setBold(True)
+        font53.setItalic(True)
+        self.c19r_warning_lbl.setFont(font53)
         self.c19r_warning_lbl.setStyleSheet(u"color: rgb(233, 100, 133);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(50, 55, 70);\n"
@@ -6105,7 +6284,7 @@ class Ui_Main(object):
         self.stgn_title_lbl.setObjectName(u"stgn_title_lbl")
         self.stgn_title_lbl.setGeometry(QRect(20, 20, 491, 41))
         self.stgn_title_lbl.setMinimumSize(QSize(0, 30))
-        self.stgn_title_lbl.setFont(font34)
+        self.stgn_title_lbl.setFont(font52)
         self.stgn_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(45, 50, 65);\n"
@@ -6115,13 +6294,13 @@ class Ui_Main(object):
         self.stgn_info_lbl.setObjectName(u"stgn_info_lbl")
         self.stgn_info_lbl.setGeometry(QRect(20, 500, 491, 41))
         self.stgn_info_lbl.setMinimumSize(QSize(0, 30))
-        font53 = QFont()
-        font53.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
-        font53.setPointSize(12)
-        font53.setBold(False)
-        font53.setItalic(True)
-        font53.setStyleStrategy(QFont.PreferAntialias)
-        self.stgn_info_lbl.setFont(font53)
+        font54 = QFont()
+        font54.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
+        font54.setPointSize(12)
+        font54.setBold(False)
+        font54.setItalic(True)
+        font54.setStyleStrategy(QFont.PreferAntialias)
+        self.stgn_info_lbl.setFont(font54)
         self.stgn_info_lbl.setStyleSheet(u"color: rgb(100, 120, 150);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(45, 50, 65);\n"
@@ -6197,11 +6376,11 @@ class Ui_Main(object):
         self.stlb_flu_old_over75_start_led.setGeometry(QRect(89, 260, 81, 30))
         self.stlb_flu_old_over75_start_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_over75_start_led.setMaximumSize(QSize(16777215, 30))
-        font54 = QFont()
-        font54.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
-        font54.setPointSize(13)
-        font54.setBold(False)
-        self.stlb_flu_old_over75_start_led.setFont(font54)
+        font55 = QFont()
+        font55.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
+        font55.setPointSize(13)
+        font55.setBold(False)
+        self.stlb_flu_old_over75_start_led.setFont(font55)
         self.stlb_flu_old_over75_start_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6246,7 +6425,7 @@ class Ui_Main(object):
         self.stlb_flu_old_7074_start_led.setGeometry(QRect(89, 290, 81, 30))
         self.stlb_flu_old_7074_start_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_7074_start_led.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_7074_start_led.setFont(font54)
+        self.stlb_flu_old_7074_start_led.setFont(font55)
         self.stlb_flu_old_7074_start_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6257,7 +6436,7 @@ class Ui_Main(object):
         self.stlb_flu_old_6569_start_led.setGeometry(QRect(89, 320, 81, 30))
         self.stlb_flu_old_6569_start_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_6569_start_led.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_6569_start_led.setFont(font54)
+        self.stlb_flu_old_6569_start_led.setFont(font55)
         self.stlb_flu_old_6569_start_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6278,11 +6457,11 @@ class Ui_Main(object):
         self.stlb_child_flu_lot_led.setGeometry(QRect(69, 140, 150, 30))
         self.stlb_child_flu_lot_led.setMinimumSize(QSize(0, 30))
         self.stlb_child_flu_lot_led.setMaximumSize(QSize(16777215, 30))
-        font55 = QFont()
-        font55.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
-        font55.setPointSize(12)
-        font55.setBold(False)
-        self.stlb_child_flu_lot_led.setFont(font55)
+        font56 = QFont()
+        font56.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 M"])
+        font56.setPointSize(12)
+        font56.setBold(False)
+        self.stlb_child_flu_lot_led.setFont(font56)
         self.stlb_child_flu_lot_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6300,11 +6479,11 @@ class Ui_Main(object):
         self.stlb_subtitle_flu_old_age_lbl = QLabel(self.labeler_settings)
         self.stlb_subtitle_flu_old_age_lbl.setObjectName(u"stlb_subtitle_flu_old_age_lbl")
         self.stlb_subtitle_flu_old_age_lbl.setGeometry(QRect(210, 230, 281, 30))
-        font56 = QFont()
-        font56.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
-        font56.setPointSize(12)
-        font56.setBold(True)
-        self.stlb_subtitle_flu_old_age_lbl.setFont(font56)
+        font57 = QFont()
+        font57.setFamilies([u"\uc11c\uc6b8\ub0a8\uc0b0 \uc7a5\uccb4 B"])
+        font57.setPointSize(12)
+        font57.setBold(True)
+        self.stlb_subtitle_flu_old_age_lbl.setFont(font57)
         self.stlb_subtitle_flu_old_age_lbl.setStyleSheet(u"padding-left:10px;\n"
 "color: rgb(155, 188, 222);\n"
 "border:none;\n"
@@ -6334,7 +6513,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_led1.setGeometry(QRect(90, 450, 81, 30))
         self.stlb_flu_date_child_once_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_once_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_once_led1.setFont(font54)
+        self.stlb_flu_date_child_once_led1.setFont(font55)
         self.stlb_flu_date_child_once_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6343,7 +6522,7 @@ class Ui_Main(object):
         self.stlb_subtitle_flu_old_date_lbl = QLabel(self.labeler_settings)
         self.stlb_subtitle_flu_old_date_lbl.setObjectName(u"stlb_subtitle_flu_old_date_lbl")
         self.stlb_subtitle_flu_old_date_lbl.setGeometry(QRect(9, 230, 181, 30))
-        self.stlb_subtitle_flu_old_date_lbl.setFont(font56)
+        self.stlb_subtitle_flu_old_date_lbl.setFont(font57)
         self.stlb_subtitle_flu_old_date_lbl.setStyleSheet(u"padding-left:10px;\n"
 "color: rgb(155, 188, 222);\n"
 "border:none;\n"
@@ -6353,7 +6532,7 @@ class Ui_Main(object):
         self.stlb_flu_age_75over_led.setGeometry(QRect(290, 260, 81, 30))
         self.stlb_flu_age_75over_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_75over_led.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_75over_led.setFont(font54)
+        self.stlb_flu_age_75over_led.setFont(font55)
         self.stlb_flu_age_75over_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6380,7 +6559,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_led1.setGeometry(QRect(90, 420, 81, 30))
         self.stlb_flu_date_child_twice_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_twice_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_twice_led1.setFont(font54)
+        self.stlb_flu_date_child_twice_led1.setFont(font55)
         self.stlb_flu_date_child_twice_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6411,7 +6590,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_led1.setGeometry(QRect(90, 480, 81, 30))
         self.stlb_flu_age_child_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_child_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_child_led1.setFont(font54)
+        self.stlb_flu_age_child_led1.setFont(font55)
         self.stlb_flu_age_child_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6449,7 +6628,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_led2.setGeometry(QRect(200, 480, 81, 30))
         self.stlb_flu_age_child_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_child_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_child_led2.setFont(font54)
+        self.stlb_flu_age_child_led2.setFont(font55)
         self.stlb_flu_age_child_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6460,7 +6639,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_lbl1.setGeometry(QRect(170, 450, 31, 30))
         self.stlb_flu_date_child_once_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_once_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_once_lbl1.setFont(font55)
+        self.stlb_flu_date_child_once_lbl1.setFont(font56)
         self.stlb_flu_date_child_once_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6468,7 +6647,7 @@ class Ui_Main(object):
         self.stlb_subtitle_flu_child_lbl = QLabel(self.labeler_settings)
         self.stlb_subtitle_flu_child_lbl.setObjectName(u"stlb_subtitle_flu_child_lbl")
         self.stlb_subtitle_flu_child_lbl.setGeometry(QRect(10, 400, 244, 18))
-        self.stlb_subtitle_flu_child_lbl.setFont(font56)
+        self.stlb_subtitle_flu_child_lbl.setFont(font57)
         self.stlb_subtitle_flu_child_lbl.setStyleSheet(u"padding-left:10px;\n"
 "color: rgb(155, 188, 222);\n"
 "border:none;\n"
@@ -6478,7 +6657,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_lbl1.setGeometry(QRect(170, 420, 31, 30))
         self.stlb_flu_date_child_twice_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_twice_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_twice_lbl1.setFont(font55)
+        self.stlb_flu_date_child_twice_lbl1.setFont(font56)
         self.stlb_flu_date_child_twice_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6498,7 +6677,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_led2.setGeometry(QRect(200, 450, 81, 30))
         self.stlb_flu_date_child_once_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_once_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_once_led2.setFont(font54)
+        self.stlb_flu_date_child_once_led2.setFont(font55)
         self.stlb_flu_date_child_once_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6509,7 +6688,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_once_lbl2.setGeometry(QRect(280, 450, 31, 30))
         self.stlb_flu_date_child_once_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_once_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_once_lbl2.setFont(font55)
+        self.stlb_flu_date_child_once_lbl2.setFont(font56)
         self.stlb_flu_date_child_once_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6519,7 +6698,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_lbl2.setGeometry(QRect(280, 420, 31, 30))
         self.stlb_flu_date_child_twice_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_twice_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_twice_lbl2.setFont(font55)
+        self.stlb_flu_date_child_twice_lbl2.setFont(font56)
         self.stlb_flu_date_child_twice_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6529,7 +6708,7 @@ class Ui_Main(object):
         self.stlb_flu_date_child_twice_led2.setGeometry(QRect(200, 420, 81, 30))
         self.stlb_flu_date_child_twice_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_date_child_twice_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_date_child_twice_led2.setFont(font54)
+        self.stlb_flu_date_child_twice_led2.setFont(font55)
         self.stlb_flu_date_child_twice_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6550,7 +6729,7 @@ class Ui_Main(object):
         self.stlb_flu_old_end_lbl1.setGeometry(QRect(170, 350, 31, 30))
         self.stlb_flu_old_end_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_end_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_end_lbl1.setFont(font55)
+        self.stlb_flu_old_end_lbl1.setFont(font56)
         self.stlb_flu_old_end_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6560,7 +6739,7 @@ class Ui_Main(object):
         self.stlb_flu_old_end_led.setGeometry(QRect(90, 350, 81, 30))
         self.stlb_flu_old_end_led.setMinimumSize(QSize(0, 30))
         self.stlb_flu_old_end_led.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_old_end_led.setFont(font54)
+        self.stlb_flu_old_end_led.setFont(font55)
         self.stlb_flu_old_end_led.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6570,7 +6749,7 @@ class Ui_Main(object):
         self.stlb_title_lbl.setObjectName(u"stlb_title_lbl")
         self.stlb_title_lbl.setGeometry(QRect(20, 20, 491, 41))
         self.stlb_title_lbl.setMinimumSize(QSize(0, 30))
-        self.stlb_title_lbl.setFont(font34)
+        self.stlb_title_lbl.setFont(font52)
         self.stlb_title_lbl.setStyleSheet(u"color: rgb(94, 129, 172);\n"
 "background-color:rgb(38, 43, 52);\n"
 "border:1px solid rgb(45, 50, 65);\n"
@@ -6581,7 +6760,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_lbl1.setGeometry(QRect(170, 480, 31, 30))
         self.stlb_flu_age_child_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_child_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_child_lbl1.setFont(font55)
+        self.stlb_flu_age_child_lbl1.setFont(font56)
         self.stlb_flu_age_child_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6591,7 +6770,7 @@ class Ui_Main(object):
         self.stlb_flu_age_child_lbl2.setGeometry(QRect(280, 480, 31, 30))
         self.stlb_flu_age_child_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_child_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_child_lbl2.setFont(font55)
+        self.stlb_flu_age_child_lbl2.setFont(font56)
         self.stlb_flu_age_child_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6601,7 +6780,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_lbl2.setGeometry(QRect(480, 290, 31, 30))
         self.stlb_flu_age_7074_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_7074_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_7074_lbl2.setFont(font55)
+        self.stlb_flu_age_7074_lbl2.setFont(font56)
         self.stlb_flu_age_7074_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6611,7 +6790,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_lbl1.setGeometry(QRect(370, 290, 31, 30))
         self.stlb_flu_age_7074_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_7074_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_7074_lbl1.setFont(font55)
+        self.stlb_flu_age_7074_lbl1.setFont(font56)
         self.stlb_flu_age_7074_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6621,7 +6800,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_led1.setGeometry(QRect(290, 290, 81, 30))
         self.stlb_flu_age_7074_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_7074_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_7074_led1.setFont(font54)
+        self.stlb_flu_age_7074_led1.setFont(font55)
         self.stlb_flu_age_7074_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6632,7 +6811,7 @@ class Ui_Main(object):
         self.stlb_flu_age_7074_led2.setGeometry(QRect(400, 290, 81, 30))
         self.stlb_flu_age_7074_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_7074_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_7074_led2.setFont(font54)
+        self.stlb_flu_age_7074_led2.setFont(font55)
         self.stlb_flu_age_7074_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6643,7 +6822,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_lbl2.setGeometry(QRect(480, 320, 31, 30))
         self.stlb_flu_age_6569_lbl2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_6569_lbl2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_6569_lbl2.setFont(font55)
+        self.stlb_flu_age_6569_lbl2.setFont(font56)
         self.stlb_flu_age_6569_lbl2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6653,7 +6832,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_lbl1.setGeometry(QRect(370, 320, 31, 30))
         self.stlb_flu_age_6569_lbl1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_6569_lbl1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_6569_lbl1.setFont(font55)
+        self.stlb_flu_age_6569_lbl1.setFont(font56)
         self.stlb_flu_age_6569_lbl1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);")
@@ -6663,7 +6842,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_led1.setGeometry(QRect(290, 320, 81, 30))
         self.stlb_flu_age_6569_led1.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_6569_led1.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_6569_led1.setFont(font54)
+        self.stlb_flu_age_6569_led1.setFont(font55)
         self.stlb_flu_age_6569_led1.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6674,7 +6853,7 @@ class Ui_Main(object):
         self.stlb_flu_age_6569_led2.setGeometry(QRect(400, 320, 81, 30))
         self.stlb_flu_age_6569_led2.setMinimumSize(QSize(0, 30))
         self.stlb_flu_age_6569_led2.setMaximumSize(QSize(16777215, 30))
-        self.stlb_flu_age_6569_led2.setFont(font54)
+        self.stlb_flu_age_6569_led2.setFont(font55)
         self.stlb_flu_age_6569_led2.setStyleSheet(u"color: rgb(130, 135, 175);\n"
 "background:transparent;\n"
 "border-bottom:1px solid rgb(70,75,100);\n"
@@ -6830,10 +7009,10 @@ class Ui_Main(object):
         QWidget.setTabOrder(self.qsv_new_btn, self.mdoc_contents_pte)
         QWidget.setTabOrder(self.mdoc_contents_pte, self.mdoc_new_btn)
         QWidget.setTabOrder(self.mdoc_new_btn, self.mdoc_save_btn)
-        QWidget.setTabOrder(self.mdoc_save_btn, self.mdoc_copypaste_btn)
-        QWidget.setTabOrder(self.mdoc_copypaste_btn, self.mdoc_copy_btn)
-        QWidget.setTabOrder(self.mdoc_copy_btn, self.clip_lwg_2)
-        QWidget.setTabOrder(self.clip_lwg_2, self.studies_bmd_btn)
+        QWidget.setTabOrder(self.mdoc_save_btn, self.mdoc_copy_btn)
+        QWidget.setTabOrder(self.mdoc_copy_btn, self.mdoc_delete_btn)
+        QWidget.setTabOrder(self.mdoc_delete_btn, self.mdoc_lwg)
+        QWidget.setTabOrder(self.mdoc_lwg, self.studies_bmd_btn)
         QWidget.setTabOrder(self.studies_bmd_btn, self.studies_ipss_btn)
         QWidget.setTabOrder(self.studies_ipss_btn, self.studies_alz_btn)
         QWidget.setTabOrder(self.studies_alz_btn, self.studies_lab_btn)
@@ -6971,8 +7150,8 @@ class Ui_Main(object):
         self.retranslateUi(Main)
 
         self.calendar_stack.setCurrentIndex(2)
-        self.reminders_stack.setCurrentIndex(1)
-        self.apps_stack.setCurrentIndex(0)
+        self.reminders_stack.setCurrentIndex(2)
+        self.apps_stack.setCurrentIndex(2)
         self.studies_stack.setCurrentIndex(1)
         self.settings_stack.setCurrentIndex(0)
 
@@ -7186,40 +7365,40 @@ class Ui_Main(object):
         self.mdoc_contents_pte.setPlainText(QCoreApplication.translate("Main", u"\uc0c1\uae30\ub3c4\uac10\uc5fc\uc99d\uc138\ub97c\uc8fc\uc18c\ub85c\ub0b4\uc6d0\ud55c\ubc14\ubcf4\uac19\uc740\ub4f1\uc2e0\ud658\uc790\uc785\ub2c8\ub2e4\ub561\ub561\uc774\uac00\uc758\uc2ec\ub418\uc624\ub2c8\uc870\uce58\uac00", None))
         self.mdoc_new_btn.setText(QCoreApplication.translate("Main", u"New", None))
         self.mdoc_save_btn.setText(QCoreApplication.translate("Main", u"Save", None))
-        self.mdoc_copypaste_btn.setText(QCoreApplication.translate("Main", u"Copy to Clipboard", None))
-        self.mdoc_copy_btn.setText(QCoreApplication.translate("Main", u"Delete", None))
+        self.mdoc_copy_btn.setText(QCoreApplication.translate("Main", u"Copy to Clipboard", None))
+        self.mdoc_delete_btn.setText(QCoreApplication.translate("Main", u"Delete", None))
 
-        __sortingEnabled3 = self.clip_lwg_2.isSortingEnabled()
-        self.clip_lwg_2.setSortingEnabled(False)
-        ___qlistwidgetitem25 = self.clip_lwg_2.item(0)
+        __sortingEnabled3 = self.mdoc_lwg.isSortingEnabled()
+        self.mdoc_lwg.setSortingEnabled(False)
+        ___qlistwidgetitem25 = self.mdoc_lwg.item(0)
         ___qlistwidgetitem25.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem26 = self.clip_lwg_2.item(1)
+        ___qlistwidgetitem26 = self.mdoc_lwg.item(1)
         ___qlistwidgetitem26.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem27 = self.clip_lwg_2.item(2)
+        ___qlistwidgetitem27 = self.mdoc_lwg.item(2)
         ___qlistwidgetitem27.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem28 = self.clip_lwg_2.item(3)
+        ___qlistwidgetitem28 = self.mdoc_lwg.item(3)
         ___qlistwidgetitem28.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem29 = self.clip_lwg_2.item(4)
+        ___qlistwidgetitem29 = self.mdoc_lwg.item(4)
         ___qlistwidgetitem29.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem30 = self.clip_lwg_2.item(5)
+        ___qlistwidgetitem30 = self.mdoc_lwg.item(5)
         ___qlistwidgetitem30.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem31 = self.clip_lwg_2.item(6)
+        ___qlistwidgetitem31 = self.mdoc_lwg.item(6)
         ___qlistwidgetitem31.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem32 = self.clip_lwg_2.item(7)
+        ___qlistwidgetitem32 = self.mdoc_lwg.item(7)
         ___qlistwidgetitem32.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem33 = self.clip_lwg_2.item(8)
+        ___qlistwidgetitem33 = self.mdoc_lwg.item(8)
         ___qlistwidgetitem33.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem34 = self.clip_lwg_2.item(9)
+        ___qlistwidgetitem34 = self.mdoc_lwg.item(9)
         ___qlistwidgetitem34.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem35 = self.clip_lwg_2.item(10)
+        ___qlistwidgetitem35 = self.mdoc_lwg.item(10)
         ___qlistwidgetitem35.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem36 = self.clip_lwg_2.item(11)
+        ___qlistwidgetitem36 = self.mdoc_lwg.item(11)
         ___qlistwidgetitem36.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem37 = self.clip_lwg_2.item(12)
+        ___qlistwidgetitem37 = self.mdoc_lwg.item(12)
         ___qlistwidgetitem37.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        ___qlistwidgetitem38 = self.clip_lwg_2.item(13)
+        ___qlistwidgetitem38 = self.mdoc_lwg.item(13)
         ___qlistwidgetitem38.setText(QCoreApplication.translate("Main", u"\uc0c8 \ud56d\ubaa9", None));
-        self.clip_lwg_2.setSortingEnabled(__sortingEnabled3)
+        self.mdoc_lwg.setSortingEnabled(__sortingEnabled3)
 
         self.mdoc_doc_title_lbl.setText(QCoreApplication.translate("Main", u"Select Document Title from List Above", None))
         self.mdoc_edit_btn.setText(QCoreApplication.translate("Main", u"Edit", None))

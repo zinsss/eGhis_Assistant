@@ -1,4 +1,7 @@
 import sqlite3
+from PySide6 import QtWidgets
+from PySide6.QtCore import Qt
+
 from eAmodules import eApopup, eAutils
 
 #: DB 연결. DB가 없으면 새로 작성하고, 테이블도 작성함.
@@ -22,9 +25,16 @@ def write_GUI(self):
     # 기존 목록을 전부 지우고..
     self.qsv_lwg.clear()
     # 다시 쓰기.
-    self.qsv_lwg.addItems(items)
+    for item in items:
+        item = QtWidgets.QListWidgetItem(item)
+        item.setFlags(
+            Qt.ItemIsSelectable|Qt.ItemIsDragEnabled|Qt.ItemIsEnabled
+        )
+        self.qsv_lwg.addItem(item)
+    # for item in items:
+    #     self.qsv_lwg.addItem(item)
+    # self.qsv_lwg.addItems(items)
 
-# TODO 전부지우고 다시 쓰는것 말고.. 필요부분만 부분변경하는 방법 적용하기!
 #: GUI에서의 변경 내용을 DB에 저장.
 def save_DB(self):
     # 우선 GUI에서의 목록을 (순서포함) 리스트로 불러오기.
@@ -41,6 +51,8 @@ def save_DB(self):
     # DB 저장 후 연결 해제.
     con.commit()
     con.close()
+    # Reload GUI from DB
+    write_GUI(self)
 
 #: Edit Item
 def edit_item(self):
@@ -58,24 +70,34 @@ def edit_item(self):
         eApopup.notify(text = '취소되었습니다.')
         return
     else:
-            # DB 연결해서.    
-            con = sqlite3.connect("./database/eGhisAssistant.db")
-            cur = con.cursor()
-            # DB내 기존 목록을 모두 지우고..
-            con.execute(f'UPDATE Quick SET Saves = "{edited}" WHERE Saves = "{to_edit}"')
-            # DB 저장 후 연결 해제.
-            con.commit()
-            con.close()
-            # reload
-            write_GUI(self)
-
+        # DB 연결해서.    
+        con = sqlite3.connect("./database/eGhisAssistant.db")
+        cur = con.cursor()
+        # DB내 기존 목록을 모두 지우고..
+        con.execute(f'UPDATE Quick SET Saves = "{edited}" WHERE Saves = "{to_edit}"')
+        # DB 저장 후 연결 해제.
+        con.commit()
+        con.close()
+        # reload
+        write_GUI(self)
+            
 
 #: 새로운 Quick Saves 추가하기.
 def write_new(self):
     content = eApopup.get_multiline_text(title = "Add to Quick Saves")
-    if content != "":
-        if '"' in content:
-            eApopup.warning(text = "SQLite3 Syntax 활용법을 잘 몰라서..\n현재 \"이 들어가 있는 경우 에러가 납니다.\n\" 제거/수정 후 다시 입력해주세요.")
-            return
-        self.qsv_lwg.addItem(content)
-    else: return
+    if content == None: return
+    elif content == "": return
+    
+    if '"' in content:
+        eApopup.warning(text = "SQLite3 Syntax 활용법을 잘 몰라서..\n현재 \"이 들어가 있는 경우 에러가 납니다.\n\" 제거/수정 후 다시 입력해주세요.")
+        return
+    
+    self.qsv_lwg.addItem(content)
+    save_DB(self)
+    
+    
+    
+#: Delete Item and Save
+def delete_item(self):
+    eAutils.lwg_delete_item(self, "qsv_lwg")
+    save_DB(self)

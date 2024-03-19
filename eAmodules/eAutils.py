@@ -92,18 +92,6 @@ def lwg_copy_or_paste(self, listwdg:str, copy_only:bool = False):
     if copy_only: eAinput.copy_it(item)
     else: eAinput.copy_paste_it(item)
 
-#: 리스트위젯 선택 아이템 복사 및 창닫기(옵션, 기본)
-def lwg_copy_item(self, listwdg:str, close_window:bool = True):
-    '''
-    listwdg: target QListWidget name in string.
-    close_window: close the window after copying (for second window)
-    '''
-    lwg = getattr(self, listwdg)
-    item = lwg.currentItem().text()
-    eAinput.copy_it(item)
-    if close_window: self.hide()
-    else: return
-
 #: 리스트위젯 내 선택 아이템 이동 (위/아래).        
 def lwg_move_item(self, listwdg:str, move:str):
     '''

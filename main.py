@@ -12,7 +12,8 @@ from PySide6.QtGui import QClipboard
 from PySide6 import QtGui, QtWidgets
 
 import mainUI
-from eAmodules import eAcalendar, eAreminders, eAsticky
+from eAmodules import eAcalendar, eAreminders, eAmacros, eAinput, eAstr, eAutils
+from eAmodules import eAsticky, eAquicksaves, eAmdocs, eAstudies, eAlabeler
 
 
 ## General Variables
@@ -28,6 +29,8 @@ class Infos():
     pt_name_now = ""
     # 오늘이 청구일인지 아닌지 설정해놓기.
     lpdom = False
+    # Editing MDOCS
+    edit_mdocs_title = ""
     
 
 ## Main GUI Window
@@ -122,10 +125,33 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         # Reminders Archive
         self.reminders_archive_done_btn.clicked.connect(lambda:self.reminders_stack.setCurrentIndex(0))
         self.reminders_archive_limit_cmb.currentIndexChanged.connect(lambda:eAreminders.show_reminder_history(self))
- 
-        
+         
         # Macros-----------------------------------------------------------------------------------#
-        
+        # 진료관련
+        self.macros_prev_pt_btn.clicked.connect(lambda:eAmacros.prev_pt())
+        self.macros_check_ins_btn.clicked.connect(lambda:eAmacros.check_ins())
+        self.macros_no_ins_btn.clicked.connect(lambda:eAmacros.no_ins_choice(self))
+        self.macros_next_pt_btn.clicked.connect(lambda:eAmacros.next_pt())
+        # 코멘트모음
+        # self..clicked.connect(lambda:)
+        self.macros_fluid_btn.clicked.connect(lambda:eAinput.sx_cnp(eAstr.FLUID_LST))
+        self.macros_phytx_btn.clicked.connect(lambda:eAmacros.physical_tx(self))
+        self.macros_chr_btn.clicked.connect(lambda:eAinput.sx_cnp(eAstr.CHRMAN_LST))
+        self.macros_chr_etc_btn.clicked.connect(lambda:eAmacros.chronic_management())
+        self.macros_obsv_btn.clicked.connect(lambda:eAinput.sx_cnp(eAstr.REPEATS_LST))
+        self.macros_lab_studies_btn.clicked.connect(lambda:eAmacros.lab_studies())
+        self.macros_other_studies_btn.clicked.connect(lambda:eAmacros.workups())
+        # self.macros_other_comments_btn.clicked.connect(lambda:)
+        # 예방접종 관련
+        # self..clicked.connect(lambda:)
+        # self..clicked.connect(lambda:)
+        # self..clicked.connect(lambda:)
+        # self..clicked.connect(lambda:)
+        # 기타 Macro
+        # self..clicked.connect(lambda:)
+        # self..clicked.connect(lambda:)
+        # self..clicked.connect(lambda:)
+        # self..clicked.connect(lambda:)
         
         # APPS-------------------------------------------------------------------------------------#
         # App_Stack Navigation
@@ -146,7 +172,40 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.sticky_note_4.clicked.connect(lambda:eAsticky.write_new(self, 'sticky_note_4'))
         self.sticky_note_5.clicked.connect(lambda:eAsticky.write_new(self, 'sticky_note_5'))
         
-                
+        # Quick Saves
+        eAquicksaves.write_GUI(self)
+        self.qsv_lwg.itemActivated.connect(lambda:eAutils.lwg_copy_or_paste(self, "qsv_lwg", copy_only=True))
+        self.qsv_lwg.model().rowsMoved.connect(lambda:eAquicksaves.save_DB(self))
+        self.qsv_new_btn.clicked.connect(lambda:eAquicksaves.write_new(self))
+        self.qsv_delete_btn.clicked.connect(lambda:eAquicksaves.delete_item(self))
+        self.qsv_copypaste_btn.clicked.connect(lambda:eAutils.lwg_copy_or_paste(self, "qsv_lwg", copy_only=True))
+        
+        # Medical Documents
+        eAmdocs.write_GUI(self)
+        self.mdoc_lwg.itemClicked.connect(lambda:eAmdocs.load_contents(self))
+        # self.mdoc_lwg.itemDoubleClicked.connect(lambda:)
+        self.mdoc_lwg.model().rowsMoved.connect(lambda:eAmdocs.order_change(self))
+        self.mdoc_new_btn.clicked.connect(lambda:eAmdocs.add_new_doc(self))
+        self.mdoc_edit_btn.clicked.connect(lambda:eAmdocs.edit_btn_clicked(self))
+        self.mdoc_save_btn.clicked.connect(lambda:eAmdocs.edit_doc(self))
+        self.mdoc_delete_btn.clicked.connect(lambda:eAmdocs.delete_doc(self))
+        
+        # Labeller
+        eAlabeler.prepare_labeler(self)
+        # self.lblr_count_edit_btn.clicked.connect(lambda:eAlabeler.)
+        self.lblr_get_data_btn.clicked.connect(lambda:eAlabeler.fetch_and_write_ptinfo(self))
+        self.lblr_vaccines_cmb.currentIndexChanged.connect(lambda:eAlabeler.vac_combo_selected(self))
+        self.lblr_reset_btn.clicked.connect(lambda:eAlabeler.reset_it(self))
+        self.lblr_print_btn.clicked.connect(lambda:eAlabeler.print_save_it(self))
+        # self..clicked.connect(lambda:eAlabeler.)
+        # self..clicked.connect(lambda:eAlabeler.)
+        # self..clicked.connect(lambda:eAlabeler.)
+        # self..clicked.connect(lambda:eAlabeler.)
+        # self..clicked.connect(lambda:eAlabeler.)
+        # self..clicked.connect(lambda:eAlabeler.)
+        
+        #-----------------------------------------------------------------------------------------------------------------------------#
+       
     #= App_Stack Navigation     
     def apps_buttons(self, app_btn:str):
         # 각 버튼 이름 저장해놓고.. 버튼 누르면 parameter로 버튼이름 받도록.
@@ -190,7 +249,7 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
 ## Let's Roll
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    # clipboard = app.clipboard()
+    clipboard = app.clipboard()
     eA = MainWindow()
     eA.show()
     sys.exit(app.exec())

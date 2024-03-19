@@ -454,6 +454,68 @@ QPushButton:pressed {
 }
 """
 
+INPUTBOX_BIG = """
+QInputDialog {
+    font:12pt "D2Coding";
+    background-color: rgb(180, 200, 225);
+    border: 3px solid rgb(81, 112, 149);
+}
+QLineEdit {
+    min-height:30px;
+    font:12pt "D2Coding";
+    color:rgb(80, 100, 125);
+    padding-left:10px;
+    background-color: rgb(220,240,255);
+    border:1px solid rgb(150, 170, 200);
+    border-radius:15%;
+}
+QSpinBox {
+    min-height:30px;
+    font:12pt "D2Coding";
+    color:rgb(80, 100, 125);
+    padding-left:10px;
+    background-color: rgb(220,240,255);
+    border:1px solid rgb(150, 170, 200);
+    border-radius:15%;
+}
+QSpinBox::up-button {
+    subcontrol-position: top right; /* position at the top right corner */
+    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    background-color: rgb(190, 125, 175);
+    border-left:1px solid rgb(150, 170, 200);
+    border-top-right-radius: 13px;
+}
+QSpinBox::down-button {
+    subcontrol-position: bottom right; /* position at bottom right corner */
+    width: 20px;
+    border-width: 1px;
+    border-left:1px solid rgb(150, 170, 200);
+    background-color: rgb(125, 150, 220);
+    border-bottom-right-radius: 13px;
+}
+QLabel {
+    min-width:500px;
+    font:14pt "D2Coding";
+    padding-top:10px;
+    color: rgb(80, 110, 150);
+}
+QPushButton {
+    min-width:125px;
+    min-height:29px;
+    font:12pt "D2Coding";
+    color: rgb(233, 222, 233);	
+    background-color: rgb(100, 120, 160);
+    border-radius:14%;
+    border:1px solid rgb(77, 99, 122);
+}
+QPushButton:hover {    
+    color:rgb(255,244,255);
+}
+QPushButton:pressed {
+    background-color:rgb(110,130,175);
+}
+"""
+
 MULTILINEBOX = """
 QInputDialog {
     font:12pt "D2Coding";

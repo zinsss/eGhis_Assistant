@@ -9,6 +9,25 @@ def check_ins():
     eAwinauto.to_eghis()
     eAwinauto.eghis_insurance()
  
+#= 다음환자
+def next_pt():
+    eAwinauto.to_eghis()
+    eAwinauto.tab_wait_list(1)
+
+#= 직전환자
+def prev_pt():
+    eAwinauto.to_eghis()
+    eAwinauto.tab_wait_list(7)
+
+#= Menu in dialogs, 비보험진료
+def no_ins_choice(self):
+    menu_items = ['현재환자, 일반진료', '직전환자, 일반 추가']
+    choice = eApopup.menu(title = "비보험진료", buttons = menu_items)
+    if choice == 'CLOSE': return
+    elif choice == menu_items[0]: no_ins()
+    else: add_no_ins(self)
+
+## 코멘트 모음
 #= 비보험 진료
 def no_ins():
     eAwinauto.to_eghis()
@@ -22,26 +41,7 @@ def add_no_ins(self):
     eAwinauto.eghis_today_right_click(self)
     eAinput.repeat_key('down', repeat = 3)
     eAinput.repeat_key('enter', repeat = 2)
-
-#= 다음환자
-def next_pt():
-    eAwinauto.to_eghis()
-    eAwinauto.tab_wait_list(1)
-
-#= 직전환자
-def prev_pt():
-    eAwinauto.to_eghis()
-    eAwinauto.tab_wait_list(7)
-
-#= Menu in dialogs, 비보험진료
-def no_ins_choice(self):
-    menu_items = ['현재환자, 일반', '직전환자, 일반 추가']
-    choice = eApopup.menu(title = "비보험진료", buttons = menu_items)
-    if choice == 'CLOSE': return
-    elif choice == menu_items[0]: no_ins()
-    else: add_no_ins(self)
-
-## 코멘트 모음
+    
 #= 물리치료 코멘트 랜덤 입력 + 처방입력 on request
 def physical_tx(self):
     menu_items = ['코멘트 ONLY', '코멘트 + 물치처방']
@@ -53,46 +53,36 @@ def physical_tx(self):
 
 #= 만성질환
 def chronic_management():
-    menu_items = ['만성질환관리 코멘트', '만성질환관리 신환', '만성질환 교육 코멘트', 'Home Monitor (공통)', 'Home Monitor (혈압)', 'Home Monitor (혈당)']
+    menu_items = ['만성질환관리 신환', '만성질환 교육 코멘트', 'Home Monitor (공통)', 'Home Monitor (혈압)', 'Home Monitor (혈당)']
     choice = eApopup.menu(title = '만성질환 관련 코멘트', buttons = menu_items)
     if choice == 'CLOSE': return
-    elif choice == menu_items[0]: eAinput.sx_cnp(eAstr.CHRMAN_LST)
-    elif choice == menu_items[1]: eAinput.sx_cnp('만성질환관리')
-    elif choice == menu_items[2]: eAinput.sx_cnp('만성질환교육')
-    elif choice == menu_items[3]: eAinput.sx_cnp(eAstr.HOME_MON)
-    elif choice == menu_items[4]: eAinput.sx_cnp(eAstr.REC_HOME_MON_BP)
-    elif choice == menu_items[5]: eAinput.sx_cnp(eAstr.REC_HOME_MON_BST)    
+    elif choice == menu_items[0]: eAinput.sx_cnp('만성질환관리')
+    elif choice == menu_items[1]: eAinput.sx_cnp('만성질환교육')
+    elif choice == menu_items[2]: eAinput.sx_cnp(eAstr.HOME_MON)
+    elif choice == menu_items[3]: eAinput.sx_cnp(eAstr.REC_HOME_MON_BP)
+    elif choice == menu_items[4]: eAinput.sx_cnp(eAstr.REC_HOME_MON_BST)    
+
+#= WorkUP 관련 코멘트
+def lab_studies():
+    menu_items = ['혈액검사 예정', '혈액검사, 강조'] 
+    choice = eApopup.menu(title = '핼액검사 관련', buttons = menu_items)
+    if choice == 'CLOSE': return
+    elif choice == menu_items[0]: eAinput.sx_cnp(eAstr.LAB_PLAN_LST)
+    else:
+        eAinput.sx_cnp(eAstr.LAB_MUST_LST)
+    
 
 #= WorkUP 관련 코멘트
 def workups():
-    menu_items = ['혈액검사 예정', '혈액검사, 강조', '골밀도검사(BMD) 예정', '치매척도검사 예정', '엑스선 촬영: 이상없음', '엑스선 촬영 고려', '엑스선 촬영 거부']
+    menu_items = ['골밀도검사(BMD) 예정', '치매척도검사 예정', '엑스선 촬영: 이상없음', '엑스선 촬영 고려', '엑스선 촬영 거부']
     choice = eApopup.menu(title = '각종 WORKUPs', buttons = menu_items)
-    if choice == 'CLOSE': return
-    elif choice == menu_items[0]: eAinput.sx_cnp(eAstr.LAB_PLAN_LST)
-    elif choice == menu_items[1]: eAinput.sx_cnp(eAstr.LAB_MUST_LST)
-    elif choice == menu_items[2]: eAinput.sx_cnp(eAstr.BMD_PLAN)
-    elif choice == menu_items[3]: eAinput.sx_cnp(eAstr.MMSE_PLAN)
-    elif choice == menu_items[4]: eAinput.sx_cnp('엑스레이')
-    elif choice == menu_items[5]: eAinput.sx_cnp(eAstr.XRAY_PLAN) 
-    elif choice == menu_items[6]: eAinput.sx_cnp(eAstr.XRAY_REFUSE) 
-
-#= 피검사 안내 코멘트.
-def lab_plan(self):
-    menu_items = ['다음 내원 시 피검사', '피검사 보류(다음에!)']
-    choice = eApopup.menu(title = '다음 내원 시 피검사', buttons = menu_items)
-    
-    if choice == 'CLOSE': return
-    elif choice == menu_items[0]: eAinput.sx_cnp(eAstr.LAB_PLAN_LST)
-    else: eAinput.sx_cnp(eAstr.LAB_MUST_LST)
-    
-def other_studies_plan(self):
-    menu_items = ['골밀도 검사', '치매척도 검사', '엑스선 촬영여부']
-    choice = eApopup.menu(title = '기타 검사 Plans', buttons = menu_items)
-    
     if choice == 'CLOSE': return
     elif choice == menu_items[0]: eAinput.sx_cnp(eAstr.BMD_PLAN)
     elif choice == menu_items[1]: eAinput.sx_cnp(eAstr.MMSE_PLAN)
-    else: eAinput.sx_cnp(eAstr.XRAY_PLAN)
+    elif choice == menu_items[2]: eAinput.sx_cnp('엑스레이')
+    elif choice == menu_items[3]: eAinput.sx_cnp(eAstr.XRAY_PLAN) 
+    else: 
+        eAinput.sx_cnp(eAstr.XRAY_REFUSE) 
 
 #= 기타 코멘트들. Dialog
 # TODO needs working.
