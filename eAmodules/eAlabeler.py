@@ -230,17 +230,6 @@ def write_DB(self):
     con.close()
     
 #= eGhis 차트에서 환자정보 불러오기.
-def fetch_write_ptinfo(self):
-    try:
-        currentPT = eAwinauto.current_ptinfo()
-        self.lblr_preview_ptname_lbl.setText(f"{currentPT['ptname']}({currentPT['ptno']})")
-        self.lblr_preview_ptjmno_lbl.setText(currentPT['ptjmno'])
-        self.lblr_preview_ptphone_lbl.setText(currentPT['ptphone'])
-    except TypeError:
-        return
-    # 1단계 완료.
-    Steps.ONE = True
-    
 def fetch_and_write_ptinfo(self):
     try:
         currentPT = eAwinauto.current_ptinfo()
@@ -269,7 +258,7 @@ def vac_combo_selected(self):
     # 1단계 무시하고 선택 먼저했다면, 환자불러오도록..
     if not Steps.ONE:
         ok = eApopup.confirm(text = "환자정보를 먼저 불러오시겠습니까?")
-        if ok: fetch_write_ptinfo(self)
+        if ok: fetch_and_write_ptinfo(self)
         else: 
             eApopup.notify(text = "환자 불러오기 후 진행해주세요.")
             return
@@ -631,7 +620,7 @@ def print_save_it(self, counter:object = None):
     if not Steps.ONE:
         eApopup.notify(text = "환자정보를 먼저 입력하세요.")
         return
-    elif not Steps.TWO:
+    if not Steps.TWO:
         eApopup.notify(text = "백신을 먼저 선택해주세요.")
         return    
     # 프린터 설정하고

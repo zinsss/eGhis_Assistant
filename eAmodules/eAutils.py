@@ -165,7 +165,7 @@ def daily_report_discord(self):
     # Current Active Reminders
     reminders = f'## Active Reminders\n'
     for i in range(self.reminders_lwg.count()):
-        status = eAreminders.statuses[self.reminders_lwg.item(i).text()[:3]][2]
+        status = eAreminders.reminder_status[self.reminders_lwg.item(i).text()[:3]][2]
         reminder = self.reminders_lwg.item(i).text()[3:]
         reminders = reminders + status + reminder + "\n"
     

@@ -4,7 +4,7 @@ from functools import partial
 
 from PySide6.QtCore import QTime
 
-from eAmodules import eAlabeler
+from eAmodules import eAlabeler, eApopup
 
 
 # DEFAULT_VALUES.
@@ -61,23 +61,39 @@ def save_to_DB_and_reload(self):
     # DEFAULT SETTINGS
     settings = [
         1,
-        '1900',
+        '19:00',
         1,
         1,
-        '1830',
+        '18:30',
         1,
-        '1330',
+        '13:30',
         1,
         "",
         1
     ]
+    
     settings[0] = int(self.stgn_auto_backup_btn.isChecked())
-    settings[1] = self.stgn_auto_backup_led.text()
+    
+    if check_if_in_time_format(self, self.stgn_auto_backup_led.text()):
+        settings[1] = self.stgn_auto_backup_led.text()
+    else: 
+        return eApopup.warning(text="자동종료 시간을 확인하세요.")
+    
     settings[2] = int(self.stgn_auto_shutdown_btn.isChecked())
     settings[3] = int(self.stgn_auto_stats_btn.isChecked())
-    settings[4] = self.stgn_auto_stats_led.text()
+    
+    if check_if_in_time_format(self, self.stgn_auto_stats_led.text()):
+        settings[4] = self.stgn_auto_stats_led.text()
+    else: 
+        return eApopup.warning(text="자동통계 시간을 확인하세요.")    
+    
     settings[5] = int(self.stgn_cloud_sync_btn.isChecked())
-    settings[6] = self.stgn_cloud_sync_led.text()
+    
+    if check_if_in_time_format(self, self.stgn_cloud_sync_led.text()):
+        settings[6] = self.stgn_cloud_sync_led.text()
+    else: 
+        return eApopup.warning(text="백업(cloud) 시간을 확인하세요.")
+    
     settings[7] = int(self.stgn_messenger_btn.isChecked())
     settings[8] = self.stgn_messenger_server_pte.toPlainText()
     settings[9] = int(self.stgn_vac_sys_log_btn.isChecked())
@@ -93,7 +109,14 @@ def save_to_DB_and_reload(self):
     con.close()
     
     connect_DB_and_load_settings(self)
-    
+
+# User Input(time) checking for valid format
+def check_if_in_time_format(self, time:str):
+    if QTime.fromString(time, "HH:mm").isValid():
+        return True
+    else:
+        return False
+
     
 ## Labeler Settings
 

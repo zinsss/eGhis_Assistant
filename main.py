@@ -47,16 +47,16 @@ class Scheduled(QThread):
         print("hello")
         scheduled_tasks = {self.parent.stgn_auto_backup_led.text() : [eAwinauto.close_eghis, self],
                            self.parent.stgn_auto_stats_led.text() : [eAwinauto.start_stats, self],
-                           "14:21" : [eAmacros.prev_pt]}
+                           "15:01" : [eAmacros.prev_pt]}
                         #    self.stgn_cloud_sync_led.text() : [eAutils.DBsyncDropBox, self]}
-        time_of_clock = self.clock_led.text()
+        time_of_clock = self.parent.clock_led.text()
         print(scheduled_tasks)
         
         if time_of_clock in list(scheduled_tasks.keys()):
             job = scheduled_tasks[time_of_clock]
             print(scheduled_tasks[time_of_clock])
             print(job)
-            return self.start_worker(*job)
+            return self.parent.start_worker(*job)
         elif ( 10 <= int(time_of_clock[:2]) <= 17 ) and ( time_of_clock[3:] == "00" ):
             # self.start_worker(eAwinauto.vaccine_cont_all, self)
             print("vaccine cont log in")
@@ -79,7 +79,6 @@ class Worker(QObject):
 
 ## Main GUI Window
 class MainWindow(QMainWindow, mainUI.Ui_Main):
-    alarm = Signal()
     
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -95,7 +94,7 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.clock_timer.timeout.connect(self.update_clock)
         self.clock_timer.start(1000)
         self.update_clock()
-        self.clock_led.textChanged.connect(lambda:self.alarm.emit())
+        self.clock_led.textChanged.connect(self.scheduled_task)
         
         
         # Alarm (Scheduled Tasks)
@@ -211,7 +210,7 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.macros_other_studies_btn.clicked.connect(lambda:eAmacros.workups())
         # self.macros_other_comments_btn.clicked.connect(lambda:)
         # 예방접종 관련
-        # self..clicked.connect(lambda:)
+        self.macros_labeler_btn.clicked.connect(lambda:eAmacros.call_labeler(self))
         # self..clicked.connect(lambda:)
         # self..clicked.connect(lambda:)
         # self..clicked.connect(lambda:)
@@ -273,6 +272,12 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         # self..clicked.connect(lambda:eAlabeler.)
         # self..clicked.connect(lambda:eAlabeler.)
         
+        # Settings
+        self.settings_buttons('settings_gen_btn')
+        self.settings_gen_btn.clicked.connect(lambda:self.settings_buttons('settings_gen_btn'))
+        self.settings_lblr_btn.clicked.connect(lambda:self.settings_buttons('settings_lblr_btn'))
+        self.stgn_save_btn.clicked.connect(lambda:eAsettings.save_to_DB_and_reload(self))
+        
         #-----------------------------------------------------------------------------------------------------------------------------#
         
     #= Clock Updater
@@ -285,7 +290,7 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
     def reset_timer_start(self):
         self.reset_timer.start(30000)
 
-    
+    # Working and Planning feature to Reset all selections and stackwidgets to default on certain given time period.
     def reset_widgets(self):
         ok = eApopup.timed_confirm(
             text = "GUI 내 Selection을 초기화 합니다.",
@@ -304,18 +309,16 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
     
     
     #= Call Scheduled Tasks at Given Time. Will be called every minute when Clock(lineedit) textChanged.
-    def scheduled_task_checker(self):        
+    def scheduled_task(self):        
         scheduled_tasks = {self.stgn_auto_backup_led.text() : [eAwinauto.close_eghis, self],
                            self.stgn_auto_stats_led.text() : [eAwinauto.start_stats, self],
-                           "14:21" : [eAmacros.prev_pt]}
-                        #    self.stgn_cloud_sync_led.text() : [eAutils.DBsyncDropBox, self]}
+                           self.stgn_cloud_sync_led.text() : [eAutils.DBsyncDropBox, self],
+                           "18:00" : [eAutils.daily_report_discord, self]}
         time_of_clock = self.clock_led.text()
         print(scheduled_tasks)
         
         if time_of_clock in list(scheduled_tasks.keys()):
             job = scheduled_tasks[time_of_clock]
-            print(scheduled_tasks[time_of_clock])
-            print(job)
             return self.start_worker(*job)
         elif ( 10 <= int(time_of_clock[:2]) <= 17 ) and ( time_of_clock[3:] == "00" ):
             # self.start_worker(eAwinauto.vaccine_cont_all, self)
@@ -370,7 +373,8 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         else: self.clock_led.setStyleSheet(STYLE_NORMAL)
         
     
-    #= App_Stack Navigation     
+    #= StackWidget Navigation     
+    #- App Stack
     def apps_buttons(self, app_btn:str=None):
         # 각 버튼 이름 저장해놓고.. 버튼 누르면 parameter로 버튼이름 받도록.
         app_btns = [
@@ -384,7 +388,15 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
             'apps_about_btn'
         ]
         # 현재 페이지 표식 위해 스타일 2가지.
-        btn_style_current = "color:rgb(125,175,225);"
+        btn_style_current = """        
+        QPushButton {
+            color:rgb(125,175,225);
+            border:none;
+        }
+        QPushButton:pressed {
+            color:rgb(125,175,225);
+        }
+        """
         btn_style_default = """
         QPushButton {
             color: rgb(165, 170, 180);
@@ -406,6 +418,40 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         for btn in app_btns:
             button = getattr(self, btn)
             if not btn == app_btn:
+                button.setStyleSheet(btn_style_default)
+            else: button.setStyleSheet(btn_style_current)
+    
+    #- Settings Stack
+    def settings_buttons(self, setting_btn:str):
+        setting_btns = ['settings_gen_btn', 'settings_lblr_btn']
+        btn_style_current = """
+        QPushButton {
+            color:rgb(230,220,144);
+            border:none;
+        }
+        QPushButton:pressed {
+            color:rgb(230,220,144);
+        }
+        """
+        btn_style_default = """
+        QPushButton {
+            color: rgb(165, 170, 180);
+            border:none;
+        }
+        QPushButton:hover {
+            color:rgb(230,220,144);
+        }
+        QPushButton:pressed {
+            color:rgb(75,85,100);
+        }
+        """
+        # 각 App page의 index는 위 리스트의 버튼 이름 인덱스와 동일하게 맞춰놓음. 
+        index = setting_btns.index(setting_btn)
+        self.settings_stack.setCurrentIndex(index)
+        # 매 클릭시마다 현재 페이지는 스타일 다르게 설정하고, 나머지는 모두 default 스타일로 적용.
+        for btn in setting_btns:
+            button = getattr(self, btn)
+            if not btn == setting_btn:
                 button.setStyleSheet(btn_style_default)
             else: button.setStyleSheet(btn_style_current)
 

@@ -346,7 +346,7 @@ def vaccine_pt(self, sys:int, ptjmno:str):
         return
     
     target_sys.set_focus()
-    self.parent.delayed_exec(0.5)
+    eAinput.buy_time(0.5)
     
     eAinput.click_at(*VACCINE_XYS[sys].DEL_PTJMNO)
     eAinput.click_at(*VACCINE_XYS[sys].INPUT_PTJMNO)

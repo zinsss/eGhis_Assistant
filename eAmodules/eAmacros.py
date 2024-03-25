@@ -99,6 +99,11 @@ def other_comments():
 
 
 ## 예방접종 관련
+#= Vaccination! Call labeler with single button press
+def call_labeler(self):
+    self.apps_buttons('apps_labeler_btn')
+    eAlabeler.fetch_and_write_ptinfo(self)
+
 #= Vaccine System Management Main Menu
 def vac_sys_manager(self):
     options = ['접종시스템 입력', '접종시스템 시작', '로그아웃 연장']
