@@ -6,14 +6,16 @@ sys.coinit_flags = 2
 import warnings
 warnings.simplefilter("ignore", category=UserWarning)
 
+from functools import partial
+
 from PySide6.QtWidgets import QApplication, QMainWindow, QAbstractItemView, QTextEdit
 from PySide6.QtCore import QCoreApplication, Qt, QFile, QDate, QTime, QThread, QObject, Signal, Slot, QFileSystemWatcher, QEventLoop, QTimer
 from PySide6.QtGui import QClipboard
 from PySide6 import QtGui, QtWidgets
 
 import mainUI
-from eAmodules import eAcalendar, eAreminders, eAmacros, eAinput, eAstr, eAutils
-from eAmodules import eAsticky, eAquicksaves, eAmdocs, eAstudies, eAlabeler
+from eAmodules import eAcalendar, eAreminders, eAmacros, eAinput, eAstr, eAutils, eApopup, eAwinauto
+from eAmodules import eAsticky, eAquicksaves, eAmdocs, eAstudies, eAlabeler, eAsettings
 
 
 ## General Variables
@@ -33,18 +35,83 @@ class Infos():
     edit_mdocs_title = ""
     
 
+## Separate Thread for Clock
+class Scheduled(QThread):
+    def __init__(self, parent):
+        super(Scheduled, self).__init__()
+        self.parent = parent
+        self.parent.alarm.connect(self.check_for_alarm)       
+    
+    @Slot()
+    def check_for_alarm(self):
+        print("hello")
+        scheduled_tasks = {self.parent.stgn_auto_backup_led.text() : [eAwinauto.close_eghis, self],
+                           self.parent.stgn_auto_stats_led.text() : [eAwinauto.start_stats, self],
+                           "14:21" : [eAmacros.prev_pt]}
+                        #    self.stgn_cloud_sync_led.text() : [eAutils.DBsyncDropBox, self]}
+        time_of_clock = self.clock_led.text()
+        print(scheduled_tasks)
+        
+        if time_of_clock in list(scheduled_tasks.keys()):
+            job = scheduled_tasks[time_of_clock]
+            print(scheduled_tasks[time_of_clock])
+            print(job)
+            return self.start_worker(*job)
+        elif ( 10 <= int(time_of_clock[:2]) <= 17 ) and ( time_of_clock[3:] == "00" ):
+            # self.start_worker(eAwinauto.vaccine_cont_all, self)
+            print("vaccine cont log in")
+        else:
+            return
+        pass
+    
+## Background Worker
+class Worker(QObject):
+    finished = Signal()
+    
+    def __init__(self):
+        super().__init__()
+    
+    @Slot()
+    def start_working(self, method):
+        method()
+        self.finished.emit()
+        
+
 ## Main GUI Window
 class MainWindow(QMainWindow, mainUI.Ui_Main):
+    alarm = Signal()
+    
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         
         # Basic Instances to Load------------------------------------------------------------------#
         self.infos = Infos()
-        # self.reminders_Rmenu = eAreminders.reminder_listwidget_Rmenu_create(self)
+        # Load Settings First
+        eAsettings.connect_DB_and_load_settings(self)
+        
+        # Clock
+        self.clock_timer = QTimer(self)
+        self.clock_timer.timeout.connect(self.update_clock)
+        self.clock_timer.start(1000)
+        self.update_clock()
+        self.clock_led.textChanged.connect(lambda:self.alarm.emit())
+        
+        
+        # Alarm (Scheduled Tasks)
+        # Deselect and Reset Timer
+        self.reset_timer = QTimer(self)
+        self.reset_timer.timeout.connect(self.reset_widgets)
+        self.reset_timer.setSingleShot(True)
+        
+        # Getting Threading (separate background worker) ready ------------------------------------#
+        self.worker = Worker()
+        self.thread = QThread()
+        self.worker.moveToThread(self.thread)
+        self.worker.finished.connect(self.work_finished)
+        # self.thread.started.connect(self.worker.start_working)
         
         # Collection of UI Updates-----------------------------------------------------------------#
-        self.calendar_clock_lbl.setText(self.infos.time_now.toString("HH:mm"))
         eAsticky.load_sticky_notes(self)
     
         # Default StackWidgets on Startup----------------------------------------------------------#
@@ -123,19 +190,20 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.reminders_sublist_close_btn.clicked.connect(lambda:eAreminders.sublist_close(self))
         self.reminders_sublist_write_btn.clicked.connect(lambda:eAreminders.reminder_detail_write(self))
         # Reminders Archive
-        self.reminders_archive_done_btn.clicked.connect(lambda:self.reminders_stack.setCurrentIndex(0))
+        self.reminders_archive_done_btn.clicked.connect(lambda:eAreminders.close_archive_page(self))
         self.reminders_archive_limit_cmb.currentIndexChanged.connect(lambda:eAreminders.show_reminder_history(self))
          
         # Macros-----------------------------------------------------------------------------------#
         # 진료관련
-        self.macros_prev_pt_btn.clicked.connect(lambda:eAmacros.prev_pt())
-        self.macros_check_ins_btn.clicked.connect(lambda:eAmacros.check_ins())
-        self.macros_no_ins_btn.clicked.connect(lambda:eAmacros.no_ins_choice(self))
-        self.macros_next_pt_btn.clicked.connect(lambda:eAmacros.next_pt())
+        self.macros_prev_pt_btn.clicked.connect(lambda:self.start_worker(eAmacros.prev_pt))
+        self.macros_check_ins_btn.clicked.connect(lambda:self.start_worker(eAmacros.check_ins))
+        self.macros_no_ins_btn.clicked.connect(lambda:self.start_worker(eAmacros.no_ins_choice, self))
+        self.macros_next_pt_btn.clicked.connect(lambda:self.start_worker(eAmacros.next_pt))
         # 코멘트모음
         # self..clicked.connect(lambda:)
         self.macros_fluid_btn.clicked.connect(lambda:eAinput.sx_cnp(eAstr.FLUID_LST))
-        self.macros_phytx_btn.clicked.connect(lambda:eAmacros.physical_tx(self))
+        # self.macros_phytx_btn.clicked.connect(lambda:eAmacros.physical_tx(self))
+        self.macros_phytx_btn.clicked.connect(lambda:self.start_worker(eAmacros.physical_tx, self))
         self.macros_chr_btn.clicked.connect(lambda:eAinput.sx_cnp(eAstr.CHRMAN_LST))
         self.macros_chr_etc_btn.clicked.connect(lambda:eAmacros.chronic_management())
         self.macros_obsv_btn.clicked.connect(lambda:eAinput.sx_cnp(eAstr.REPEATS_LST))
@@ -183,13 +251,14 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         # Medical Documents
         eAmdocs.write_GUI(self)
         self.mdoc_lwg.itemClicked.connect(lambda:eAmdocs.load_contents(self))
-        # self.mdoc_lwg.itemDoubleClicked.connect(lambda:)
+        self.mdoc_lwg.itemDoubleClicked.connect(lambda:eAmdocs.copy_doc(self))
         self.mdoc_lwg.model().rowsMoved.connect(lambda:eAmdocs.order_change(self))
         self.mdoc_new_btn.clicked.connect(lambda:eAmdocs.add_new_doc(self))
         self.mdoc_edit_btn.clicked.connect(lambda:eAmdocs.edit_btn_clicked(self))
         self.mdoc_save_btn.clicked.connect(lambda:eAmdocs.edit_doc(self))
         self.mdoc_delete_btn.clicked.connect(lambda:eAmdocs.delete_doc(self))
-        
+        self.mdoc_copy_btn.clicked.connect(lambda:eAmdocs.copy_doc(self))
+
         # Labeller
         eAlabeler.prepare_labeler(self)
         # self.lblr_count_edit_btn.clicked.connect(lambda:eAlabeler.)
@@ -205,9 +274,104 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         # self..clicked.connect(lambda:eAlabeler.)
         
         #-----------------------------------------------------------------------------------------------------------------------------#
-       
+        
+    #= Clock Updater
+    def update_clock(self):
+        time_now = QTime.currentTime()
+        self.clock_led.setText(time_now.toString('HH:mm'))
+        self.pt_alert_checker()
+        
+    #= Let's Reset Selections of Listwidgets and App Stack after some time. 30 sec?
+    def reset_timer_start(self):
+        self.reset_timer.start(30000)
+
+    
+    def reset_widgets(self):
+        ok = eApopup.timed_confirm(
+            text = "GUI 내 Selection을 초기화 합니다.",
+            msec = 3000
+        )
+        if not ok: return
+        else:
+            self.calendar_wdg.setSelectedDate(self.infos.date_today)
+            self.calendar_day_info_lwg.clearSelection()
+            self.calendar_yearly_lwg.clearSelection()
+            self.reminders_lwg.clearSelection()
+            self.reminders_archive_lwg.clearSelection()
+            self.qsv_lwg.clearSelection()
+            self.mdoc_lwg.clearSelection()
+            self.apps_buttons('apps_sticky_btn')
+    
+    
+    #= Call Scheduled Tasks at Given Time. Will be called every minute when Clock(lineedit) textChanged.
+    def scheduled_task_checker(self):        
+        scheduled_tasks = {self.stgn_auto_backup_led.text() : [eAwinauto.close_eghis, self],
+                           self.stgn_auto_stats_led.text() : [eAwinauto.start_stats, self],
+                           "14:21" : [eAmacros.prev_pt]}
+                        #    self.stgn_cloud_sync_led.text() : [eAutils.DBsyncDropBox, self]}
+        time_of_clock = self.clock_led.text()
+        print(scheduled_tasks)
+        
+        if time_of_clock in list(scheduled_tasks.keys()):
+            job = scheduled_tasks[time_of_clock]
+            print(scheduled_tasks[time_of_clock])
+            print(job)
+            return self.start_worker(*job)
+        elif ( 10 <= int(time_of_clock[:2]) <= 17 ) and ( time_of_clock[3:] == "00" ):
+            # self.start_worker(eAwinauto.vaccine_cont_all, self)
+            print("vaccine cont log in")
+        else:
+            return
+    
+        
+    #= Run Worker with Method as Parameter
+    def start_worker(self, method, *args, **kwargs):
+        self.thread.start()
+        # Create a partial function with the given arguments and keyword arguments
+        partial_func = partial(method, *args, **kwargs)
+        # Start the worker with the partial function
+        self.worker.start_working(partial_func)
+        
+        
+    @Slot()
+    def work_finished(self):
+        self.thread.quit()
+        self.thread.wait()
+        print("Worker Finished.. Waiting For Next Job.")
+        
+        
+    #= Patient Alerts
+    # Check if '***' is in patient memo of eGhis. And call for alert on/off.
+    def pt_alert_checker(self):
+        pt_memo = eAwinauto.get_pt_memo()
+        if pt_memo == None or pt_memo == "" or "***" not in pt_memo:
+            self.pt_alert_toggle(alert = False)            
+        else:
+            self.pt_alert_toggle(alert = True)
+    
+    
+    # Toggle on an off
+    def pt_alert_toggle(self, alert:bool):
+        STYLE_NORMAL = """
+        color: rgb(225, 215, 125);
+        background-color: rgb(55, 60, 75);
+        border: 2px solid rgb(40, 45, 55);
+        border-top-right-radius:10px;
+        border-bottom-left-radius:10px;
+        """ 
+        STYLE_ALERT = """
+        color: rgb(225, 215, 125);
+        background-color: rgb(150, 75, 100);
+        border: 2px solid rgb(40, 45, 55);
+        border-top-right-radius:10px;
+        border-bottom-left-radius:10px;
+        """
+        if alert: self.clock_led.setStyleSheet(STYLE_ALERT)
+        else: self.clock_led.setStyleSheet(STYLE_NORMAL)
+        
+    
     #= App_Stack Navigation     
-    def apps_buttons(self, app_btn:str):
+    def apps_buttons(self, app_btn:str=None):
         # 각 버튼 이름 저장해놓고.. 버튼 누르면 parameter로 버튼이름 받도록.
         app_btns = [
             'apps_sticky_btn',
@@ -244,6 +408,7 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
             if not btn == app_btn:
                 button.setStyleSheet(btn_style_default)
             else: button.setStyleSheet(btn_style_current)
+
 
         
 ## Let's Roll

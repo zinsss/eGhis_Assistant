@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QMessageBox, QDialogButtonBox, QInputDialog, QLineEdit, QPlainTextEdit
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer
 
 from eAmodules import eAstyles
 
@@ -22,6 +22,7 @@ def warning(text:str, yes_no:bool = False):
     ok = warnbox.exec()
     return not ok
 
+
 ## 단순 알림. 버튼 한개, return값 필요없는 경우.
 def notify(text:str):
     notibox = QMessageBox()
@@ -33,6 +34,7 @@ def notify(text:str):
     notibox.setInformativeText(text)
     notibox.addButton('OK', QMessageBox.NoRole)
     ok = notibox.exec()
+    
 
 ## Yes or No만 필요한 경우.
 #: warning + yes_no = True와 겹칠 수 있지만, 색깔이 다름. 일반적 메세지에 적용 가능.
@@ -50,6 +52,60 @@ def confirm(text:str):
     ok = confbox.exec()
     return not ok
 
+
+def timed_confirm(text:str, msec:int):
+    '''
+    카운트 다운을, timer.remainingTime()으로 하면 훨씬 깨끗하겠지만,
+    컴퓨터 또는 eGhisAssistant의 loading으로 약간의 delay라도 있는 경우에는 이쁘게 되지를 않음.
+    (예를 들어, 5..4..3..3..1..0)
+    따라서 msec을 sec으로 변환 한 후, 매초마다 1을 뺀 값을 카운트 다운 하는 방식으로..
+    '''
+    count_down = msec // 1000
+    #~~~ Building MessageBox and Set Styles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    confbox = QMessageBox()
+    confbox.setWindowFlags(Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint)
+    confbox.setText(
+            f"<span style='font-family:Lucida Sans;font-weight:600;font-style:italic;font-size:18pt;color:#3b4252;'>Waiting..for {count_down} seconds</span>"
+        )
+    confbox.setStyleSheet(eAstyles.CONFBOX)
+    confbox.setInformativeText(text)
+    default_button = confbox.addButton('YES', QMessageBox.YesRole)
+    confbox.addButton('NO', QMessageBox.NoRole)
+    # Set Default Button for AnimatedClicking after count down.
+    confbox.setDefaultButton(default_button)
+    
+    #~~~ Timers x2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # First Timer, for msec before AnimatingClick
+    timer = QTimer()
+    timer.setSingleShot(True)
+    timer.timeout.connect(confbox.defaultButton().animateClick)
+    timer.start(msec)
+    # Second Timer, for updating count down gui
+    updater = QTimer()
+    updater.setSingleShot(False)
+    
+    def update_title():
+        nonlocal count_down #Nested function에서 상위 function의 variable을 사용하기 위함.
+        if count_down > 0:
+            count_down -= 1
+        confbox.setText(
+            f"<span style='font-family:Lucida Sans;font-weight:600;font-style:italic;font-size:18pt;color:#3b4252;'>Waiting..for {count_down} seconds</span>"
+        )
+    
+    updater.timeout.connect(update_title)
+    updater.start(1000)
+    
+    # Execute and Retrieve Result 
+    ok = confbox.exec()
+    
+    # Clear non singleShot QTimer (updater) for resource management
+    updater.stop()
+    
+    # Returns *not* ok because order of the buttons were [YES, NO]. Hence 'YES' will return 0.
+    # For code readability, yes to 1 (True as bool), no to 0 (False if bool).
+    return not ok
+
+
 #: Big window size, confirm popup. For multiline text previews.
 def confirm_big(text:str):
     confbox = QMessageBox()
@@ -64,6 +120,7 @@ def confirm_big(text:str):
     ok = confbox.exec()
     return not ok   
 
+
 ## Menu. buttons를 리스트값으로 주는 모든 항목에 대해서 버튼을 생성하고, click한 button text를 return.
 def menu(title:str, buttons:list):
     msgbox = QMessageBox()
@@ -73,10 +130,8 @@ def menu(title:str, buttons:list):
     qt_msgbox_buttonbox = msgbox.findChild(QDialogButtonBox, "qt_msgbox_buttonbox")
     qt_msgbox_buttonbox.setOrientation(Qt.Vertical)
     # 기본 스타일 설정.
-    print("before style")
     msgbox.setStyleSheet(eAstyles.MENUBOX)
-    print("after style")
-    msgbox.setText(title)
+    msgbox.setText(f'## {title}')
     msgbox.setIcon(QMessageBox.NoIcon)
     # for loop으로 전달받은 리스트의 모든 항목에 대해 버튼을 추가하기.
     for button in buttons:

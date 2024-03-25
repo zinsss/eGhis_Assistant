@@ -278,9 +278,9 @@ def get_pt_memo():
 #= eGhis 종료, 설정에 따라 backup 및 backup 후 컴퓨터 종료.
 def close_eghis(self):
     if not eghis.exists(): return
-    if not self.popup.stng_auto_backup_btn.isChecked(): return
+    if not self.stgn_auto_backup_btn.isChecked(): return
     
-    if self.infos.lpdom == True:
+    if self.infos.lpdom:
         eAutils.send_discord(self, text = "오늘은 청구일입니다. eGhis가 종료되지 않습니다.")
         return
     else:
@@ -289,15 +289,18 @@ def close_eghis(self):
     to_eghis()
     eAinput.buy_time(1)
     eAinput.write_enter('1qazxcv.')
+    eAinput.buy_time(2)
+    to_eghis()
     eAinput.buy_time(1)
     eAinput.hotkeys('alt', 'f4')
+    eAinput.buy_time(2)
     eAinput.press_key('enter')
-    eAinput.buy_time(1)
+    eAinput.buy_time(2)
     eAinput.press_key('enter')
     
-    if self.popup.stng_auto_shutdown_btn.isChecked():
-        eAinput.buy_time(1)
-        eAinput.click_at(*eAxys.eGhis.SHUTDOWN_AFTER)
+    if self.stgn_auto_shutdown_btn.isChecked():
+        eAinput.buy_time(2)
+        eAinput.press_key(' ')
         eAutils.send_discord(self, text = "백업 후 컴퓨터를 자동으로 종료합니다.")
 
 
@@ -305,6 +308,7 @@ def close_eghis(self):
 def start_stats(self):
     if not eghis.exists(): return
     if not self.popup.stng_auto_stats_btn.isChecked(): return
+    if not self.infos.lpdom: return
     
     eAutils.send_discord(self, text = "오늘은 청구일입니다. 청구집계를 시작합니다.")
     

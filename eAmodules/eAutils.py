@@ -143,19 +143,19 @@ def lwg_item_text_edit(self, listwdg:str, popup_text:str):
 ## Other Utilities
 def send_discord(self, text:str):
     # 메신저 보내기 설정이 되어있는지 우선 확인하고, 해제됬으면 취소.
-    if not self.popup.stng_messenger_btn.isChecked(): return
+    if not self.stgn_messenger_btn.isChecked(): return
     # 메신저 설정에 서버(WEBHOOK)가 있는지 확인하고. 
     # TODO 공란이라고 무조건 보내지는 건 아니니까... confirmation 추가하는게..
-    if self.popup.stng_messenger_server_pte.toPlainText() == "": return
+    if self.stgn_messenger_server_pte.toPlainText() == "": return
     # 실제로 메세지 보내기
     message = {"content": f"{str(text)}"}
-    requests.post(self.popup.stng_messenger_server_pte.toPlainText(), data=message)
+    requests.post(self.stgn_messenger_server_pte.toPlainText(), data=message)
     
 
 ## Daily Report.
 # TODO work in progress
 def daily_report_discord(self):
-    if not self.popup.stng_messenger_btn.isChecked(): return
+    if not self.stgn_messenger_btn.isChecked(): return
     # Title
     title = f'# Daily Report, {self.infos.date_today.toString("yyyy-MM-dd ddd")}\n'
     
@@ -177,7 +177,7 @@ def daily_report_discord(self):
 ## DB sync to dropbox.
 def DBsyncDropBox(self):
     # 설정을 먼저 확인해주고..
-    if not self.popup.stng_cloud_sync_btn.isChecked(): return
+    if not self.stgn_cloud_sync_btn.isChecked(): return
     # 파이썬에서 요일을 월요일부터 일요일까지 1~7로 표현하는 것, 그리고 리스트는 0에서 시작해서 인덱스값이 부여되는것 고려!
     folder_name = [None, "mon", "tue", "wed", "thu", "fri", "sat", "sun"]    
     today_date = self.infos.date_today 

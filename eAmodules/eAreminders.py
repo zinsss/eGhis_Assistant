@@ -600,6 +600,11 @@ def sublist_close(self):
     self.reminders_lwg.setCurrentItem(None)
     self.reminders_stack.setCurrentIndex(0)
     
+
+def close_archive_page(self):
+    self.reminders_archive_limit_cmb.setCurrentIndex(0)
+    self.reminders_stack.setCurrentIndex(0)
+    
     
     
 ##### UNUSED BUT LEFT FOR FUTURE REFERENCE #####

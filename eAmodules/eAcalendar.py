@@ -166,6 +166,10 @@ def calendar_update(self):
     if LPDoM_date:
         LPDoM = QDate.fromString(LPDoM_date, "yyyy.MM.dd")
         self.calendar_wdg.setDateTextFormat(LPDoM, LPDOM)
+        if LPDoM == self.infos.date_today:
+            self.infos.lpdom = True
+        else:
+            self.infos.lpdom = False
     # Write day_info_lwg of selected date.            
     date_selected(self)   
             

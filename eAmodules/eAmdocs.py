@@ -24,7 +24,7 @@ def write_GUI(self):
     mdocs = connect_DB()
     # 기존 목록을 전부 지우고..
     self.mdoc_lwg.clear()
-    self.mdoc_doc_title_lbl.setText("")
+    self.mdoc_title_led.setText("")
     self.mdoc_contents_pte.setPlainText("")
     # 다시 쓰기.
     self.mdoc_lwg.addItems(list(mdocs.keys()))
@@ -32,6 +32,7 @@ def write_GUI(self):
 
 #: Listwidget item clicked -> load contents to preview.
 def load_contents(self):
+    self.reset_timer_start()
     if self.mdoc_edit_btn.isChecked():
         eApopup.warning(text = "편집 모드가 활성화 되어있습니다\n저장 또는 편집모드 해제 후\n다시 시도해 주세요.")
         return
@@ -41,9 +42,8 @@ def load_contents(self):
      # Load DB
     con = sqlite3.connect("./database/eGhisAssistant.db")
     cur = con.cursor()    
-    # Load Dates. And check if today already exist.
+    # Get Contents for selected title.
     contents = cur.execute(f'SELECT Contents FROM MedDocs WHERE Title = "{title}"').fetchone()
-    print(contents)
     if not contents:
         contents_text = ""
     else:
@@ -52,19 +52,10 @@ def load_contents(self):
     con.commit()
     con.close()
     # Write note's content to GUI
-    self.mdoc_doc_title_lbl.setText(title)
+    self.mdoc_title_led.setText(title)
+    self.mdoc_title_led.setReadOnly(True)
     self.mdoc_contents_pte.setPlainText(contents_text)
-    
-    
-# #: DB UPDATE
-# def update_db(title_old:str, title_new:str, contents_new:str):
-#     con = sqlite3.connect("./database/eGhisAssistant.db")
-#     cur = con.cursor()
-#     # 편집항목 DB내 UPDATE
-#     con.execute(f'UPDATE MedDocs SET Title = "{title_new}", Contents = "{contents_new}" WHERE Title = "{title_old}"')
-#     # DB 저장 후 연결 해제.
-#     con.commit()
-#     con.close()
+    self.mdoc_contents_pte.setReadOnly(True)
     
 
 #: GUI에서의 순서변경을 DB에 저장.
@@ -87,32 +78,9 @@ def order_change(self):
         con.execute(f'INSERT INTO MedDocs VALUES (?, ?);', item)
     # DB 저장 후 연결 해제.
     con.commit()
+    
     con.close()
-    
     load_contents(self)
-
-    
-# #: 타이틀 편집
-# def title_edit(self, cat:str):
-#     target_lwg = getattr(self, f'mdoc_{cat.lower()}_lwg')
-#     old_title = target_lwg.currentItem().text()
-#     ok = eApopup.confirm_big(text = f"[ {old_title} ]의 제목을 편집합니다.")
-#     if not ok: return
-    
-#     new_title = eApopup.get_text(
-#         text = "새로운 문서 제목을 입력하세요.",
-#         default_text = old_title
-#         )
-#     if new_title == None or new_title == old_title: return
-    
-#     con = sqlite3.connect("./database/eGhisAssistant.db")
-#     cur = con.cursor()
-#     # 편집항목 DB내 UPDATE
-#     con.execute(f'UPDATE MedDocs SET Title = "{new_title}" WHERE Cat = "{cat}" AND Title = "{old_title}"')
-#     # DB 저장 후 연결 해제.
-#     con.commit()
-#     con.close()
-#     write_GUI(self)
     
     
 #: 문서 타이틀 추가
@@ -188,7 +156,7 @@ def edit_mode_toggler(self, toggle:bool):
         
     if toggle:
         style = style_edit
-        self.infos.edit_mdocs_title = self.mdoc_doc_title_lbl.text()
+        self.infos.edit_mdocs_title = self.mdoc_title_led.text()
     else:
         style = style_view
         self.infos.edit_mdocs_title = ""
@@ -202,6 +170,7 @@ def edit_mode_toggler(self, toggle:bool):
                                          """)
     
     self.mdoc_edit_btn.setChecked(toggle) 
+    self.mdoc_title_led.setReadOnly(not toggle)
     self.mdoc_contents_pte.setReadOnly(not toggle)
     self.mdoc_save_btn.setEnabled(toggle)
     if toggle == False:
@@ -211,7 +180,7 @@ def edit_mode_toggler(self, toggle:bool):
 
 def edit_btn_clicked(self):
     edit_mode = self.mdoc_edit_btn.isChecked()
-    target_doc = self.mdoc_doc_title_lbl.text()
+    target_doc = self.mdoc_title_led.text()
     if edit_mode:
         ok = eApopup.confirm_big(text = f"{target_doc}\n\n편집할까요?")
         if not ok:
@@ -227,7 +196,7 @@ def edit_btn_clicked(self):
     
 #: 편집한 문서 저장하기
 def edit_doc(self):
-    title_new = self.mdoc_doc_title_lbl.text()
+    title_new = self.mdoc_title_led.text()
     contents_new = self.mdoc_contents_pte.toPlainText()
     target_title = self.infos.edit_mdocs_title
     con = sqlite3.connect("./database/eGhisAssistant.db")
@@ -240,29 +209,13 @@ def edit_doc(self):
     
     edit_mode_toggler(self, False)
     load_contents(self)
-    
-    
-#: Copy or Copy_Paste Docs.
-#TODO Soon to be deleted.
-def docs_cnp(self, copy_only:bool = False):
-    if self.mdoc_preview_cat_lbl.text() == "" or self.mdoc_preview_doc_title_lbl.text() == "":
-            eApopup.notify(text = "편집할 문서를 먼저 선택하세요.")
-            return
-    
-    contents = self.mdoc_contents_pte.toPlainText()
-    if not copy_only:
-        eAinput.copy_paste_it(contents)
-    else: eAinput.copy_it(contents)
-    
-#: Copy or Copy_Paste Docs.
-def docs_copy(self, close_window:bool = True):
-    if self.mdoc_preview_cat_lbl.text() == "" or self.mdoc_preview_doc_title_lbl.text() == "":
-            eApopup.notify(text = "편집할 문서를 먼저 선택하세요.")
-            return
+
+
+#: Copy to Clipboard
+def copy_doc(self):
+    if not self.mdoc_lwg.currentItem():
+        eApopup.notify(text = "복사할 문서를 선택하세요.")
+        return
     
     contents = self.mdoc_contents_pte.toPlainText()
     eAinput.copy_it(contents)
-    if close_window: self.hide()
-    else: return
-    
-     

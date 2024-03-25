@@ -1,5 +1,6 @@
 import requests
 import sqlite3
+from functools import partial
 
 from PySide6.QtCore import QTime
 
@@ -36,30 +37,26 @@ def connect_DB_and_load_settings(self):
     settingsDB = list(cur.execute(f'SELECT * FROM Settings').fetchall()[0])
     con.close()
     
-    self.stng_auto_backup_btn.setChecked(settingsDB[0])
+    self.stgn_auto_backup_btn.setChecked(settingsDB[0])
     # self.parent.stng_auto_backup_btn.setChecked(settingsDB[0])
-    self.stng_auto_backup_time.setText(str(settingsDB[1]))
-    self.stng_auto_shutdown_btn.setChecked(settingsDB[2])
+    self.stgn_auto_backup_led.setText(str(settingsDB[1]))
+    self.stgn_auto_shutdown_btn.setChecked(settingsDB[2])
     # self.parent.stng_auto_shutdown_btn.setChecked(settingsDB[2])
-    self.stng_auto_stats_btn.setChecked(settingsDB[3])
+    self.stgn_auto_stats_btn.setChecked(settingsDB[3])
     # self.parent.stng_auto_stats_btn.setChecked(settingsDB[3])
-    self.stng_auto_stats_time.setText(str(settingsDB[4]))
-    self.stng_cloud_sync_btn.setChecked(settingsDB[5])
+    self.stgn_auto_stats_led.setText(str(settingsDB[4]))
+    self.stgn_cloud_sync_btn.setChecked(settingsDB[5])
     # self.parent.stng_cloud_sync_btn.setChecked(settingsDB[5])
-    self.stng_cloud_sync_time.setText(str(settingsDB[6]))
-    self.stng_messenger_btn.setChecked(settingsDB[7])
+    self.stgn_cloud_sync_led.setText(str(settingsDB[6]))
+    self.stgn_messenger_btn.setChecked(settingsDB[7])
     # self.parent.stng_messenger_btn.setChecked(settingsDB[7])
-    self.stng_messenger_server_pte.setPlainText(settingsDB[8])
-    self.stng_vac_sys_log_btn.setChecked(settingsDB[9])
+    self.stgn_messenger_server_pte.setPlainText(settingsDB[8])
+    self.stgn_vac_sys_log_btn.setChecked(settingsDB[9])
     # self.parent.stng_vac_sys_log_btn.setChecked(settingsDB[9])
     
-    global autobackup_time, autostats_time, autosync_time
-    # Second까지 지정 안하는 경우 일분내내 반복 작업함.
-    autobackup_time = QTime(int(self.stng_auto_backup_time.text()[:2]), int(self.stng_auto_backup_time.text()[2:]), 00)
-    autostats_time = QTime(int(self.stng_auto_stats_time.text()[:2]), int(self.stng_auto_stats_time.text()[2:]), 00)
-    autosync_time = QTime(int(self.stng_cloud_sync_time.text()[:2]), int(self.stng_cloud_sync_time.text()[2:]), 00)
-    
-    
+    return 
+
+ 
 def save_to_DB_and_reload(self):
     # DEFAULT SETTINGS
     settings = [
@@ -74,16 +71,16 @@ def save_to_DB_and_reload(self):
         "",
         1
     ]
-    settings[0] = int(self.stng_auto_backup_btn.isChecked())
-    settings[1] = self.stng_auto_backup_time.text()
-    settings[2] = int(self.stng_auto_shutdown_btn.isChecked())
-    settings[3] = int(self.stng_auto_stats_btn.isChecked())
-    settings[4] = self.stng_auto_stats_time.text()
-    settings[5] = int(self.stng_cloud_sync_btn.isChecked())
-    settings[6] = self.stng_cloud_sync_time.text()
-    settings[7] = int(self.stng_messenger_btn.isChecked())
-    settings[8] = self.stng_messenger_server_pte.toPlainText()
-    settings[9] = int(self.stng_vac_sys_log_btn.isChecked())
+    settings[0] = int(self.stgn_auto_backup_btn.isChecked())
+    settings[1] = self.stgn_auto_backup_led.text()
+    settings[2] = int(self.stgn_auto_shutdown_btn.isChecked())
+    settings[3] = int(self.stgn_auto_stats_btn.isChecked())
+    settings[4] = self.stgn_auto_stats_led.text()
+    settings[5] = int(self.stgn_cloud_sync_btn.isChecked())
+    settings[6] = self.stgn_cloud_sync_led.text()
+    settings[7] = int(self.stgn_messenger_btn.isChecked())
+    settings[8] = self.stgn_messenger_server_pte.toPlainText()
+    settings[9] = int(self.stgn_vac_sys_log_btn.isChecked())
 
     # DB 연결해서.    
     con = sqlite3.connect("./database/eGhisAssistant.db")

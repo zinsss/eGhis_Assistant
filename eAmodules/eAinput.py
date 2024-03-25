@@ -14,8 +14,7 @@ from eAmodules import eAwinauto, eApopup
 
 ### General input methods predefined.
 def press_key(key:str):
-    keyboard.send_keys(key)
-    # pyautogui.press(key)
+    pyautogui.press(key)
     
 def press_keys(*keys:str):
     keys = list(keys)
