@@ -302,6 +302,8 @@ def influenza_tamiflu(type:str = None):
         type_items = ['Influenza Type A', 'Influenza Type B']
         type = eApopup.menu(title = 'Influenza Type', buttons = type_items)
         if type == 'CLOSE': return 'CLOSE'
+        eAinput.icd_input('j101')
+        eAinput.press_key('enter')  
     
     jx999 = getattr(eAstr, f'FLU_{type[-1]}')
     
