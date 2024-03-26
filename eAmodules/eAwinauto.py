@@ -3,6 +3,9 @@ warnings.simplefilter('ignore', category=UserWarning)
 
 import pywinauto
 from pywinauto.application import Application
+
+import pygetwindow
+
 import pyautogui
 
 #* In case for blocking user input
@@ -323,29 +326,32 @@ def start_stats(self):
 
 ## Vaccine Systems Window Manipulation
 
-VACCINE_SYSTEMS = ["예방접종통합관리시스템", "현물공급 인플루엔자등록시스템", "코로나19통합관리시스템"]
+VACCINE_SYSTEMS = ["예방접종통합관리시스템",
+                   "::::: 질병관리청 현물공급 인플루엔자등록시스템 ::::: - Chrome",
+                   "코로나19통합관리시스템"]
 VACCINE_XYS = [eAxys.VacGen, eAxys.VacFlu, eAxys.VacCovid19]
 
-#: 각 접종 시스템 set focus
-def vaccine_focus(self, sys:int):
-    try:
-        target_sys = Application().connect(title=VACCINE_SYSTEMS[sys]).top_window()
-    except pywinauto.findwindows.ElementNotFoundError:
-        pass
+# #: 각 접종 시스템 set focus
+# def vaccine_focus(self, sys:int):
+#     try:
+#         target_sys = Application().connect(title=VACCINE_SYSTEMS[sys]).top_window()
+#     except pywinauto.findwindows.ElementNotFoundError:
+#         pass
     
-    target_sys.set_focus()
-    self.delayed_exec(0.5)
+#     target_sys.set_focus()
+#     self.delayed_exec(0.5)
 
 #: 각 접종 시스템 환자정보 입력
 def vaccine_pt(self, sys:int, ptjmno:str):
     if "-" in ptjmno:
         ptjmno = ptjmno.replace("-", "")
+        
     try:
-        target_sys = Application().connect(title=VACCINE_SYSTEMS[sys]).top_window()
-    except pywinauto.findwindows.ElementNotFoundError:
+        target_sys = pygetwindow.getWindowsWithTitle(VACCINE_SYSTEMS[sys])[0]
+    except IndexError:
         return
     
-    target_sys.set_focus()
+    target_sys.activate()    
     eAinput.buy_time(0.5)
     
     eAinput.click_at(*VACCINE_XYS[sys].DEL_PTJMNO)
@@ -358,14 +364,17 @@ def vaccine_cont_all(self):
     # Block mouse and keyboard input during PyAutoGui
     # windll.user32.BlockInput(True)
 
+    # 현물 인플루엔자 독감접종 시스템 변경으로 log out 연장 없어짐. (제외 시킴)
     for i in range(0, 3):
+        if i == 1:
+            continue
         try:
-            target_sys = Application().connect(title=VACCINE_SYSTEMS[i]).top_window()
-        except pywinauto.findwindows.ElementNotFoundError:
+            target_sys = pygetwindow.getWindowsWithTitle(VACCINE_SYSTEMS[i])[0]
+        except IndexError:
             return
-
-        target_sys.set_focus()
-        self.delayed_exec(0.5)
+        
+        target_sys.activate()
+        eAinput.buy_time(0.5)
         eAinput.click_at(*VACCINE_XYS[i].CONT_LOGIN)
         
 
@@ -376,26 +385,25 @@ def vaccine_cont_all(self):
 #: 기본접종시스템은 시작시 접종화면으로 가는 버튼을 눌러줘야함. 해당 기능.
 def gen_sys_prepare(self):
     try:
-        target_sys = Application().connect(title=VACCINE_SYSTEMS[0]).top_window()
-    except pywinauto.findwindows.ElementNotFoundError:
-        pass
-    
-    target_sys.set_focus()
-    self.delayed_exec(0.5)
+        target_sys = pygetwindow.getWindowsWithTitle(VACCINE_SYSTEMS[0])[0]
+    except IndexError:
+        return
+    target_sys.activate()
+    eAinput.buy_time(0.5)
     eAinput.click_at(*eAxys.VacGen.TO_MAIN)
 
 
-#: 독감 접종시 노인 및 소아 시스템은 동일하나 수동으로 백신 LOT번호를 변경해줘야해서...자동화.
-def flu_sys_LOT(self, lot:str):
-    try:
-        target_sys = Application().connect(title=VACCINE_SYSTEMS[1]).top_window()
-    except pywinauto.findwindows.ElementNotFoundError:
-        pass
+# #: 독감 접종시 노인 및 소아 시스템은 동일하나 수동으로 백신 LOT번호를 변경해줘야해서...자동화.
+# def flu_sys_LOT(self, lot:str):
+#     try:
+#         target_sys = Application().connect(title=VACCINE_SYSTEMS[1]).top_window()
+#     except pywinauto.findwindows.ElementNotFoundError:
+#         pass
     
-    target_sys.set_focus()
-    self.delayed_exec(0.5)
-    eAinput.double_click_at(VACCINE_XYS[1]["LOT번호"])
-    #+ eAinput.write_enter(lot번호)
+#     target_sys.set_focus()
+#     self.delayed_exec(0.5)
+#     eAinput.double_click_at(VACCINE_XYS[1]["LOT번호"])
+#     #+ eAinput.write_enter(lot번호)
 
 ### PYWINAUTO KEYS
 # {SCROLLLOCK}, {VK_SPACE}, {VK_LSHIFT}, {VK_PAUSE}, {VK_MODECHANGE},
@@ -421,3 +429,5 @@ def flu_sys_LOT(self, lot:str):
 # {VK_OEM_CLEAR}, {VK_ESCAPE}, {UP}, {VK_DIVIDE}, {INS}, {VK_JUNJA},
 # {VK_F19}, {VK_EXECUTE}, {VK_PLAY}, {VK_RMENU}, {VK_F13}, {VK_F12}, {LWIN},
 # {VK_DOWN}, {VK_F17}, {VK_F16}, {VK_F15}, {VK_F14}
+
+

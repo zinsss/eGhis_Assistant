@@ -211,11 +211,11 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         # self.macros_other_comments_btn.clicked.connect(lambda:)
         # 예방접종 관련
         self.macros_labeler_btn.clicked.connect(lambda:eAmacros.call_labeler(self))
+        self.macros_vac_input_btn.clicked.connect(lambda:eAmacros.vac_sys_input(self))
         # self..clicked.connect(lambda:)
-        # self..clicked.connect(lambda:)
-        # self..clicked.connect(lambda:)
+        self.macros_vac_log_btn.clicked.connect(lambda:eAwinauto.vaccine_cont_all(self))
         # 기타 Macro
-        # self..clicked.connect(lambda:)
+        self.macros_flu_btn.clicked.connect(lambda:eAmacros.influenza(self))
         # self..clicked.connect(lambda:)
         # self..clicked.connect(lambda:)
         # self..clicked.connect(lambda:)
@@ -315,14 +315,12 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
                            self.stgn_cloud_sync_led.text() : [eAutils.DBsyncDropBox, self],
                            "18:00" : [eAutils.daily_report_discord, self]}
         time_of_clock = self.clock_led.text()
-        print(scheduled_tasks)
         
         if time_of_clock in list(scheduled_tasks.keys()):
             job = scheduled_tasks[time_of_clock]
             return self.start_worker(*job)
         elif ( 10 <= int(time_of_clock[:2]) <= 17 ) and ( time_of_clock[3:] == "00" ):
-            # self.start_worker(eAwinauto.vaccine_cont_all, self)
-            print("vaccine cont log in")
+            self.start_worker(eAwinauto.vaccine_cont_all, self)
         else:
             return
     
@@ -420,6 +418,7 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
             if not btn == app_btn:
                 button.setStyleSheet(btn_style_default)
             else: button.setStyleSheet(btn_style_current)
+            
     
     #- Settings Stack
     def settings_buttons(self, setting_btn:str):
@@ -454,7 +453,6 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
             if not btn == setting_btn:
                 button.setStyleSheet(btn_style_default)
             else: button.setStyleSheet(btn_style_current)
-
 
         
 ## Let's Roll

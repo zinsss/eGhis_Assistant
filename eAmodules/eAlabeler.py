@@ -248,10 +248,10 @@ def vac_combo_selected(self):
         return
     # 코로나 접종 현재 일시 중단 상태이니 제일 먼저 확인 후 return
     if self.lblr_vaccines_cmb.currentText() in Vaccines.COVID:
-        ### 코로나 중지될때
+        ### 코로나 비접종 기간
         # eApopup.warning(text = "코로나19 접종은 현재 시행 안함.")
         # self.lblr_vaccines_cmb.setCurrentIndex(0)
-        
+        ## 코로나 접종 기간
         covid_org(self, self.lblr_vaccines_cmb.currentText())
         return
         

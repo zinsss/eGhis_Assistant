@@ -14,24 +14,23 @@ class eGhis:
 
 #= 통합예방접종시스템    
 class VacGen:
-    TO_MAIN = (2600, 1500)
-    INPUT_PTJMNO = (455, 540)
-    DEL_PTJMNO = (600, 540)
-    CONT_LOGIN = (1070, 430)
+    TO_MAIN = (1050,2555)
+    INPUT_PTJMNO = (1345, 2285)
+    DEL_PTJMNO = (1515, 2288)
+    CONT_LOGIN = (2700, 2175)
 
 #= 현물공급독감시스템
 class VacFlu:
-    INPUT_PTJMNO = (205, 580)
-    DEL_PTJMNO = (555, 575)
-    CONT_LOGIN = (1075, 435)
-    INPUT_LOT = (235, 880)
-    AS_EX = (3085, 1020)
+    INPUT_PTJMNO = (1343, 2360)
+    DEL_PTJMNO = (1343, 2360)
+    # VACCINATE = (2020, 2700)
 
 #= 코로나19접종시스템
 class VacCovid19:
-    INPUT_PTJMNO = (270, 575)
-    DEL_PTJMNO = (450, 575)
-    CONT_LOGIN = (1100, 440)
+    INPUT_PTJMNO = (1166, 2315)
+    DEL_PTJMNO = (1365, 2315)
+    CONT_LOGIN = (2745, 2185)
+    PF_MOD_SEL = (1650, 2365)
 
 #= Find_xy 용 png 파일 경로
 class Image:
@@ -44,4 +43,3 @@ class Area:
     F3_TOPBAR = ()
     F3_CODES = ()
     F3_CODENAMES = ()
-    CALENDAR = ()

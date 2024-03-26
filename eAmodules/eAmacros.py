@@ -117,7 +117,7 @@ def vac_sys_manager(self):
 # TODO more specific exceptions is needed.
 def vac_sys_input(self):
     vac_sys = ['예방접종시스템', '현물독감시스템', '코로나19시스템']
-    choice = eApopup.menu(title = '접종관리 시스템 입력', buttons = vac_sys)
+    choice = eApopup.menu(title = '시스템 입력', buttons = vac_sys)
     if choice == 'CLOSE': return
     else:
         currentPT = eAwinauto.current_ptinfo()
@@ -301,16 +301,16 @@ def influenza_tamiflu(type:str = None):
     if type == None:
         type_items = ['Influenza Type A', 'Influenza Type B']
         type = eApopup.menu(title = 'Influenza Type', buttons = type_items)
-        if type == 'CLOSE': return
+        if type == 'CLOSE': return 'CLOSE'
     
     jx999 = getattr(eAstr, f'FLU_{type[-1]}')
     
     menu_items = ['<15Kg', '15~23Kg', '23~40Kg', '40Kg 이상']
     weight = eApopup.menu(title = "타미플루 용량 선택", buttons = menu_items)
     if weight == 'CLOSE': return 'CLOSE'
-    elif weight == menu_items[0]: eAinput.rx_input(rx = '타미비어캡슐30', regimen = (2,2,5))
-    elif weight == menu_items[1]: eAinput.rx_input(rx = '타미비어캡슐45', regimen = (2,2,5))
-    elif weight == menu_items[2]: eAinput.rx_input(rx = '타미비어캡슐30', regimen = (4,2,5))
+    elif weight == menu_items[0]: eAinput.rx_input(rx = '타미플루캡슐30', regimen = (2,2,5))
+    elif weight == menu_items[1]: eAinput.rx_input(rx = '타미플루캡슐45', regimen = (2,2,5))
+    elif weight == menu_items[2]: eAinput.rx_input(rx = '타미플루캡슐30', regimen = (4,2,5))
     else: eAinput.rx_input(rx = '타미비어캡슐75', regimen = (2,2,5))
     eAinput.buy_time(0.2)
     # 몸무게에 맞는 처방약이 입력이 되면 타미플루의 '특정내역'에 독감 확진임을 입력해주고.        
@@ -326,7 +326,7 @@ def influenza_docs(self):
     docs = influenza_tamiflu()
     if docs != 'CLOSE':
         eAinput.rx_input('진료확인서')
-        eAutils.apps_stack_menu(self, self.medicaldocs_btn.text())
+        self.apps_buttons('apps_med_docs_btn')
 
 #= 인플루엔자 최종
 def influenza(self):
@@ -337,4 +337,3 @@ def influenza(self):
     elif choice == menu_items[1]: influenza_result()
     elif choice == menu_items[2]: influenza_tamiflu()
     else: influenza_docs(self)
-            
