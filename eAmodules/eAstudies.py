@@ -44,7 +44,7 @@ def reset(self, target_widgets:list):
 
 
 #: Lab Studies
-def lab_results_copy(self, close_window:bool = True):
+def lab_results_copy(self):
     #1 우선 빈 리스트를 하나 만들고,
     results = []
     #2-1 주어진 결과값을 하나하나 복사를 하는데, 결과값의 위젯 종류에 따라
@@ -141,11 +141,10 @@ def lab_results_copy(self, close_window:bool = True):
     else:
         eAinput.copy_it(LAB_RESULT_FORM)
         reset(self, LAB_TARGETS)
-        self.hide()
      
      
 #: BMD
-def bmd_results_copy(self, close_window:bool = True):
+def bmd_results_copy(self):
     results = []
     for bmd_target in BMD_TARGETS:
         target = getattr(self, bmd_target)
@@ -173,11 +172,10 @@ def bmd_results_copy(self, close_window:bool = True):
     else:
         eAinput.copy_it(BMD_RESULT_FORM)
         reset(self, BMD_TARGETS)
-        self.hide()
         
 
 #: Dementia
-def alz_results_copy(self, close_window:bool = True):
+def alz_results_copy(self):
     results = []
     for alz_target in ALZ_TARGETS:
         target = getattr(self, alz_target)
@@ -210,11 +208,10 @@ def alz_results_copy(self, close_window:bool = True):
     else:
         eAinput.copy_it(ALZ_RESULT_FORM)
         reset(self, ALZ_TARGETS)
-        self.hide()
         
         
 #: IPSS
-def ipss_results_copy(self, close_window:bool = True):
+def ipss_results_copy(self):
     results = []
     for ipss_target in IPSS_TARGETS:
         target = getattr(self, ipss_target)
@@ -252,4 +249,3 @@ def ipss_results_copy(self, close_window:bool = True):
     else:
         eAinput.copy_it(IPSS_RESULT_FORM)
         reset(self, IPSS_TARGETS)
-        self.hide()

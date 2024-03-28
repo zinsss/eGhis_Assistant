@@ -4,7 +4,7 @@ from os import system
 import requests, sqlite3
 
 import main
-from eAmodules import eAinput, eApopup, eAreminders
+from eAmodules import eAinput, eApopup, eAreminders, eAcalendar
 
 ## Various Common Functions Used in APP.
 #: 주민번호에서 생년월일. 뒷자리로 생년 19 or 20 구분하기.
@@ -157,19 +157,23 @@ def send_discord(self, text:str):
 def daily_report_discord(self):
     if not self.stgn_messenger_btn.isChecked(): return
     # Title
-    title = f'# Daily Report, {self.infos.date_today.toString("yyyy-MM-dd ddd")}\n'
+    title = f'# Daily Report, {self.infos.date_today.toString("yy-MM-dd ddd")}'
     
     # Calendar Events in 7 days
-    events = f'## Events in 7 days\n'
+    events = f'**Upcoming Events**'
+    events_in_7d = eAcalendar.daily_report_events(self)    
     
     # Current Active Reminders
-    reminders = f'## Active Reminders\n'
+    reminders = f'**Active Reminders**'
+    # for i in range(self.reminders_lwg.count()):
+    #     status = eAreminders.reminder_status[self.reminders_lwg.item(i).text()[:3]][2]
+    #     reminder = self.reminders_lwg.item(i).text()[3:]
+    #     reminders = reminders + status + reminder + "\n"
+    reminders_active = ""
     for i in range(self.reminders_lwg.count()):
-        status = eAreminders.reminder_status[self.reminders_lwg.item(i).text()[:3]][2]
-        reminder = self.reminders_lwg.item(i).text()[3:]
-        reminders = reminders + status + reminder + "\n"
+        reminders_active = reminders_active + f'{self.reminders_lwg.item(i).text()}\n'
     
-    final_report = title + events + reminders
+    final_report = f"{title}\n{events}```{events_in_7d}```{reminders}```{reminders_active}```"
     
     send_discord(self, final_report)
     

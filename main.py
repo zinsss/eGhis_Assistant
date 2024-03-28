@@ -218,7 +218,8 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.macros_flu_btn.clicked.connect(lambda:eAmacros.influenza(self))
         # self..clicked.connect(lambda:)
         # self..clicked.connect(lambda:)
-        # self..clicked.connect(lambda:)
+        self.macros_reserve_3_btn.clicked.connect(lambda:eAutils.daily_report_discord(self))
+       
         
         # APPS-------------------------------------------------------------------------------------#
         # App_Stack Navigation
@@ -257,6 +258,26 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         self.mdoc_save_btn.clicked.connect(lambda:eAmdocs.edit_doc(self))
         self.mdoc_delete_btn.clicked.connect(lambda:eAmdocs.delete_doc(self))
         self.mdoc_copy_btn.clicked.connect(lambda:eAmdocs.copy_doc(self))
+        
+        # Studies
+        eAstudies.reset(self, eAstudies.LAB_TARGETS)
+        eAstudies.reset(self, eAstudies.BMD_TARGETS)
+        eAstudies.reset(self, eAstudies.ALZ_TARGETS)
+        eAstudies.reset(self, eAstudies.IPSS_TARGETS)
+        self.studies_lab_btn.clicked.connect(lambda:self.studies_buttons('studies_lab_btn'))
+        self.studies_bmd_btn.clicked.connect(lambda:self.studies_buttons('studies_bmd_btn'))
+        self.studies_alz_btn.clicked.connect(lambda:self.studies_buttons('studies_alz_btn'))
+        self.studies_ipss_btn.clicked.connect(lambda:self.studies_buttons('studies_ipss_btn'))
+        self.lab_reset_btn.clicked.connect(lambda:eAstudies.reset(self, eAstudies.LAB_TARGETS))
+        self.bmd_reset_btn.clicked.connect(lambda:eAstudies.reset(self, eAstudies.BMD_TARGETS))
+        self.alz_reset_btn.clicked.connect(lambda:eAstudies.reset(self, eAstudies.ALZ_TARGETS))
+        self.ipss_reset_btn.clicked.connect(lambda:eAstudies.reset(self, eAstudies.IPSS_TARGETS))
+        self.lab_copy_btn.clicked.connect(lambda:eAstudies.lab_results_copy(self))
+        self.bmd_copy_btn.clicked.connect(lambda:eAstudies.bmd_results_copy(self))
+        self.alz_copy_btn.clicked.connect(lambda:eAstudies.alz_results_copy(self))
+        self.ipss_copy_btn.clicked.connect(lambda:eAstudies.ipss_results_copy(self))
+        
+        
 
         # Labeller
         eAlabeler.prepare_labeler(self)
@@ -418,7 +439,42 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
             if not btn == app_btn:
                 button.setStyleSheet(btn_style_default)
             else: button.setStyleSheet(btn_style_current)
-            
+    
+    
+    #- Studies Stack
+    def studies_buttons(self, studies_btn:str):
+        studies_btns = ['studies_lab_btn', 'studies_bmd_btn', 'studies_alz_btn', 'studies_ipss_btn']
+        btn_style_current = """
+        QPushButton {
+            color:rgb(230,220,144);
+            border:none;
+        }
+        QPushButton:pressed {
+            color:rgb(230,220,144);
+        }
+        """
+        btn_style_default = """
+        QPushButton {
+            color: rgb(165, 170, 180);
+            border:none;
+        }
+        QPushButton:hover {
+            color:rgb(230,220,144);
+        }
+        QPushButton:pressed {
+            color:rgb(75,85,100);
+        }
+        """
+        # 각 App page의 index는 위 리스트의 버튼 이름 인덱스와 동일하게 맞춰놓음. 
+        index = studies_btns.index(studies_btn)
+        self.studies_stack.setCurrentIndex(index)
+        # 매 클릭시마다 현재 페이지는 스타일 다르게 설정하고, 나머지는 모두 default 스타일로 적용.
+        for btn in studies_btns:
+            button = getattr(self, btn)
+            if not btn == studies_btn:
+                button.setStyleSheet(btn_style_default)
+            else: button.setStyleSheet(btn_style_current)
+     
     
     #- Settings Stack
     def settings_buttons(self, setting_btn:str):

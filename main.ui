@@ -6713,7 +6713,7 @@ QComboBox QAbstractItemView {
 }</string>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="sticky">
       <widget class="QWidget" name="gridLayoutWidget">
@@ -6971,10 +6971,10 @@ QPushButton:pressed {
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -6997,20 +6997,20 @@ QPushButton:pressed {
            </brush>
           </colorrole>
           <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
+           <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7054,10 +7054,10 @@ QPushButton:pressed {
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7080,20 +7080,20 @@ QPushButton:pressed {
            </brush>
           </colorrole>
           <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
+           <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7137,10 +7137,10 @@ QPushButton:pressed {
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7163,20 +7163,20 @@ QPushButton:pressed {
            </brush>
           </colorrole>
           <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
+           <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7756,10 +7756,10 @@ QPushButton:pressed {
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7782,20 +7782,20 @@ QPushButton:pressed {
            </brush>
           </colorrole>
           <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
+           <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7839,10 +7839,10 @@ QPushButton:pressed {
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7865,20 +7865,20 @@ QPushButton:pressed {
            </brush>
           </colorrole>
           <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
+           <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7922,10 +7922,10 @@ QPushButton:pressed {
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -7948,20 +7948,20 @@ QPushButton:pressed {
            </brush>
           </colorrole>
           <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
+           <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>40</red>
-             <green>45</green>
-             <blue>55</blue>
+            <color alpha="0">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -8459,7 +8459,7 @@ QPushButton:pressed {
 }</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="lab_results">
         <widget class="QLineEdit" name="lab_rbc_led">
@@ -11022,6 +11022,9 @@ border-bottom-left-radius:10px;
 padding:5px;
 </string>
          </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
          <property name="verticalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
@@ -11029,10 +11032,13 @@ padding:5px;
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
          <property name="readOnly">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="plainText">
           <string/>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::TextEditorInteraction</set>
          </property>
         </widget>
         <widget class="QLabel" name="lab_inst_lbl">
@@ -12485,10 +12491,13 @@ padding:5px;</string>
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
          <property name="readOnly">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="plainText">
           <string/>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::TextEditorInteraction</set>
          </property>
         </widget>
         <widget class="QLineEdit" name="alz_gds_led">
@@ -21250,13 +21259,11 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#dedee9;&quot;&gt;--------------------------------------------------&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#dedee9;&quot;&gt;PySide 6&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#dedee9;&quot;&gt;PyWinAuto&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#dedee9;&quot;&gt;PyAutoGui&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#dedee9;&quot;&gt;PyGetWindows&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#dedee9;&quot;&gt; Selenium for Python&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#dedee9;&quot;&gt;--------------------------------------------------&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#f5c891;&quot;&gt;등을 활용합니다. &lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#f5c891;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic; color:#787878;&quot;&gt;by ZiNSSS&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#787878;&quot;&gt;영해선한가정의학과, 경북 영덕군 영해면 예주시장길 43-1 1층&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#787878;&quot;&gt;053-733-7766&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#f5c891;&quot;&gt;등을 활용합니다. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </widget>

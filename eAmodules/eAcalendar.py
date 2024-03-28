@@ -577,7 +577,47 @@ def view_yearly(self):
         if event[2]:
             item.setForeground(QtGui.QBrush(QtGui.QColor(225, 90, 100)))
         self.calendar_yearly_lwg.addItem(item)
+
+
+#======= For Daily Report. Get Events for Next 7 Days.
+def daily_report_events(self):
+    today_date = self.infos.date_today
+    target_start = today_date.addDays(1).toString("yyyy.MM.dd")
+    target_end = today_date.addDays(7).toString("yyyy.MM.dd")
+    
+    # Load DB
+    con = sqlite3.connect("./database/eAcalrem.db")
+    cur = con.cursor()
+    # Find correct event from DB
+    events_in_7d = cur.execute(f"""
+                               SELECT * FROM Calendar
+                               WHERE
+                               (Start_Date BETWEEN '{target_start}' AND '{target_end}')
+                               OR
+                               (End_Date BETWEEN '{target_start}' AND '{target_end}')
+                               ORDER BY Start_Date
+                               """).fetchall()
+    # Close Connection
+    con.close()
+    
+    events_discord_str = ""
+    for event in events_in_7d:
+        date_s = QDate.fromString(event[0], "yyyy.MM.dd").toString("MM.dd(ddd)")
+        date_e = QDate.fromString(event[1], "yyyy.MM.dd").toString("MM.dd(ddd)")
         
+        if event[0] == event[1]:
+            event_date = f'::{date_s}::'
+        else:
+            event_date = f'::{date_s}~{date_e}::'
+        
+        event_holiday = "*" if event[2] else ""
+        event_title = event[3]
+        
+        event_info_discord = f'{event_date} {event_holiday}{event_title}\n'
+        events_discord_str = events_discord_str + event_info_discord
+        
+    return events_discord_str
+
 
 #======= Finding LPDOM
 #- 청구일의 전제 조건. 1) 일요일 아니고, 2) 토요일은 기본적으로 아니되, 장날이 아닌 토요일은 제외. 3) 휴진일/공휴일이 아니어야지..
