@@ -1,9 +1,9 @@
-## Archives of Commonly Used Strings For Better Management and More Readability of Main Code.
+# Archives of Commonly Used Strings For Better Management and More Readability of Main Code.
 
-## MACROS
-# = 진료관련
+# MACROS
+# 진료관련
 
-# = 코멘트모음
+# 코멘트모음
 FLUID_LST = ["수액;", "수액;;", "수액;;;"]
 PT_LST = ["물치;", "물치;;", "물치;;;", "물치;;;;", "물치;;;;;", "물치;;;;;;"]
 CHRMAN_LST = ["만성;", "만성;;", "만성;;;", "만성;;;;", "만성;;;;;", "만성;;;;;;"]
@@ -25,9 +25,9 @@ HOME_MON = "# 가정에서도 주기적으로 혈압/혈당 확인해보세요.\
 REC_HOME_MON_BST = "# 주기적으로 집에서도 식전 및/또는 식후(2시간)\n  혈당 확인 후 다음 내원 시 적어 오시도록 권유함."
 REC_HOME_MON_BP = "# 주기적으로 집에서도 혈압 측정 후\n  다음 내원시 적어 오시도록 권유함."
 
-# = 예방접종 관련
+# 예방접종 관련
 
-# = 코로나19 관련
+# 코로나19 관련
 RAT_50 = "# 경북 영덕군 영해면 소재 의료기관\n  발열 및 상기도 감염 증세로 내원하여 50/100 처방함."
 RAT_NEGA = "\n# 본원 확인 한 RAT상 음성."
 RAT_POSI = """\n# 본원 확인 한 RAT상 양성. 주의사항 및 안내사항 설명함.
@@ -37,14 +37,14 @@ RAT_POSI = """\n# 본원 확인 한 RAT상 양성. 주의사항 및 안내사항
  - 증상 지속/악화 시 재 방문하도록 설명함."""
 RAT_FU_REC = "\n# 증상호전 없이 지속/악화되는 경우에는\n RAT 또는 자가진단키트 반복검사의 고려 필요성을 설명함."
 
-# = 인플루엔자관련
+# 인플루엔자관련
 FLU_NEGA = "\n# 본원에서 확인한 FLU 키트검사 상 음성."
 FLU_A = "\n# 본원에서 확인한 FLU 키트검사 상 A형 인플루엔자 확인."
 FLU_B = "\n# 본원에서 확인한 FLU 키트검사 상 B형 인플루엔자 확인."
 TAMIFLU_INFO = "\n# 타미플루 처방. 관련 부작용 및 안내사항 설명함."
 
 
-## Quick Saves
+# Quick Saves
 VACCINATION = "\n접종관련 부작용 과거력: 없음\n상기도감염증세: 없음\n발열여부: 없음"
 LIMAPROST = "양측 SLR 40도 내외.\n간헐성 파행, 10m 내외."
 CHOLINE_ALFO = "최근 기억력 저하, 특히 short term memory.\n돈계산 등 집중력 저하는 미미."

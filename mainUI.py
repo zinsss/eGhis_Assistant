@@ -31,6 +31,9 @@ class Ui_Main(object):
         font.setFamilies([u"D2Coding"])
         font.setPointSize(12)
         Main.setFont(font)
+        icon = QIcon()
+        icon.addFile(u"resources/main_logo.png", QSize(), QIcon.Normal, QIcon.Off)
+        Main.setWindowIcon(icon)
         Main.setStyleSheet(u"QWidget{\n"
 "	background-color: rgb(50, 55, 70);	\n"
 "	color: rgb(180, 185, 194);\n"
@@ -2291,6 +2294,27 @@ class Ui_Main(object):
         self.info_yhshfm_address_lbl.setStyleSheet(u"border:none;\n"
 "color: rgb(111, 111, 122);")
         self.info_yhshfm_address_lbl.setAlignment(Qt.AlignCenter)
+        self.reset_all_btn = QPushButton(self.info_gbx)
+        self.reset_all_btn.setObjectName(u"reset_all_btn")
+        self.reset_all_btn.setGeometry(QRect(20, 50, 81, 20))
+        sizePolicy3.setHeightForWidth(self.reset_all_btn.sizePolicy().hasHeightForWidth())
+        self.reset_all_btn.setSizePolicy(sizePolicy3)
+        self.reset_all_btn.setMinimumSize(QSize(0, 20))
+        self.reset_all_btn.setMaximumSize(QSize(16777215, 16777215))
+        self.reset_all_btn.setFont(font11)
+        self.reset_all_btn.setStyleSheet(u"QPushButton {	\n"
+"	color: rgb(160, 190, 150);\n"
+"	background-color:rgb(45,50,60);\n"
+"	border-radius:10%;\n"
+"	border:1px solid rgb(50,55,70);\n"
+"}\n"
+"QPushButton:hover {    \n"
+"	color:rgb(140,200,130);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(50,55,65);\n"
+"}")
+        self.reset_all_btn.setFlat(True)
         self.apps_gbx = QGroupBox(self.centralwidget)
         self.apps_gbx.setObjectName(u"apps_gbx")
         self.apps_gbx.setGeometry(QRect(20, 1220, 550, 731))
@@ -7167,16 +7191,16 @@ class Ui_Main(object):
 
         self.calendar_stack.setCurrentIndex(0)
         self.reminders_stack.setCurrentIndex(1)
-        self.apps_stack.setCurrentIndex(3)
-        self.studies_stack.setCurrentIndex(3)
-        self.settings_stack.setCurrentIndex(0)
+        self.apps_stack.setCurrentIndex(6)
+        self.studies_stack.setCurrentIndex(0)
+        self.settings_stack.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Main)
     # setupUi
 
     def retranslateUi(self, Main):
-        Main.setWindowTitle(QCoreApplication.translate("Main", u"MainWindow", None))
+        Main.setWindowTitle(QCoreApplication.translate("Main", u"eGhisAssistant v6", None))
         self.today_gbx.setTitle("")
         self.calendar_day_year_lbl.setText(QCoreApplication.translate("Main", u"2023", None))
         self.calendar_next_month_btn.setText(QCoreApplication.translate("Main", u">>", None))
@@ -7339,6 +7363,7 @@ class Ui_Main(object):
         self.info_not_for_sale_lbl.setText(QCoreApplication.translate("Main", u" eGhis Assistant is Not For Sale nor Distribution", None))
         self.info_title_lbl.setText(QCoreApplication.translate("Main", u"Information", None))
         self.info_yhshfm_address_lbl.setText(QCoreApplication.translate("Main", u"\uacbd\ubd81 \uc601\ub355\uad70 \uc601\ud574\uba74 \uc608\uc8fc\uc2dc\uc7a5\uae38 43-1 1\uce35", None))
+        self.reset_all_btn.setText(QCoreApplication.translate("Main", u"Reset All", None))
         self.apps_gbx.setTitle("")
         self.apps_med_docs_btn.setText(QCoreApplication.translate("Main", u"Med. Docs", None))
         self.apps_quick_saves_btn.setText(QCoreApplication.translate("Main", u"Quick Saves", None))
@@ -7705,54 +7730,54 @@ class Ui_Main(object):
         self.stgn_reset_btn.setText(QCoreApplication.translate("Main", u"Reload", None))
         self.stlb_flu_age_75over_lbl1.setText(QCoreApplication.translate("Main", u"\uc774\uc804", None))
         self.stlb_flu_old_over75_start_lbl.setText(QCoreApplication.translate("Main", u"75\uc138 \uc774\uc0c1", None))
-        self.stlb_flu_old_over75_start_led.setText("")
+        self.stlb_flu_old_over75_start_led.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_flu_age_child_lbl.setText(QCoreApplication.translate("Main", u"\ub300\uc0c1 \uc5f0\ub839", None))
         self.stlb_flu_allow_ex_cbx.setText(QCoreApplication.translate("Main", u"\uc608\uc678 \ub4f1\ub85d\ud558\uae30 (\uc8fc\uc18c\uc9c0\ub294 \uc790\ub3d9\ud655\uc778 \uc548\ub428)", None))
         self.stlb_flu_auto_sort_cbx.setText(QCoreApplication.translate("Main", u"\uad6d\uac00 \ub3c5\uac10. \ub0a0\uc9dc/\uc5f0\ub839/\uc608\uc678 \ucc98\ub9ac\ud558\uae30", None))
         self.stlb_flu_age_7074_lbl.setText(QCoreApplication.translate("Main", u"70~74\uc138", None))
-        self.stlb_flu_old_7074_start_led.setText("")
-        self.stlb_flu_old_6569_start_led.setText("")
+        self.stlb_flu_old_7074_start_led.setText(QCoreApplication.translate("Main", u"20230101", None))
+        self.stlb_flu_old_6569_start_led.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_flu_old_7074_start_lbl.setText(QCoreApplication.translate("Main", u"70~74\uc138", None))
         self.stlb_child_flu_lot_led.setText("")
         self.stlb_flu_old_6569_start_lbl.setText(QCoreApplication.translate("Main", u"65~69\uc138", None))
         self.stlb_subtitle_flu_old_age_lbl.setText(QCoreApplication.translate("Main", u"\ub178\uc778\ub3c5\uac10 \uc0ac\uc5c5 \ub300\uc0c1\uc790 \uc5f0\ub839(\uc0dd\uc77c)", None))
         self.stlb_flu_age_6569_lbl.setText(QCoreApplication.translate("Main", u"65~69\uc138", None))
         self.stlb_flu_old_over75_start_lbl1.setText(QCoreApplication.translate("Main", u"\ubd80\ud130", None))
-        self.stlb_flu_date_child_once_led1.setText("")
+        self.stlb_flu_date_child_once_led1.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_subtitle_flu_old_date_lbl.setText(QCoreApplication.translate("Main", u"\ub178\uc778\ub3c5\uac10 \uc811\uc885 \uc77c\uc815", None))
-        self.stlb_flu_age_75over_led.setText("")
+        self.stlb_flu_age_75over_led.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_child_flu_lot_lbl.setText(QCoreApplication.translate("Main", u"LOT", None))
         self.stlb_auto_input_cbx.setText(QCoreApplication.translate("Main", u"\uc811\uc885 \uc120\ud0dd \uc2dc \uac01 \uc2dc\uc2a4\ud15c\ubcc4 \ud658\uc790\uc815\ubcf4 \uc790\ub3d9\uc785\ub825", None))
-        self.stlb_flu_date_child_twice_led1.setText("")
+        self.stlb_flu_date_child_twice_led1.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_flu_old_6569_start_lbl1.setText(QCoreApplication.translate("Main", u"\ubd80\ud130", None))
         self.stlb_flu_date_child_twice_lbl.setText(QCoreApplication.translate("Main", u"2\ud68c \uc811\uc885\uc790", None))
-        self.stlb_flu_age_child_led1.setText("")
+        self.stlb_flu_age_child_led1.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_flu_age_75over_lbl.setText(QCoreApplication.translate("Main", u"75\uc138 \uc774\uc0c1", None))
         self.stlb_auto_child_flu_lot_cbx.setText(QCoreApplication.translate("Main", u"\uc18c\uc544\ub3c5\uac10(nip) \uc811\uc885\uc2dc LOT\ubc88\ud638 \ubc14\uafb8\uae30", None))
         self.stlb_flu_old_7074_start_lbl1.setText(QCoreApplication.translate("Main", u"\ubd80\ud130", None))
-        self.stlb_flu_age_child_led2.setText("")
+        self.stlb_flu_age_child_led2.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_flu_date_child_once_lbl1.setText(QCoreApplication.translate("Main", u"\ubd80\ud130", None))
         self.stlb_subtitle_flu_child_lbl.setText(QCoreApplication.translate("Main", u"\uc18c\uc544\ub3c5\uac10 \uc77c\uc815 \ubc0f \uc5f0\ub839(\uc0dd\uc77c)", None))
         self.stlb_flu_date_child_twice_lbl1.setText(QCoreApplication.translate("Main", u"\ubd80\ud130", None))
         self.stlb_flu_date_child_once_lbl.setText(QCoreApplication.translate("Main", u"1\ud68c \uc811\uc885\uc790", None))
-        self.stlb_flu_date_child_once_led2.setText("")
+        self.stlb_flu_date_child_once_led2.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_flu_date_child_once_lbl2.setText(QCoreApplication.translate("Main", u"\uae4c\uc9c0", None))
         self.stlb_flu_date_child_twice_lbl2.setText(QCoreApplication.translate("Main", u"\uae4c\uc9c0", None))
-        self.stlb_flu_date_child_twice_led2.setText("")
+        self.stlb_flu_date_child_twice_led2.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_flu_old_end_lbl.setText(QCoreApplication.translate("Main", u"\uc0ac\uc5c5\uae30\uac04", None))
         self.stlb_flu_old_end_lbl1.setText(QCoreApplication.translate("Main", u"\uae4c\uc9c0", None))
-        self.stlb_flu_old_end_led.setText("")
+        self.stlb_flu_old_end_led.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_title_lbl.setText(QCoreApplication.translate("Main", u"Labeler Settings", None))
         self.stlb_flu_age_child_lbl1.setText(QCoreApplication.translate("Main", u"\ubd80\ud130", None))
         self.stlb_flu_age_child_lbl2.setText(QCoreApplication.translate("Main", u"\uae4c\uc9c0", None))
         self.stlb_flu_age_7074_lbl2.setText(QCoreApplication.translate("Main", u"\uae4c\uc9c0", None))
         self.stlb_flu_age_7074_lbl1.setText(QCoreApplication.translate("Main", u"\ubd80\ud130", None))
-        self.stlb_flu_age_7074_led1.setText("")
-        self.stlb_flu_age_7074_led2.setText("")
+        self.stlb_flu_age_7074_led1.setText(QCoreApplication.translate("Main", u"20230101", None))
+        self.stlb_flu_age_7074_led2.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_flu_age_6569_lbl2.setText(QCoreApplication.translate("Main", u"\uae4c\uc9c0", None))
         self.stlb_flu_age_6569_lbl1.setText(QCoreApplication.translate("Main", u"\ubd80\ud130", None))
-        self.stlb_flu_age_6569_led1.setText("")
-        self.stlb_flu_age_6569_led2.setText("")
+        self.stlb_flu_age_6569_led1.setText(QCoreApplication.translate("Main", u"20230101", None))
+        self.stlb_flu_age_6569_led2.setText(QCoreApplication.translate("Main", u"20230101", None))
         self.stlb_save_btn.setText(QCoreApplication.translate("Main", u"Save Settings", None))
         self.stlb_reset_btn.setText(QCoreApplication.translate("Main", u"Reload", None))
         self.about_te.setHtml(QCoreApplication.translate("Main", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -7788,15 +7813,12 @@ class Ui_Main(object):
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dedee9;\">--------------------------------------------------</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dedee9;\">PySide 6</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dedee9;\">PyWinAuto</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dedee9;\">PyAutoGui</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dedee9;\">PyGetWindows</span></"
+                        "p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dedee9;\"> Selenium for Python</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dedee9;\">----------"
-                        "----------------------------------------</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#f5c891;\">\ub4f1\uc744 \ud65c\uc6a9\ud569\ub2c8\ub2e4. </span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#f5c891;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#787878;\">by ZiNSSS</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#787878;\">\uc601\ud574\uc120\ud55c\uac00\uc815\uc758\ud559\uacfc, \uacbd\ubd81 \uc601\ub355\uad70 \uc601\ud574\uba74 \uc608\uc8fc\uc2dc\uc7a5\uae38 43-1 1\uce35</span></p>"
-                        "\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#787878;\">053-733-7766</span></p></body></html>", None))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dedee9;\">--------------------------------------------------</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#f5c891;\">\ub4f1\uc744 \ud65c\uc6a9\ud569\ub2c8\ub2e4. </span></p></body></html>", None))
         self.apps_about_btn.setText(QCoreApplication.translate("Main", u"About", None))
     # retranslateUi
 

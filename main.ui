@@ -17,7 +17,11 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>eGhisAssistant v6</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>resources/main_logo.png</normaloff>resources/main_logo.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
@@ -6261,6 +6265,61 @@ color: rgb(111, 111, 122);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QPushButton" name="reset_all_btn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>81</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Lucida Sans</family>
+       <pointsize>11</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {	
+	color: rgb(160, 190, 150);
+	background-color:rgb(45,50,60);
+	border-radius:10%;
+	border:1px solid rgb(50,55,70);
+}
+QPushButton:hover {    
+	color:rgb(140,200,130);
+}
+QPushButton:pressed {
+	background-color:rgb(50,55,65);
+}</string>
+     </property>
+     <property name="text">
+      <string>Reset All</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="apps_gbx">
     <property name="geometry">
@@ -6713,7 +6772,7 @@ QComboBox QAbstractItemView {
 }</string>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="sticky">
       <widget class="QWidget" name="gridLayoutWidget">
@@ -18215,7 +18274,7 @@ QPushButton:pressed {
 }</string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="general_settings">
         <widget class="QPushButton" name="stgn_auto_backup_btn">
@@ -19255,7 +19314,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -19437,7 +19496,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -19479,7 +19538,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -19747,7 +19806,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -19816,7 +19875,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -19927,7 +19986,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -20049,7 +20108,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -20202,7 +20261,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -20392,7 +20451,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -20516,7 +20575,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -20638,7 +20697,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -20881,7 +20940,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -20923,7 +20982,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -21047,7 +21106,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>
@@ -21089,7 +21148,7 @@ border-bottom:1px solid rgb(70,75,100);
 padding-left:6px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>20230101</string>
          </property>
          <property name="frame">
           <bool>false</bool>

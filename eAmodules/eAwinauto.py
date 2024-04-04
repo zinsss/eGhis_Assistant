@@ -5,11 +5,7 @@ import pywinauto
 from pywinauto.application import Application
 
 import pygetwindow
-
 import pyautogui
-
-#* In case for blocking user input
-#from ctypes import windll
 
 import main
 from eAmodules import eAinput, eApopup, eAxys, eAutils
@@ -23,16 +19,13 @@ from eAmodules import eAinput, eApopup, eAxys, eAutils
 # codeTexts = [codes.legacy_properties()['Value'] for codes in codenames]
 # print(codeTexts)
 
-## eGhis EMR Related.
-
-
-
+# eGhis EMR Related.
 app = Application().connect(path="C:\Mcc\Clinic\eGhis.exe")
 eghis = app.top_window()
 eghis_opd = eghis.child_window(auto_id="H2OpdOrder")
 
 
-#: eGhis 실행 여부 확인 및 process id 저장. 최초 eGhis Assistant 실행시 실행될 함수.
+# eGhis 실행 여부 확인 및 process id 저장. 최초 eGhis Assistant 실행시 실행될 함수.
 def find_eghis():
     try:
         app = Application().connect(path="C:\Mcc\Clinic\eGhis.exe")
@@ -44,8 +37,8 @@ def find_eghis():
     return app, eghis, eghis_opd
 
 
-#: eGhis로 window focus 이동.
-#: eGhis 재 실행등의 이유로 process id가 다르거나 없다면, 다시 설정하기.
+# eGhis로 window focus 이동.
+# eGhis 재 실행등의 이유로 process id가 다르거나 없다면, 다시 설정하기.
 def to_eghis():
     global app, eghis, eghis_opd
     if eghis.exists():
@@ -56,31 +49,31 @@ def to_eghis():
         app, eghis, eghis_opd = find_eghis()
         eghis.set_focus()
 
-        
-#: 보험 자격 조회 및 비보진료하기
-def eghis_insurance(action:str = "check"):
+
+# 보험 자격 조회 및 비보진료하기
+def eghis_insurance(action: str = "check"):
     '''
     action: check -> 자격조회, no_ins -> 일반진료
     '''
     to_eghis()
     eghis_opd.child_window(auto_id="lblInsurance").click()
     if action == "check":
-        pywinauto.keyboard.send_keys(keys = "{DOWN},{ENTER}")
+        pywinauto.keyboard.send_keys(keys="{DOWN},{ENTER}")
     elif action == "no_ins":
-        pywinauto.keyboard.send_keys(keys = "{DOWN}{DOWN}{DOWN}{DOWN}{ENTER}{ENTER}")
+        pywinauto.keyboard.send_keys(keys="{DOWN}{DOWN}{DOWN}{DOWN}{ENTER}{ENTER}")
         eAinput.buy_time(sec=1)
-        pywinauto.keyboard.send_keys(keys = "{ENTER}")
+        pywinauto.keyboard.send_keys(keys="{ENTER}")
         eAinput.buy_time(sec=2)
-        pywinauto.keyboard.send_keys(keys = "{F3}{UP}{DELETE}{ENTER}")
+        pywinauto.keyboard.send_keys(keys="{F3}{UP}{DELETE}{ENTER}")
     else:
         return
- 
-    
+
+
 def eghis_docs():
-    menu_bar = eghis_opd.child_window(auto_id = "mnuOrder")
+    menu_bar = eghis_opd.child_window(auto_id="mnuOrder")
     menu_bar.print_control_identifiers()
 
-    
+
 #: 환자정보 툴팁 나오는 위치로 이동
 def eghis_pt_tooltip():
     show_tt = eghis_opd.child_window(auto_id="lblReceptNo").rectangle().mid_point()
@@ -88,7 +81,7 @@ def eghis_pt_tooltip():
 
 
 #: eGhis 증상에 입력하기.
-def eghis_add_to_sx(text:str):
+def eghis_add_to_sx(text: str):
     symp = eghis_opd.child_window(auto_id="txtSymp").child_window(auto_id="mcctextBox").texts()[0].rstrip()
     symp = f'{symp}\r\n\r\n{text}'
     eghis_opd.child_window(auto_id="txtSymp").child_window(auto_id="mcctextBox").set_text(symp)
@@ -113,20 +106,21 @@ def eghis_toggle_cjjj():
 
 #: eGhis 내 달력에서 오늘 찾기 + 우클릭.
 def eghis_today_right_click(self):
-    today_dd =  int(self.infos.date_today.toString("d"))
+    today_dd = int(self.infos.date_today.toString("d"))
     cal_today = eghis_opd.child_window(auto_id="tblMonth").child_window(title=str(today_dd))
     cal_today.right_click_input()
 
 
 #: 청구안함
 def eghis_do_not_claim():
-    no_claim = eghis_opd.child_window(title="청구안함", auto_id="chkInspTargetYn", control_type="System.Windows.Forms.CheckBox")
+    no_claim = eghis_opd.child_window(title="청구안함", auto_id="chkInspTargetYn",
+                                      control_type="System.Windows.Forms.CheckBox")
     if not no_claim.is_checked():
         no_claim.click()
 
 
 #: 진료대기,보류,완료 control
-def tab_wait_list(tab:int, first_in_line:bool = True):
+def tab_wait_list(tab: int, first_in_line: bool = True):
     '''tab: 1 -> 대기, 3 -> 보류, 5 -> 예약, 7 -> 완료, 9 -> 취소
 first_in_line: True (default) -> 첫번째 목록 더블클릭\n
 !!! 1,3,5,7,9 이외의 숫자는 return None\n
@@ -138,26 +132,26 @@ win32에서는 각각의 탭까지 접근이 불가하고,\n
 좌측에서 넓이의 10%, 30%, 50%, 70%, 90%를 클릭하면 됨.\n
 '''
     to_eghis()
-    
-    if tab not in [1,3,5,7,9]:
+
+    if tab not in [1, 3, 5, 7, 9]:
         return
     tab_window_rect = eghis_opd.child_window(auto_id='tabWait').rectangle()
     tab_l, tab_t = tab_window_rect.left, tab_window_rect.top
     tab_w, tab_h = tab_window_rect.width(), tab_window_rect.height()
-    tab_v_mid = tab_t + int(tab_h/2)
-    tab_w_10p = int(tab_w/10)
-    pywinauto.mouse.click(coords = (tab_l+(tab*tab_w_10p), tab_v_mid))
+    tab_v_mid = tab_t + int(tab_h / 2)
+    tab_w_10p = int(tab_w / 10)
+    pywinauto.mouse.click(coords=(tab_l + (tab * tab_w_10p), tab_v_mid))
     if first_in_line:
-        pywinauto.mouse.double_click(coords = (tab_l+(tab*tab_w_10p), tab_v_mid+40))
-        
-        
+        pywinauto.mouse.double_click(coords=(tab_l + (tab * tab_w_10p), tab_v_mid + 40))
+
+
 #: 환자 기본정보 불러오기. (환자정보창 열고..)
 def current_ptinfo_window():
     if not eghis.exists():
         return "이지스를 먼저 실행하세요."
-    
+
     to_eghis()
-    
+
     # Predefined Dictionary for Return
     currentPTinfo = {
         "ptno": "",
@@ -172,27 +166,34 @@ def current_ptinfo_window():
         "ptaddress1": "",
         "ptaddress2": "",
     }
-    
+
     eghis_opd.child_window(auto_id="lblChartNm").click()
     eAinput.buy_time(1.5)
     ptinfoMain = app.window(auto_id="H0ComPatientInfo")
-    ptinfo_win1 = ptinfoMain.child_window(auto_id = "mccTableLayoutPanel1")
-    ptinfo_win2 = ptinfoMain.child_window(auto_id = "pnlTop")
-    
+    ptinfo_win1 = ptinfoMain.child_window(auto_id="mccTableLayoutPanel1")
+    ptinfo_win2 = ptinfoMain.child_window(auto_id="pnlTop")
+
     currentPTinfo['ptno'] = ptinfo_win1.window(auto_id="txtPtntNo").texts()[0]
     currentPTinfo['ptname'] = ptinfo_win1.window(auto_id="txtPtntNm").texts()[0]
     currentPTinfo['ptsex'] = ptinfo_win1.window(auto_id="txtSexAge").texts()[0].split(" / ")[0]
     currentPTinfo['ptage'] = ptinfo_win1.window(auto_id="txtSexAge").texts()[0].split(" / ")[1]
-    currentPTinfo['ptjmno'] = ptinfo_win2.window(auto_id="mbxPeoid").child_window(control_type="System.Windows.Forms.MaskedTextBox").texts()[0]
-    currentPTinfo['ptbirthd'] = ptinfo_win2.child_window(auto_id="dtpBirthYmd").child_window(control_type="System.Windows.Forms.TextBox").texts()[0]
-    currentPTinfo['ptphone'] = ptinfo_win2.child_window(auto_id="mbxHp").child_window(control_type="System.Windows.Forms.MaskedTextBox").texts()[0]
-    currentPTinfo['pttel'] = ptinfo_win2.child_window(auto_id="mbxTel").child_window(control_type="System.Windows.Forms.MaskedTextBox").texts()[0]
-    currentPTinfo['ptzipcode'] = ptinfo_win2.child_window(auto_id = "txtPostNo").child_window(control_type="System.Windows.Forms.TextBox").texts()[0]
-    currentPTinfo['ptaddress1'] = ptinfo_win2.child_window(auto_id="txtAddr").child_window(control_type="System.Windows.Forms.TextBox").texts()[0]
-    currentPTinfo['ptaddress2'] = ptinfo_win2.child_window(auto_id="txtAddrDetail").child_window(control_type="System.Windows.Forms.TextBox").texts()[0]
+    currentPTinfo['ptjmno'] = ptinfo_win2.window(auto_id="mbxPeoid").child_window(
+        control_type="System.Windows.Forms.MaskedTextBox").texts()[0]
+    currentPTinfo['ptbirthd'] = ptinfo_win2.child_window(auto_id="dtpBirthYmd").child_window(
+        control_type="System.Windows.Forms.TextBox").texts()[0]
+    currentPTinfo['ptphone'] = ptinfo_win2.child_window(auto_id="mbxHp").child_window(
+        control_type="System.Windows.Forms.MaskedTextBox").texts()[0]
+    currentPTinfo['pttel'] = ptinfo_win2.child_window(auto_id="mbxTel").child_window(
+        control_type="System.Windows.Forms.MaskedTextBox").texts()[0]
+    currentPTinfo['ptzipcode'] = ptinfo_win2.child_window(auto_id="txtPostNo").child_window(
+        control_type="System.Windows.Forms.TextBox").texts()[0]
+    currentPTinfo['ptaddress1'] = ptinfo_win2.child_window(auto_id="txtAddr").child_window(
+        control_type="System.Windows.Forms.TextBox").texts()[0]
+    currentPTinfo['ptaddress2'] = ptinfo_win2.child_window(auto_id="txtAddrDetail").child_window(
+        control_type="System.Windows.Forms.TextBox").texts()[0]
     print(currentPTinfo)
-    
-    return currentPTinfo    
+
+    return currentPTinfo
 
 
 #: 환자 기본정보 불러오기. (환자정보창 열지않고..)
@@ -221,13 +222,15 @@ def current_ptinfo():
     main_ptname = eghis_opd.child_window(auto_id="lblChartNm")
     main_ptsexage = eghis_opd.child_window(auto_id="lblSexAge", top_level_only=True)
     eghis_pt_tooltip()
-    
+
     try:
         main_tooltip = app.window(class_name="WindowsForms10.tooltips_class32.app.0.1ca0192_r8_ad1").texts()
         main_ptjmno = (main_tooltip[0].split('주민등록번호 : ')[1]).split('\r\n집 ')[0]
-    except pywinauto.findwindows.ElementNotFoundError: return
-    
-    main_ptphone = eghis_opd.child_window(auto_id="txtPhoneNo").child_window(auto_id="textBox", control_type="System.Windows.Forms.MaskedTextBox")
+    except pywinauto.findwindows.ElementNotFoundError:
+        return
+
+    main_ptphone = eghis_opd.child_window(auto_id="txtPhoneNo").child_window(
+        auto_id="textBox", control_type="System.Windows.Forms.MaskedTextBox")
     main_ptaddress = eghis_opd.child_window(auto_id="lblAddress", control_type="Mcc.Series.Controls.MccLabel")
 
     # Actual Values from eGhis Main Window
@@ -258,37 +261,44 @@ def current_ptinfo():
     return currentPTinfo
 
 
-#= 환자이름 가져오기. 환자정보 가져올 필요성 있는지 확인하기. 
+# = 환자이름 가져오기. 환자정보 가져올 필요성 있는지 확인하기.
 # 동명이인 2번 연속으로 볼 가능성은 적으니까.. 일단은 만족하자.
 # TODO 그래도 나중에 시간될때 보완은 해보자.
 def patient_change():
-    if not eghis_opd.exists(): return
+    if not eghis_opd.exists():
+        return
     try:
         return eghis_opd.child_window(auto_id="lblChartNm").texts()[0]
-    except pywinauto.remote_memory_block.AccessDenied: return ""
-    
+    except pywinauto.remote_memory_block.AccessDenied:
+        return ""
 
-#= 환자정보 가져오기. '***' 유무 확인. *** = 알러지 또는 환자관련 중요사항.
+
+# = 환자정보 가져오기. '***' 유무 확인. *** = 알러지 또는 환자관련 중요사항.
 def get_pt_memo():
-    if not eghis_opd.exists(): return
+    if not eghis_opd.exists():
+        return
     pt_memo = ""
     try:
-        pt_memo = eghis_opd.child_window(auto_id="txtPtntMemo").child_window(control_type="System.Windows.Forms.TextBox").texts()[0]
-    except pywinauto.remote_memory_block.AccessDenied: pass
+        pt_memo = eghis_opd.child_window(auto_id="txtPtntMemo").child_window(
+            control_type="System.Windows.Forms.TextBox").texts()[0]
+    except pywinauto.remote_memory_block.AccessDenied:
+        pass
     return pt_memo
 
 
-#= eGhis 종료, 설정에 따라 backup 및 backup 후 컴퓨터 종료.
+# = eGhis 종료, 설정에 따라 backup 및 backup 후 컴퓨터 종료.
 def close_eghis(self):
-    if not eghis.exists(): return
-    if not self.stgn_auto_backup_btn.isChecked(): return
-    
+    if not eghis.exists():
+        return
+    if not self.stgn_auto_backup_btn.isChecked():
+        return
+
     if self.infos.lpdom:
-        eAutils.send_discord(self, text = "오늘은 청구일입니다. eGhis가 종료되지 않습니다.")
+        eAutils.send_discord(self, text="오늘은 청구일입니다. eGhis가 종료되지 않습니다.")
         return
     else:
-        eAutils.send_discord(self, text = "eGhis를 종료하고, 백업을 진행합니다.")
-    
+        eAutils.send_discord(self, text="eGhis를 종료하고, 백업을 진행합니다.")
+
     to_eghis()
     eAinput.buy_time(1)
     eAinput.write_enter('1qazxcv.')
@@ -300,21 +310,24 @@ def close_eghis(self):
     eAinput.press_key('enter')
     eAinput.buy_time(2)
     eAinput.press_key('enter')
-    
+
     if self.stgn_auto_shutdown_btn.isChecked():
         eAinput.buy_time(2)
         eAinput.press_key(' ')
-        eAutils.send_discord(self, text = "백업 후 컴퓨터를 자동으로 종료합니다.")
+        eAutils.send_discord(self, text="백업 후 컴퓨터를 자동으로 종료합니다.")
 
 
-#= 청구집계
+# = 청구집계
 def start_stats(self):
-    if not eghis.exists(): return
-    if not self.popup.stng_auto_stats_btn.isChecked(): return
-    if not self.infos.lpdom: return
-    
-    eAutils.send_discord(self, text = "오늘은 청구일입니다. 청구집계를 시작합니다.")
-    
+    if not eghis.exists():
+        return
+    if not self.popup.stng_auto_stats_btn.isChecked():
+        return
+    if not self.infos.lpdom:
+        return
+
+    eAutils.send_discord(self, text="오늘은 청구일입니다. 청구집계를 시작합니다.")
+
     to_eghis()
     eAinput.buy_time(1)
     eAinput.write_enter('1qazxcv.')
@@ -324,7 +337,7 @@ def start_stats(self):
     eAinput.click_at(*eAxys.eGhis.CLAIM_START_STAT)
 
 
-## Vaccine Systems Window Manipulation
+# Vaccine Systems Window Manipulation
 
 VACCINE_SYSTEMS = ["예방접종통합관리시스템",
                    "::::: 질병관리청 현물공급 인플루엔자등록시스템 ::::: - Chrome",
@@ -337,27 +350,29 @@ VACCINE_XYS = [eAxys.VacGen, eAxys.VacFlu, eAxys.VacCovid19]
 #         target_sys = Application().connect(title=VACCINE_SYSTEMS[sys]).top_window()
 #     except pywinauto.findwindows.ElementNotFoundError:
 #         pass
-    
+
 #     target_sys.set_focus()
 #     self.delayed_exec(0.5)
 
 #: 각 접종 시스템 환자정보 입력
-def vaccine_pt(self, sys:int, ptjmno:str):
+
+
+def vaccine_pt(self, sys: int, ptjmno: str):
     if "-" in ptjmno:
         ptjmno = ptjmno.replace("-", "")
-        
+
     try:
         target_sys = pygetwindow.getWindowsWithTitle(VACCINE_SYSTEMS[sys])[0]
     except IndexError:
         return
-    
-    target_sys.activate()    
+
+    target_sys.activate()
     eAinput.buy_time(0.5)
-    
+
     eAinput.click_at(*VACCINE_XYS[sys].DEL_PTJMNO)
     eAinput.click_at(*VACCINE_XYS[sys].INPUT_PTJMNO)
     eAinput.write_enter(ptjmno)
-    
+
 
 #: 각 접종 시스템 로그아웃 연장 버튼 누르기
 def vaccine_cont_all(self):
@@ -372,11 +387,10 @@ def vaccine_cont_all(self):
             target_sys = pygetwindow.getWindowsWithTitle(VACCINE_SYSTEMS[i])[0]
         except IndexError:
             return
-        
+
         target_sys.activate()
         eAinput.buy_time(0.5)
         eAinput.click_at(*VACCINE_XYS[i].CONT_LOGIN)
-        
 
     # Unblock mouse and keyboard input after PyAutoGui
     # windll.user32.BlockInput(False)
@@ -399,13 +413,13 @@ def gen_sys_prepare(self):
 #         target_sys = Application().connect(title=VACCINE_SYSTEMS[1]).top_window()
 #     except pywinauto.findwindows.ElementNotFoundError:
 #         pass
-    
+
 #     target_sys.set_focus()
 #     self.delayed_exec(0.5)
 #     eAinput.double_click_at(VACCINE_XYS[1]["LOT번호"])
 #     #+ eAinput.write_enter(lot번호)
 
-### PYWINAUTO KEYS
+# PYWINAUTO KEYS
 # {SCROLLLOCK}, {VK_SPACE}, {VK_LSHIFT}, {VK_PAUSE}, {VK_MODECHANGE},
 # {BACK}, {VK_HOME}, {F23}, {F22}, {F21}, {F20}, {VK_HANGEUL}, {VK_KANJI},
 # {VK_RIGHT}, {BS}, {HOME}, {VK_F4}, {VK_ACCEPT}, {VK_F18}, {VK_SNAPSHOT},
@@ -429,5 +443,3 @@ def gen_sys_prepare(self):
 # {VK_OEM_CLEAR}, {VK_ESCAPE}, {UP}, {VK_DIVIDE}, {INS}, {VK_JUNJA},
 # {VK_F19}, {VK_EXECUTE}, {VK_PLAY}, {VK_RMENU}, {VK_F13}, {VK_F12}, {LWIN},
 # {VK_DOWN}, {VK_F17}, {VK_F16}, {VK_F15}, {VK_F14}
-
-
