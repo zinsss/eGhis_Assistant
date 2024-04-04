@@ -1,11 +1,11 @@
-from PySide6 import QtGui, QtWidgets, QtCore
-from PySide6.QtCore import QDate
+from PySide6 import QtGui, QtWidgets
+from PySide6.QtCore import Qt, QDate
 import sqlite3
 
 from eAmodules import eApopup
 
 
-#: Reminders Highlights Color Codes
+# Reminders Highlights Color Codes
 reminder_status = {
     "[ ]": [(180, 185, 195), "할일", "⚪"],
     "[!]": [(200, 125, 100), "급함", "🟠"],
@@ -19,20 +19,22 @@ reminder_status = {
 
 archiving_target = ["[x]", "[-]"]
 
+
 # DB TO GUI (incl. Processing)
 
+
 # Connect to DB (middle-man)
-
-
 def connect_DB():
     # Load DB
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()
     # Create table if not exists
-    con.execute(
-        'CREATE TABLE if not exists Active(Status TEXT, Reminder TEXT, Sublist TEXT, Due_Date TEXT, Status_Changed TEXT)')
-    con.execute(
-        'CREATE TABLE if not exists Archive(Status TEXT, Reminder TEXT, Sublist TEXT, Due_Date TEXT, Status_Changed TEXT)')
+    cur.execute(
+        'CREATE TABLE if not exists Active\
+        (Status TEXT, Reminder TEXT, Sublist TEXT, Due_Date TEXT, Status_Changed TEXT)')
+    cur.execute(
+        'CREATE TABLE if not exists Archive\
+        (Status TEXT, Reminder TEXT, Sublist TEXT, Due_Date TEXT, Status_Changed TEXT)')
     # Load Current Items
     items = [list(item)
              for item in cur.execute('SELECT * FROM Active').fetchall()]
@@ -59,9 +61,9 @@ def get_db_data(self):
         # 5 status change date after due date
 
         # Due date calculation
-        if reminder[3] != None and reminder[3] != "":
+        if reminder[3] is not None and reminder[3] != "":
             due_date = QDate.fromString(reminder[3], "yyyy.MM.dd")
-            if reminder[4] != None and reminder[4] != "":
+            if reminder[4] is not None and reminder[4] != "":
                 info = " "
             else:
                 to_due_date = self.infos.date_today.daysTo(due_date)
@@ -73,7 +75,7 @@ def get_db_data(self):
                     info = f", OVERDUE{to_due_date}d"
             due_date_info = f'::DUE {due_date.toString("yyyy.MM.dd(ddd)")}{info}'
 
-        if reminder[4] != None and reminder[4] != "":
+        if reminder[4] is not None and reminder[4] != "":
             if reminder[0] == "[x]":
                 status_change_date = f'::DONE {reminder[4]}'
             elif reminder[0] == "[-]":
@@ -84,8 +86,8 @@ def get_db_data(self):
         reminder_gui_list[0] = reminder[0]
         reminder_gui_list[1] = f' {reminder[1]} '
         reminder_gui_list[2] = "..." if reminder[2] != "" else ""
-        reminder_gui_list[4] = due_date_info if reminder[3] != None and reminder[3] != "" else ""
-        reminder_gui_list[5] = status_change_date if reminder[4] != None and reminder[4] != "" else ""
+        reminder_gui_list[4] = due_date_info if reminder[3] is not None and reminder[3] != "" else ""
+        reminder_gui_list[5] = status_change_date if reminder[4] is not None and reminder[4] != "" else ""
         # 만들어진 리스트를 붙이되, due date나 done/cancell date가 없는 경우 2줄짜리 리스트 아이템이 생기지만,
         # rstrip()로 \n까지 지워버림.
         reminder_gui = "".join(reminder_gui_list).rstrip()
@@ -175,7 +177,7 @@ def open_reminder_in_detail(self):
         for sublist_item in reminder_info[2].replace(r'\n', '\n').splitlines():
             item = QtWidgets.QListWidgetItem(sublist_item)
             item.setFlags(
-                QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsDragEnabled | QtCore.Qt.ItemIsEditable | QtCore.Qt.ItemIsEnabled
+                Qt.ItemIsSelectable | Qt.ItemIsDragEnabled | Qt.ItemIsEditable | Qt.ItemIsEnabled
             )
             # Set Color of sublist item according to status
             item.setForeground(QtGui.QBrush(QtGui.QColor(
@@ -257,7 +259,7 @@ def verify_reminder(self, reminder: str):
     cur = con.cursor()
     # cur.execute는 DB의 값을 tuple로 불러옴. 즉 그냥 하나만 불러오는거니까 [0]추가하면 string값 그대로.
     all_active_reminders = [item[0] for item in cur.execute(
-        f'SELECT Reminder FROM Active').fetchall()]
+        'SELECT Reminder FROM Active').fetchall()]
     # DB 저장 후 연결 해제.
     con.commit()
     con.close()
@@ -289,7 +291,7 @@ def update_status_reminders(self, new_status: str):
     # DB 연결해서.
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()
-    con.execute(
+    cur.execute(
         f"UPDATE Active SET Status = '{new_status}', Status_Changed = '{status_changed}' WHERE Reminder = '{target_reminder_text}'")
     # DB 저장 후 연결 해제.
     con.commit()
@@ -374,7 +376,7 @@ def add_reminder(self):
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()
     # DB에 새로 추가하고.
-    con.execute(f'INSERT INTO Active VALUES (?, ?, ?, ?, ?);', reminder)
+    cur.execute('INSERT INTO Active VALUES (?, ?, ?, ?, ?);', reminder)
     # DB 저장 후 연결 해제.
     con.commit()
     con.close()
@@ -388,7 +390,7 @@ def add_sublist(self):
     new_sublist = f'{self.reminders_sublist_status_lbl.text()} {self.reminders_sublist_item_led.text()}'
     item = QtWidgets.QListWidgetItem(new_sublist)
     item.setFlags(
-        QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsDragEnabled | QtCore.Qt.ItemIsEditable | QtCore.Qt.ItemIsEnabled
+        Qt.ItemIsSelectable | Qt.ItemIsDragEnabled | Qt.ItemIsEditable | Qt.ItemIsEnabled
     )
     # Set Color of sublist item according to status
     item.setForeground(QtGui.QBrush(QtGui.QColor(
@@ -430,7 +432,7 @@ def reminder_detail_write(self):
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()
     # DB에 새로 추가하고.
-    con.execute(f"""
+    cur.execute(f"""
                 UPDATE Active SET
                 Status = '{reminder_status}',
                 Reminder = '{reminder_text}',
@@ -459,7 +461,7 @@ def delete_reminder(self):
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()
     # DB에 새로 추가하고.
-    con.execute(f"DELETE FROM Active WHERE Reminder = '{to_delete}'")
+    cur.execute(f"DELETE FROM Active WHERE Reminder = '{to_delete}'")
     # DB 저장 후 연결 해제.
     con.commit()
     con.close()
@@ -478,12 +480,12 @@ def archive_reminders(self):
     cur = con.cursor()
     # Active에서 대상 리마인더를 가져오고.
     reminders_to_archv = list(cur.execute(
-        f'SELECT * FROM Active WHERE Status = "[x]" OR Status = "[-]"').fetchall())
+        'SELECT * FROM Active WHERE Status = "[x]" OR Status = "[-]"').fetchall())
     # Active에서는 지워주고.
-    cur.execute(f'DELETE FROM Active WHERE Status = "[x]" OR Status = "[-]"')
+    cur.execute('DELETE FROM Active WHERE Status = "[x]" OR Status = "[-]"')
     # 하나 이상 일 수 있으니, for loop으로 Archive에 넣어줌.
     for each in reminders_to_archv:
-        cur.execute(f'INSERT INTO Archive VALUES (?, ?, ?, ?, ?);', each)
+        cur.execute('INSERT INTO Archive VALUES (?, ?, ?, ?, ?);', each)
     # DB 저장 후 연결 해제.
     con.commit()
     con.close()
@@ -491,7 +493,9 @@ def archive_reminders(self):
     load_write_reminders(self)
 
 
-##### UI Management #####
+# UI Management
+
+
 def clear_btn_clicked(self):
     self.reminders_lwg.setCurrentItem(None)
     self.reminders_sublist_lwg.setCurrentItem(None)
@@ -537,7 +541,7 @@ def reminder_Rmenu(self, listwidget: str = None):
 
     selected_status = self.reminder_Rmenu.exec(mouse_pos)
 
-    if selected_status == None:
+    if selected_status is None:
         return
 
     if not listwidget:
@@ -637,7 +641,9 @@ def close_archive_page(self):
     self.reminders_stack.setCurrentIndex(0)
 
 
-##### UNUSED BUT LEFT FOR FUTURE REFERENCE #####
+# UNUSED BUT LEFT FOR FUTURE REFERENCE
+
+
 # = Watch out for DB file changes
 # reminders_db_file = pathlib.Path('./database/eGhisAssistant.db')
 # reminders_db_mdate = str(datetime.datetime.fromtimestamp(reminders_db_file.stat().st_mtime))

@@ -1,9 +1,9 @@
 
-## Qt Stylesheets Archive. Also For Better Managements and Readability of Codes.
+# Qt Stylesheets Archive. Also For Better Managements and Readability of Codes.
 
 # TODO Go through Each Stylesheets for Unused and Delete it.
 
-## MainWindow Alert Styles, ON and OFF
+# MainWindow Alert Styles, ON and OFF
 ALERT_OFF = "color: rgb(70, 80, 100);"
 PT_ALERT_ON = """
 color: rgb(225, 75, 75);
@@ -17,27 +17,27 @@ REMINDERS_ALERT_ON_TODAY = "color: rgb(125, 200, 150);"
 REMINDERS_ALERT_ON_7DAYS = "color: rgb(122, 155, 111);"
 REMINDERS_ALERT_ON_OVERDUE = "color: rgb(225, 75, 75);"
 
-## CalRemAdit MenuButtons
+# CalRemAdit MenuButtons
 CALREM_ADIT_ON_PAGE = """
-QPushButton {	
-	color: rgb(143, 188, 187);
-	border:none;
+QPushButton {
+    color: rgb(143, 188, 187);
+    border:none;
 }
 """
 CALREM_ADIT_TO_PAGE = """
 QPushButton {
-	color: rgb(165, 170, 180);
-	border:none;
+    color: rgb(165, 170, 180);
+    border:none;
 }
-QPushButton:hover {    
-	color:rgb(125,175,225);
+QPushButton:hover {
+    color:rgb(125,175,225);
 }
 QPushButton:pressed {
-	color:rgb(75,75,90);
+    color:rgb(75,75,90);
 }
 """
 
-## Alert Notification for Allergies and Contra-Indications
+# Alert Notification for Allergies and Contra-Indications
 ALERT_ALLERGIES_OFF = """
 background-color: transparent;
 color: transparent;
@@ -50,7 +50,7 @@ color: rgb(200, 75, 75);
 border-radius: 15px;
 border:2px solid rgb(250, 150, 150);
 """
-## APP Buttons
+# APP Buttons
 REMINDERS_NEW_SYMBOL = """
 background-color:rgb(42,48,58);
 border:none;
@@ -65,29 +65,28 @@ border:1px solid rgb(50,55,70);
 border-right:none;
 border-left:none;
 '''
-
 APPS_GBX_DEFAULT = """
 QPushButton {
-	font: bold italic 12pt "Lucida Sans";
-	color: rgb(150, 155, 175);
-	border:none;
+    font: bold italic 12pt "Lucida Sans";
+    color: rgb(150, 155, 175);
+    border:none;
 }
-QPushButton:hover {    
-	color:rgb(145,170,170);
+QPushButton:hover {
+    color:rgb(145,170,170);
 }
 QPushButton:pressed {
-	color:rgb(75,75,90);
+    color:rgb(75,75,90);
 }
 """
 APPS_GBX_SELECTED = """
 QPushButton {
-	font: bold italic 14pt "Lucida Sans";
-	color: rgb(143, 188, 187);
+    font: bold italic 14pt "Lucida Sans";
+    color: rgb(143, 188, 187);
     border:none;
 }
 """
 
-## QMessageBoxes
+# QMessageBoxes
 WARNBOX = """
 QMessageBox {
     font: 14pt "나눔바른고딕";
@@ -108,7 +107,7 @@ QPushButton {
     border-radius:14%;
     border:1px solid rgb(190, 75, 105);
 }
-QPushButton:hover {    
+QPushButton:hover {
     color:rgb(255,244,255);
 }
 QPushButton:pressed {
@@ -118,12 +117,12 @@ QPushButton[text="YES"] {
     min-width:100px;
     min-height:29px;
     font:bold italic 12pt "Lucida Sans";
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(150, 125, 175);
     border-radius:14%;
     border:1px solid rgb(125, 100, 150);
 }
-QPushButton[text="YES"]:hover {    
+QPushButton[text="YES"]:hover {
     color: rgb(255, 244, 255);
 }
 QPushButton[text="YES"]:pressed {
@@ -151,7 +150,7 @@ QPushButton {
     border-radius:14%;
     border:1px solid rgb(166, 111, 133);
 }
-QPushButton:hover {    
+QPushButton:hover {
     color:rgb(255,244,255);
 }
 QPushButton:pressed {
@@ -179,7 +178,7 @@ QPushButton {
     border-radius:14%;
     border:1px solid rgb(166, 111, 133);
 }
-QPushButton:hover {    
+QPushButton:hover {
     color:rgb(255,244,255);
 }
 QPushButton:pressed {
@@ -218,12 +217,12 @@ QPushButton[text="CLOSE"] {
     min-width:100px;
     min-height:29px;
     font: bold italic 12pt "Lucida Sans";
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(190, 125, 175);
     border-radius:14%;
     border:1px solid rgb(155, 111, 133);
 }
-QPushButton[text="CLOSE"]:hover {    
+QPushButton[text="CLOSE"]:hover {
     color:rgb(255,244,255);
 }
 QPushButton[text="CLOSE"]:pressed {
@@ -276,11 +275,11 @@ QPushButton[text="Cancelled"] {
     background-color: rgb(70,40,40);
 }
 QPushButton[text="DELETE"] {
-    color: rgb(233, 200, 222);	
+    color: rgb(233, 200, 222);
     background-color: rgb(60, 40, 50);
 }
 QPushButton[text="EDIT"] {
-    color: rgb(233, 200, 222);	
+    color: rgb(233, 200, 222);
     background-color: rgb(50, 40, 60);
 }
 QPushButton:hover {
@@ -292,13 +291,13 @@ QPushButton:pressed {
 QPushButton[text="CLOSE"] {
     min-width:100px;
     min-height:29px;
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(190, 125, 175);
     font: bold italic 12pt "Lucida Sans";
     border-radius:14%;
     border:1px solid rgb(40,45,50);
 }
-QPushButton[text="CLOSE"]:hover {    
+QPushButton[text="CLOSE"]:hover {
     color:rgb(255,244,255);
 }
 QPushButton[text="CLOSE"]:pressed {
@@ -321,12 +320,12 @@ QPushButton {
     min-width:125px;
     min-height:29px;
     font: bold italic 12pt "Lucida Sans";
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(100, 120, 160);
     border-radius:14%;
     border:1px solid rgb(77, 99, 122);
 }
-QPushButton:hover {    
+QPushButton:hover {
     color:rgb(255,244,255);
 }
 QPushButton:pressed {
@@ -336,12 +335,12 @@ QPushButton[text="NO"] {
     min-width:100px;
     min-height:29px;
     font: bold italic 12pt "Lucida Sans";
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(180, 133, 190);
     border-radius:14%;
     border:1px solid rgb(144, 122, 155);
 }
-QPushButton[text="NO"]:hover {    
+QPushButton[text="NO"]:hover {
     color:rgb(255,244,255);
 }
 QPushButton[text="NO"]:pressed {
@@ -364,12 +363,12 @@ QPushButton {
     min-width:125px;
     min-height:29px;
     font: bold italic 12pt "Lucida Sans";
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(100, 120, 160);
     border-radius:14%;
     border:1px solid rgb(77, 99, 122);
 }
-QPushButton:hover {    
+QPushButton:hover {
     color:rgb(255,244,255);
 }
 QPushButton:pressed {
@@ -379,19 +378,19 @@ QPushButton[text="NO"] {
     min-width:100px;
     min-height:29px;
     font: bold italic 12pt "Lucida Sans";
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(180, 133, 190);
     border-radius:14%;
     border:1px solid rgb(144, 122, 155);
 }
-QPushButton[text="NO"]:hover {    
+QPushButton[text="NO"]:hover {
     color:rgb(255,244,255);
 }
 QPushButton[text="NO"]:pressed {
     background-color:rgb(170,120,180);
 }
 """
- 
+
 INPUTBOX = """
 QInputDialog {
     font:12pt "D2Coding";
@@ -441,12 +440,12 @@ QPushButton {
     min-width:125px;
     min-height:29px;
     font:12pt "D2Coding";
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(100, 120, 160);
     border-radius:14%;
     border:1px solid rgb(77, 99, 122);
 }
-QPushButton:hover {    
+QPushButton:hover {
     color:rgb(255,244,255);
 }
 QPushButton:pressed {
@@ -503,12 +502,12 @@ QPushButton {
     min-width:125px;
     min-height:29px;
     font:12pt "D2Coding";
-    color: rgb(233, 222, 233);	
+    color: rgb(233, 222, 233);
     background-color: rgb(100, 120, 160);
     border-radius:14%;
     border:1px solid rgb(77, 99, 122);
 }
-QPushButton:hover {    
+QPushButton:hover {
     color:rgb(255,244,255);
 }
 QPushButton:pressed {
@@ -547,7 +546,7 @@ QPushButton {
     border-radius:14%;
     border:1px solid rgb(77, 99, 122);
 }
-QPushButton:hover {    
+QPushButton:hover {
     color:rgb(255,244,255);
 }
 QPushButton:pressed {
