@@ -245,8 +245,7 @@ def DBsyncDropBox(self):
     con = sqlite3.connect("./database/eAcalrem.db")
     cur = con.cursor()
     # Get Data
-    month_events = cur.execute(f'''
-        SELECT * FROM Calendar
+    month_events = cur.execute(f'''SELECT * FROM Calendar
         WHERE (Year={year} AND Month={month}) OR (Year = {prev_month_year} AND Month={prev_month})
         ''').fetchall()
     # Close DB connection
