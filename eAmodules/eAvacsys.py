@@ -16,12 +16,12 @@ from eAmodules import eAwinauto
 
 
 # 질병청 예방접종 시스템들 자동실행
-def iskdca_login(self, options:int):
+def iskdca_login(self, options: int):
     '''Options (as integer, as in index of below list.)
     ['통합예방접종시스템(V)', '현물독감접종시스템(F)', '코로나19접종시스템(C)',
     'V + F', 'V + C', 'F + C', 'V + F + C', '홈페이지 로그인']
     '''
-    
+
     # selenium, kill popup windows
     def killpopup():
         wins = drv.window_handles
@@ -29,15 +29,15 @@ def iskdca_login(self, options:int):
             drv.switch_to.window(wins[win])
             drv.close()
         drv.switch_to.window(wins[0])
-    
+
     # 원래 창으로 복귀
     def backtomain():
         wins = drv.window_handles
         drv.switch_to.window(wins[0])
-    
-    # global 선언으로 함수 종료 이후에도 chrome창이 종료되지 않음. 
+
+    # global 선언으로 함수 종료 이후에도 chrome창이 종료되지 않음.
     global drv
-    drv = webdriver.Chrome()    
+    drv = webdriver.Chrome()
     url = 'https://is.kdca.go.kr'
     drv.get(url)
     killpopup()
@@ -52,8 +52,8 @@ def iskdca_login(self, options:int):
     drv.find_element(By.XPATH, '//*[@id="xwup_certselect_tek_input1"]').send_keys(Keys.ENTER)
     self.delayed_exec(1)
     # 팝업창 모두 닫아주고
-    killpopup() 
-  
+    killpopup()
+
     # 접종시스템 시작, fancy zones 나열, 접종화면으로 이동
     def vac_start():
         drv.switch_to.frame('base')
@@ -69,7 +69,7 @@ def iskdca_login(self, options:int):
         drv.find_element(By.XPATH, '//*[@id="ocs_button1"]').click()
         self.delayed_exec(6)
         eAwinauto.gen_sys_prepare(self)
-        
+
         # vac_sys_pos = [vac_sys.left+20, vac_sys.top+10]
         # pag.moveTo(vac_sys_pos)
         # pag.keyDown('shifleft')
@@ -82,7 +82,7 @@ def iskdca_login(self, options:int):
         # pag.click(2800, 400)
         # self.logcont_vac_cb.setChecked(True)
         # backtomain()
-    
+
     # 현물공급 플루 시스템 시작, fancy zones 나열
     def fluold_start():
         drv.switch_to.frame('base')
@@ -90,25 +90,25 @@ def iskdca_login(self, options:int):
         drv.find_element(By.XPATH, '//*[@id="logo"]/a/img').click()
         self.delayed_exec(1)
         killpopup()
-        drv.switch_to.frame('base') 
-        # 선택 combobox         
+        drv.switch_to.frame('base')
+        # 선택 combobox
         drv.find_element(By.XPATH, '//*[@id="contents"]/div[1]/div[2]/div/a').click()
         self.delayed_exec(0.5)
         # 예방접종관리(콤보박스내)
         drv.find_element(By.XPATH, '//*[@id="contents"]/div[1]/div[2]/div/ul/li[3]/a').click()
         self.delayed_exec(1)
-        
+
         # drv.switch_to.frame('ifrm')
         # # 현물공급 인플루엔자등록시스템 링크(그림)
         # drv.find_element(By.XPATH, '//*[@id="inf_button1"]').click()
-        
+
         drv.find_element(By.XPATH, '//*[@id="197625"]/a[1]').click()
         self.delayed_exec(0.5)
         drv.find_element(By.XPATH, '//*[@id="197625"]/ul[1]/li/a[1]').click()
         self.delayed_exec(0.5)
         drv.find_element(By.XPATH, '//*[@id="197625"]/ul[1]/li/ul[1]/li/a[3]').click()
         self.delayed_exec(6)
-        
+
         # fluold_sys_pos = [fluold_sys.left+20, fluold_sys.top+10]
         # pag.moveTo(fluold_sys_pos)
         # pag.keyDown('shifleft')
@@ -175,4 +175,3 @@ def iskdca_login(self, options:int):
         corona_start()
     elif options == 7:
         return
-    

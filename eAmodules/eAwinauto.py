@@ -261,7 +261,7 @@ def current_ptinfo():
     return currentPTinfo
 
 
-# = 환자이름 가져오기. 환자정보 가져올 필요성 있는지 확인하기.
+# 환자이름 가져오기. 환자정보 가져올 필요성 있는지 확인하기.
 # 동명이인 2번 연속으로 볼 가능성은 적으니까.. 일단은 만족하자.
 # TODO 그래도 나중에 시간될때 보완은 해보자.
 def patient_change():
@@ -273,7 +273,7 @@ def patient_change():
         return ""
 
 
-# = 환자정보 가져오기. '***' 유무 확인. *** = 알러지 또는 환자관련 중요사항.
+# 환자정보 가져오기. '***' 유무 확인. *** = 알러지 또는 환자관련 중요사항.
 def get_pt_memo():
     if not eghis_opd.exists():
         return
@@ -286,7 +286,7 @@ def get_pt_memo():
     return pt_memo
 
 
-# = eGhis 종료, 설정에 따라 backup 및 backup 후 컴퓨터 종료.
+# eGhis 종료, 설정에 따라 backup 및 backup 후 컴퓨터 종료.
 def close_eghis(self):
     if not eghis.exists():
         return
@@ -317,7 +317,7 @@ def close_eghis(self):
         eAutils.send_discord(self, text="백업 후 컴퓨터를 자동으로 종료합니다.")
 
 
-# = 청구집계
+# 청구집계
 def start_stats(self):
     if not eghis.exists():
         return
@@ -344,7 +344,7 @@ VACCINE_SYSTEMS = ["예방접종통합관리시스템",
                    "코로나19통합관리시스템"]
 VACCINE_XYS = [eAxys.VacGen, eAxys.VacFlu, eAxys.VacCovid19]
 
-# #: 각 접종 시스템 set focus
+# # 각 접종 시스템 set focus
 # def vaccine_focus(self, sys:int):
 #     try:
 #         target_sys = Application().connect(title=VACCINE_SYSTEMS[sys]).top_window()
@@ -354,7 +354,7 @@ VACCINE_XYS = [eAxys.VacGen, eAxys.VacFlu, eAxys.VacCovid19]
 #     target_sys.set_focus()
 #     self.delayed_exec(0.5)
 
-#: 각 접종 시스템 환자정보 입력
+# 각 접종 시스템 환자정보 입력
 
 
 def vaccine_pt(self, sys: int, ptjmno: str):
@@ -374,7 +374,7 @@ def vaccine_pt(self, sys: int, ptjmno: str):
     eAinput.write_enter(ptjmno)
 
 
-#: 각 접종 시스템 로그아웃 연장 버튼 누르기
+# 각 접종 시스템 로그아웃 연장 버튼 누르기
 def vaccine_cont_all(self):
     # Block mouse and keyboard input during PyAutoGui
     # windll.user32.BlockInput(True)
@@ -396,7 +396,7 @@ def vaccine_cont_all(self):
     # windll.user32.BlockInput(False)
 
 
-#: 기본접종시스템은 시작시 접종화면으로 가는 버튼을 눌러줘야함. 해당 기능.
+# 기본접종시스템은 시작시 접종화면으로 가는 버튼을 눌러줘야함. 해당 기능.
 def gen_sys_prepare(self):
     try:
         target_sys = pygetwindow.getWindowsWithTitle(VACCINE_SYSTEMS[0])[0]
@@ -407,7 +407,7 @@ def gen_sys_prepare(self):
     eAinput.click_at(*eAxys.VacGen.TO_MAIN)
 
 
-# #: 독감 접종시 노인 및 소아 시스템은 동일하나 수동으로 백신 LOT번호를 변경해줘야해서...자동화.
+# # 독감 접종시 노인 및 소아 시스템은 동일하나 수동으로 백신 LOT번호를 변경해줘야해서...자동화.
 # def flu_sys_LOT(self, lot:str):
 #     try:
 #         target_sys = Application().connect(title=VACCINE_SYSTEMS[1]).top_window()
