@@ -126,7 +126,7 @@ def workups():
 
 
 # 기타 코멘트들. Dialog
-# TODO needs working.
+# TODO: needs working.
 def other_comments():
     menu_items = [
         '보존적 치료',
@@ -155,14 +155,13 @@ def other_comments():
 
 
 # 예방접종 관련
-# = Vaccination! Call labeler with single button press
+# Vaccination! Call labeler with single button press
 def call_labeler(self):
     self.apps_buttons('apps_labeler_btn')
     eAlabeler.fetch_and_write_ptinfo(self)
 
-# = Vaccine System Management Main Menu
 
-
+# Vaccine System Management Main Menu
 def vac_sys_manager(self):
     options = ['접종시스템 입력', '접종시스템 시작', '로그아웃 연장']
     choice = eApopup.menu(title='접종시스템 관리', buttons=options)
@@ -175,10 +174,9 @@ def vac_sys_manager(self):
     elif choice == options[2]:
         eAwinauto.vaccine_cont_all(self)
 
-# = 접종시스템 직접 입력. Labeler 없이.
-# TODO more specific exceptions is needed.
 
-
+# 접종시스템 직접 입력. Labeler 없이.
+# TODO: more specific exceptions is needed.
 def vac_sys_input(self):
     vac_sys = ['예방접종시스템', '현물독감시스템', '코로나19시스템']
     choice = eApopup.menu(title='시스템 입력', buttons=vac_sys)
@@ -192,9 +190,8 @@ def vac_sys_input(self):
         except IndexError:
             eApopup.notify(text="다시 확인해보세요!!")
 
-# = 접종시스템 관리
 
-
+# 접종시스템 관리
 def vac_sys_start(self):
     menu_items = ['통합예방접종시스템 (V)',
                   '현물독감접종시스템 (F)',
@@ -226,9 +223,8 @@ def vac_sys_start(self):
     else:
         return
 
-# = Covid-19 Macro, Main Menu
 
-
+# Covid-19 Macro, Main Menu
 def covid_19_menu():
     menu_items = ['RAT 처방', 'RAT 결과입력']
     choice = eApopup.menu(title="코로나19 관련 Macro", buttons=menu_items)
@@ -239,9 +235,8 @@ def covid_19_menu():
     elif choice == menu_items[1]:
         RAT_results()
 
-# = Menu in dialogs, RAT
 
-
+# Menu in dialogs, RAT
 def RAT():
     ins_comment = """# 경상북도 영덕군 영해면 소재 의료기관.
   - 발열/상기도 감염증세/근육통 호소하여 50/100 급여로 RAT 시행."""
@@ -255,9 +250,8 @@ def RAT():
         eAinput.copy_it(ins_comment)
         eApopup.notify(text="클립보드에 급여 용 코멘트를 복사했습니다.")
 
-# = Menu in dialogs, RAT results
 
-
+# Menu in dialogs, RAT results
 def RAT_results():
     menu_items = ['음성 - Negative', '양성 - Positive']
     choice = eApopup.menu(title="RAT 결과입력", buttons=menu_items)
@@ -271,9 +265,8 @@ def RAT_results():
         # if not ok: return
         # else: COVID_pos(self, one_stop = True)
 
-# = RAT 결과 입력 logics
 
-
+# RAT 결과 입력 logics
 def RAT_result_input(positive: bool = False):
     eAwinauto.to_eghis()
     eAinput.press_key('f3')
@@ -329,7 +322,7 @@ def RAT_result_input(positive: bool = False):
 
 
 # 인플루엔자 관련
-# = 보육원 학생 여부 확인.
+# 보육원 학생 여부 확인.
 def influenza_candidate():
     menu_items = ['일반 환자', '보육원 환자(할인)']
     candidate = eApopup.menu(title='독감검사, 환자', buttons=menu_items)
@@ -341,7 +334,7 @@ def influenza_candidate():
         eAinput.rx_input('플루-보')
 
 
-# = 키트 처방여부 확인
+# 키트 처방여부 확인
 def flu_kit_ordered():
     ordered = eAinput.find_if_exists(
         png='resources/macros/flucovid_kit_rx_los.png', area=(1400, 1100, 1000, 1000))
@@ -354,7 +347,7 @@ def flu_kit_ordered():
             influenza_candidate()
 
 
-# = 독감 양성, 아형은?
+# 독감 양성, 아형은?
 def influenza_result():
     flu_kit_ordered()
 
@@ -386,7 +379,7 @@ def influenza_result():
             influenza_tamiflu(flu_type)
 
 
-# = 양성, 타미플루 처방. JX999, 상병명, 체중 별 타미플루 용량
+# 양성, 타미플루 처방. JX999, 상병명, 체중 별 타미플루 용량
 def influenza_tamiflu(type: str = None):
     flu_kit_ordered()
 
@@ -420,17 +413,16 @@ def influenza_tamiflu(type: str = None):
     eAinput.press_key('f5')
 
 
-# = 양성, 상병입력, 타미플루입력, JX999 및 학교제출용 확인서.
-# TODO 현재는 확인서 처방코드만 입력. 추후 확인서 출력까지 자동화 시켜보자.
+# 양성, 상병입력, 타미플루입력, JX999 및 학교제출용 확인서.
+# TODO: 현재는 확인서 처방코드만 입력. 추후 확인서 출력까지 자동화 시켜보자.
 def influenza_docs(self):
     docs = influenza_tamiflu()
     if docs != 'CLOSE':
         eAinput.rx_input('진료확인서')
         self.apps_buttons('apps_med_docs_btn')
 
-# = 인플루엔자 최종
 
-
+# 인플루엔자 최종
 def influenza(self):
     menu_items = ['독감 신속 검사입력', '검사결과 입력', '타미플루 처방', '결과입력/처방 및 확인서']
     choice = eApopup.menu(title="Macro; Influenza", buttons=menu_items)
