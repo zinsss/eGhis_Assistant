@@ -411,6 +411,8 @@ def influenza_tamiflu(type: str = None):
     eAinput.repeat_key('tab', repeat=4)
     eAinput.write(jx999)
     eAinput.press_key('f5')
+    eAinput.buy_time(0.5)
+    eAinput.sx_cnp(jx999)
 
 
 # 양성, 상병입력, 타미플루입력, JX999 및 학교제출용 확인서.
