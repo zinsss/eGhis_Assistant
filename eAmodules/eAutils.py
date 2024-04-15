@@ -225,57 +225,11 @@ def DBsyncDropBox(self):
     # 설정을 먼저 확인해주고..
     if not self.stgn_cloud_sync_btn.isChecked():
         return
-    # 파이썬(PySide6)에서 요일을 월요일부터 일요일까지 1~7로 표현하는 것,
-    # 그리고 리스트는 0에서 시작해서 인덱스값이 부여되는것 고려!
-    folder_name = [None, "mon", "tue", "wed", "thu", "fri", "sat", "sun"]
-    today_date = self.infos.date_today
-    year = today_date.year()
-    month = today_date.month()
 
-    if month != 1:
-        prev_month = month - 1
-        prev_month_year = year
-    else:
-        prev_month = 12
-        prev_month_year = year - 1
-
-    target_date = today_date.addDays(-1)
-
-    # Load DB
-    con = sqlite3.connect("./database/eAcalrem.db")
-    cur = con.cursor()
-    # Get Data
-    month_events = cur.execute(f'''SELECT * FROM Calendar
-        WHERE (Year={year} AND Month={month}) OR (Year = {prev_month_year} AND Month={prev_month})
-        ''').fetchall()
-    # Close DB connection
-    con.close()
-
-    if month_events:
-        holidays = []
-        for event in month_events:
-            if event[3]:
-                holidays.append(QDate(*event[:3]))
-
-    while True:
-        if target_date.dayOfWeek() == 7:
-            target_date = target_date.addDays(-1)
-
-        elif target_date in holidays:
-            target_date = target_date.addDays(-1)
-
-        elif target_date.dayOfWeek() == 6 and target_date.day() % 5 != 0:
-            target_date = target_date.addDays(-1)
-
-        else:
-            break
-
-    target_folder = f'{folder_name[target_date.dayOfWeek()]}'
-    system(
-        f'cmd /c "xcopy e:\\backup\\{target_folder} e:\\MyFiles\\Dropbox\\Sync\\eghis\\{target_folder} /E/H/C/I/Y"')
-    send_discord(
-        self, text=f"eGhis 백업자료를({target_folder}) DropBox에 저장했습니다.")
-
+    # robocopy (windows) source 폴더에서 target 폴더로 복사를 하되,
+    # not modified file의 경우에는 자동으로 skip.
+    system(f'cmd /c "robocopy /e e:\backup e:\MyFiles\Dropbox\Sync\eghis"')
+    send_discord(self, text="eGhis 백업자료를 DropBox Sync폴더에 복사했습니다.")
 
 # def to_snake_case(text:str):
 #     temp = [char for char in text]
