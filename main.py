@@ -288,7 +288,7 @@ class MainWindow(QMainWindow, mainUI.Ui_Main):
         # self..clicked.connect(lambda:)
         # self..clicked.connect(lambda:)
         self.macros_reserve_3_btn.clicked.connect(
-            lambda: eAutils.daily_report_discord(self))
+            lambda: eAutils.DBsyncDropBox(self))
 
         # APPS----------------------------------------------------------------#
         # App_Stack Navigation
