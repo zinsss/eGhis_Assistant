@@ -321,7 +321,7 @@ def close_eghis(self):
 def start_stats(self):
     if not eghis.exists():
         return
-    if not self.popup.stng_auto_stats_btn.isChecked():
+    if not self.stng_auto_stats_btn.isChecked():
         return
     if not self.infos.lpdom:
         return
