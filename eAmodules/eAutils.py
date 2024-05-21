@@ -228,7 +228,7 @@ def DBsyncDropBox(self):
 
     # robocopy (windows) source 폴더에서 target 폴더로 복사를 하되,
     # not modified file의 경우에는 자동으로 skip.
-    system(f'cmd /c "robocopy /e e:\\backup e:\\MyFiles\\Dropbox\\Sync\\eghis"')
+    system(f'cmd /c "robocopy /e e:\\backup e:\\Dropbox\\YHSHFM\\eGhisBackup"')
     send_discord(self, text="eGhis 백업자료를 DropBox Sync폴더에 복사했습니다.")
 
 # def to_snake_case(text:str):
